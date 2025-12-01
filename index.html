@@ -14,6 +14,7 @@
                 <h1>Curtis Farrar</h1>
                 <div class="nav-links">
                     <a href="#projects">Projects</a>
+                    <a href="#all-repos">All Repositories</a>
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                     <a href="https://github.com/POWDER-RANGER" target="_blank">GitHub</a>
@@ -27,20 +28,29 @@
             <h2>Independent Systems Engineer</h2>
             <p class="subtitle">Building production-grade open-source systems at the intersection of AI automation, game networking architecture, and cybersecurity tooling.</p>
             <p class="location">Keokuk, Iowa | Remote-Preferred | <a href="https://orcid.org/0009-0008-9273-2458" target="_blank">ORCID: 0009-0008-9273-2458</a></p>
+            <div class="hero-cta">
+                <a href="#contact" class="cta-button primary">Available for Hire</a>
+                <a href="https://github.com/POWDER-RANGER" class="cta-button secondary" target="_blank">View GitHub</a>
+            </div>
         </div>
     </section>
 
     <section id="projects" class="projects">
         <div class="container">
             <h2>Featured Projects</h2>
-            
-            <div class="project-card">
+            <div class="project-card featured">
                 <h3>Nine Realities Netcode Model</h3>
                 <div class="project-meta">
                     <span class="badge">Research</span>
                     <span class="badge">Game Networking</span>
                 </div>
                 <p>Original research into multiplayer game state reconciliation. Formalized the N+1 concurrent simulation model by reverse-engineering Rocket League's netcode architecture.</p>
+                <!-- Visual Diagram Preview -->
+                <div class="project-visual">
+                    <img src="https://raw.githubusercontent.com/POWDER-RANGER/nine-realities-netcode/main/docs/assets/architecture-preview.png" 
+                         alt="Nine Realities Architecture" 
+                         onerror="this.style.display='none'">
+                </div>
                 <ul class="project-highlights">
                     <li><strong>95.2% verification rate</strong> across 98 technical sources</li>
                     <li><strong>4000+ research hours</strong> analyzing client-server prediction models</li>
@@ -84,6 +94,23 @@
                     <li>Auditable decision chains with HMAC verification</li>
                     <li>Multi-agent governance and symbolic planning</li>
                 </ul>
+                <div class="project-links">
+                    <a href="https://github.com/POWDER-RANGER/OBLISK" target="_blank">Repository</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW SECTION: All Repositories (Auto-populated) -->
+    <section id="all-repos" class="all-repos">
+        <div class="container">
+            <h2>All Projects</h2>
+            <p class="section-subtitle">Automatically updated from GitHub | 17 public repositories</p>
+            <div id="dynamic-repos" class="repos-grid">
+                <p>Loading repositories...</p>
+            </div>
+            <div class="view-more">
+                <a href="https://github.com/POWDER-RANGER?tab=repositories" target="_blank" class="cta-button secondary">View All on GitHub →</a>
             </div>
         </div>
     </section>
@@ -134,11 +161,27 @@
 
     <section id="contact" class="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>Available for full-time developer roles, contract systems engineering, and technical collaboration on AI/networking/automation projects.</p>
+            <h2>Available Now</h2>
+            <p class="cta-text">Open to full-time engineering roles, contract systems work, and technical collaboration on AI/networking/automation projects.</p>
+            <div class="availability-status">
+                <span class="status-indicator"></span>
+                <span>Currently accepting new opportunities</span>
+            </div>
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <h4>📧 Email</h4>
+                    <a href="mailto:6curtis6farrar6@gmail.com">6curtis6farrar6@gmail.com</a>
+                    <p class="contact-note">Preferred for project inquiries</p>
+                </div>
+                <div class="contact-card">
+                    <h4>📱 Phone</h4>
+                    <a href="tel:+13199309406">(319) 930-9406</a>
+                    <p class="contact-note">Available for consultation</p>
+                </div>
+            </div>
             <div class="contact-links">
-                <a href="https://github.com/POWDER-RANGER" target="_blank">GitHub</a>
-                <a href="https://orcid.org/0009-0008-9273-2458" target="_blank">ORCID</a>
+                <a href="https://github.com/POWDER-RANGER" target="_blank">GitHub Profile</a>
+                <a href="https://orcid.org/0009-0008-9273-2458" target="_blank">ORCID Research</a>
             </div>
         </div>
     </section>
@@ -149,5 +192,8 @@
             <p>Building tools that make impossible workflows possible.</p>
         </div>
     </footer>
+
+    <!-- Load repository script -->
+    <script src="repos.js"></script>
 </body>
 </html>
