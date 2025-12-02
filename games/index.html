@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games - POWDER-RANGER</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        .game-card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+        .game-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        .game-title {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .game-desc {
+            color: #666;
+            line-height: 1.6;
+        }
+        .back-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .back-link a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 8px;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .back-link a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .coming-soon {
+            opacity: 0.7;
+            position: relative;
+        }
+        .coming-soon::after {
+            content: 'COMING SOON';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #764ba2;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Mini Games</h1>
+        <div class="subtitle">Built with Kaboom.js - Click to play!</div>
+        
+        <div class="games-grid">
+            <a href="/games/flappy/" class="game-card">
+                <div class="game-icon">🐦</div>
+                <div class="game-title">Flappy Bird</div>
+                <div class="game-desc">Tap to fly through the pipes. How far can you go?</div>
+            </a>
+            
+            <div class="game-card coming-soon" style="pointer-events: none;">
+                <div class="game-icon">🐍</div>
+                <div class="game-title">Snake</div>
+                <div class="game-desc">Classic snake game. Eat food, grow longer!</div>
+            </div>
+            
+            <div class="game-card coming-soon" style="pointer-events: none;">
+                <div class="game-icon">🏓</div>
+                <div class="game-title">Pong</div>
+                <div class="game-desc">The original arcade classic. Test your reflexes!</div>
+            </div>
+            
+            <div class="game-card coming-soon" style="pointer-events: none;">
+                <div class="game-icon">🧩</div>
+                <div class="game-title">Breakout</div>
+                <div class="game-desc">Break all the bricks with your paddle!</div>
+            </div>
+            
+            <div class="game-card coming-soon" style="pointer-events: none;">
+                <div class="game-icon">🔢</div>
+                <div class="game-title">2048</div>
+                <div class="game-desc">Combine tiles to reach 2048!</div>
+            </div>
+            
+            <div class="game-card coming-soon" style="pointer-events: none;">
+                <div class="game-icon">💣</div>
+                <div class="game-title">Minesweeper</div>
+                <div class="game-desc">Find all mines without triggering them!</div>
+            </div>
+        </div>
+        
+        <div class="back-link">
+            <a href="/">← Back to Portfolio</a>
+        </div>
+    </div>
+</body>
+</html>
