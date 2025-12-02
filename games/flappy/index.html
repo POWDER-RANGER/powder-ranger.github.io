@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird - POWDER-RANGER Games</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Arial', sans-serif;
+        }
+        #gameContainer {
+            text-align: center;
+        }
+        canvas {
+            border: 4px solid #fff;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .controls {
+            color: white;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+        a {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        a:hover {
+            background: rgba(255,255,255,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <h1>🐦 Flappy Bird</h1>
+        <canvas id="game"></canvas>
+        <div class="controls">Press SPACE to jump</div>
+        <a href="/">← Back to Home</a>
+    </div>
+    <script type="module">
+        import kaboom from "https://unpkg.com/kaboom@3000/dist/kaboom.mjs";
+        
+        kaboom({
+            width: 480,
+            height: 640,
+            canvas: document.getElementById("game"),
+            background: [135, 206, 235]
+        });
+
+        loadSprite("bird", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23FFE600'/%3E%3C/svg%3E");
+
+        scene("game", () => {
+            const PIPE_GAP = 140;
+            const PIPE_SPEED = 180;
+            let score = 0;
+
+            add([
+                rect(width(), height()),
+                color(135, 206, 235),
+                z(-1)
+            ]);
+
+            const bird = add([
+                pos(120, height() / 2),
+                sprite("bird"),
+                scale(1.5),
+                area(),
+                body(),
+                z(10)
+            ]);
+
+            gravity(1200);
+
+            const scoreText = add([
+                text("0", { size: 48 }),
+                pos(width() / 2, 50),
+                anchor("center"),
+                z(100),
+                color(255, 255, 255)
+            ]);
+
+            function jump() {
+                bird.jump(360);
+                play("jump");
+            }
+
+            onKeyPress("space", jump);
+            onClick(jump);
+
+            function addPipe(x) {
+                const topHeight = rand(50, height() - PIPE_GAP - 50);
+                
+                add([
+                    pos(x, 0),
+                    rect(60, topHeight),
+                    color(0, 200, 70),
+                    area(),
+                    "pipe",
+                    { passed: false }
+                ]);
+
+                add([
+                    pos(x, topHeight + PIPE_GAP),
+                    rect(60, height() - topHeight - PIPE_GAP),
+                    color(0, 200, 70),
+                    area(),
+                    "pipe",
+                    { passed: false }
+                ]);
+
+                add([
+                    pos(x, topHeight + PIPE_GAP / 2),
+                    rect(1, PIPE_GAP),
+                    "score-trigger",
+                    { passed: false }
+                ]);
+            }
+
+            let pipeTimer = 0;
+            const PIPE_INTERVAL = 1.5;
+
+            onUpdate(() => {
+                pipeTimer += dt();
+                if (pipeTimer > PIPE_INTERVAL) {
+                    addPipe(width());
+                    pipeTimer = 0;
+                }
+
+                every("pipe", (pipe) => {
+                    pipe.move(-PIPE_SPEED, 0);
+                    if (pipe.pos.x + pipe.width < 0) {
+                        destroy(pipe);
+                    }
+                });
+
+                every("score-trigger", (trigger) => {
+                    trigger.move(-PIPE_SPEED, 0);
+                    if (!trigger.passed && trigger.pos.x < bird.pos.x) {
+                        trigger.passed = true;
+                        score++;
+                        scoreText.text = score;
+                    }
+                    if (trigger.pos.x < -10) {
+                        destroy(trigger);
+                    }
+                });
+
+                if (bird.pos.y > height() || bird.pos.y < 0) {
+                    go("gameOver", score);
+                }
+            });
+
+            onCollide("pipe", (a) => {
+                if (a.is("pipe")) {
+                    go("gameOver", score);
+                }
+            });
+
+            bird.onCollide("pipe", () => {
+                go("gameOver", score);
+            });
+        });
+
+        scene("gameOver", (score) => {
+            add([
+                rect(width(), height()),
+                color(0, 0, 0),
+                opacity(0.7)
+            ]);
+
+            add([
+                text("Game Over", { size: 48 }),
+                pos(width() / 2, height() / 2 - 80),
+                anchor("center"),
+                color(255, 255, 255)
+            ]);
+
+            add([
+                text(`Score: ${score}`, { size: 36 }),
+                pos(width() / 2, height() / 2),
+                anchor("center"),
+                color(255, 255, 255)
+            ]);
+
+            add([
+                text("Press SPACE to restart", { size: 24 }),
+                pos(width() / 2, height() / 2 + 80),
+                anchor("center"),
+                color(200, 200, 200)
+            ]);
+
+            onKeyPress("space", () => go("game"));
+            onClick(() => go("game"));
+        });
+
+        go("game");
+    </script>
+</body>
+</html>
