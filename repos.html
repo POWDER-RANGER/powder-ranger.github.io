@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+.nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 15px 35px;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            border: 3px solid var(--gold);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 215, 0, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .nav-tab:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .nav-tab span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .nav-tab:hover,<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -584,6 +631,7 @@
             <button class="nav-tab active" data-tab="repositories">REPOSITORIES</button>
             <button class="nav-tab" data-tab="cryptex">CRYPTEX TOOLS</button>
             <button class="nav-tab" data-tab="cia">CIA READING ROOM</button>
+            <button class="nav-tab" data-tab="osint">OSINT ARSENAL</button>
         </div>
 
         <!-- REPOSITORIES TAB -->
@@ -691,6 +739,230 @@
                         Analysis results will appear here...
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- OSINT ARSENAL TAB -->
+        <div id="osint" class="tab-content">
+            <div class="tool-section">
+                <div class="tool-header">⬢ OPEN SOURCE INTELLIGENCE ARSENAL ⬢</div>
+                
+                <!-- Search & Investigation -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">🔍 SEARCH & INVESTIGATION</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">GOOGLE DORKING</div>
+                            <button class="tool-btn" onclick="openTool('https://www.google.com/advanced_search')">Google Advanced Search ►</button>
+                            <button class="tool-btn" onclick="openTool('https://dorksearch.com/')">DorkSearch ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.exploit-db.com/google-hacking-database')">GHDB ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">SEARCH ENGINES</div>
+                            <button class="tool-btn" onclick="openTool('https://www.shodan.io/')">Shodan (IoT Search) ►</button>
+                            <button class="tool-btn" onclick="openTool('https://censys.io/')">Censys ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.zoomeye.org/')">ZoomEye ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">PEOPLE SEARCH</div>
+                            <button class="tool-btn" onclick="openTool('https://www.whitepages.com/')">WhitePages ►</button>
+                            <button class="tool-btn" onclick="openTool('https://pipl.com/')">Pipl ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.spokeo.com/')">Spokeo ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Social Media OSINT -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">📱 SOCIAL MEDIA INTELLIGENCE</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">TWITTER/X ANALYSIS</div>
+                            <button class="tool-btn" onclick="openTool('https://tweetdeck.twitter.com/')">TweetDeck ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.social-searcher.com/')">Social Searcher ►</button>
+                            <button class="tool-btn" onclick="openTool('https://followerwonk.com/')">Followerwonk ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">INSTAGRAM/FACEBOOK</div>
+                            <button class="tool-btn" onclick="openTool('https://www.osintcombine.com/instagram-explorer')">Instagram Explorer ►</button>
+                            <button class="tool-btn" onclick="openTool('https://whopostedwhat.com/')">WhoPostedWhat ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.social-searcher.com/')">Cross-Platform Search ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">LINKEDIN INTEL</div>
+                            <button class="tool-btn" onclick="openTool('https://www.linkedin.com/sales/ssi')">LinkedIn Sales Nav ►</button>
+                            <button class="tool-btn" onclick="openTool('https://recruitin.net/')">Recruitin.net ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.linkedin.com/search/')">Advanced Search ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Domain & Network -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">🌐 DOMAIN & NETWORK RECON</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">WHOIS & DNS</div>
+                            <button class="tool-btn" onclick="openTool('https://who.is/')">Who.is ►</button>
+                            <button class="tool-btn" onclick="openTool('https://dnsdumpster.com/')">DNSDumpster ►</button>
+                            <button class="tool-btn" onclick="openTool('https://viewdns.info/')">ViewDNS ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">IP INVESTIGATION</div>
+                            <button class="tool-btn" onclick="openTool('https://www.virustotal.com/')">VirusTotal ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.ipvoid.com/')">IPVoid ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.robtex.com/')">Robtex ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">SSL/TLS ANALYSIS</div>
+                            <button class="tool-btn" onclick="openTool('https://crt.sh/')">crt.sh (Cert Search) ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.ssllabs.com/ssltest/')">SSL Labs ►</button>
+                            <button class="tool-btn" onclick="openTool('https://certdb.com/')">CertDB ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image & Geolocation -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">📸 IMAGE & GEOLOCATION INTEL</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">REVERSE IMAGE SEARCH</div>
+                            <button class="tool-btn" onclick="openTool('https://images.google.com/')">Google Images ►</button>
+                            <button class="tool-btn" onclick="openTool('https://tineye.com/')">TinEye ►</button>
+                            <button class="tool-btn" onclick="openTool('https://yandex.com/images/')">Yandex Images ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">EXIF & METADATA</div>
+                            <button class="tool-btn" onclick="openTool('https://exif.regex.info/exif.cgi')">Jeffrey's EXIF Viewer ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.metapicz.com/')">Metapicz ►</button>
+                            <button class="tool-btn" onclick="openTool('http://exif.regex.info/')">Exif Tool ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">GEOLOCATION</div>
+                            <button class="tool-btn" onclick="openTool('https://www.google.com/maps')">Google Maps ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.geospy.ai/')">GeoSpy AI ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.whatsmygps.com/')">GPS Coordinates ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email & Username -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">📧 EMAIL & USERNAME TRACKING</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">EMAIL OSINT</div>
+                            <button class="tool-btn" onclick="openTool('https://hunter.io/')">Hunter.io ►</button>
+                            <button class="tool-btn" onclick="openTool('https://haveibeenpwned.com/')">Have I Been Pwned ►</button>
+                            <button class="tool-btn" onclick="openTool('https://emailrep.io/')">EmailRep ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">USERNAME SEARCH</div>
+                            <button class="tool-btn" onclick="openTool('https://namechk.com/')">NameChk ►</button>
+                            <button class="tool-btn" onclick="openTool('https://namecheckup.com/')">NameCheckup ►</button>
+                            <button class="tool-btn" onclick="openTool('https://knowem.com/')">KnowEm ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">BREACH DATA</div>
+                            <button class="tool-btn" onclick="openTool('https://dehashed.com/')">Dehashed ►</button>
+                            <button class="tool-btn" onclick="openTool('https://breachdirectory.org/')">Breach Directory ►</button>
+                            <button class="tool-btn" onclick="openTool('https://leak-lookup.com/')">Leak Lookup ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Archives & Historical -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">📚 ARCHIVES & HISTORICAL DATA</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">WEB ARCHIVES</div>
+                            <button class="tool-btn" onclick="openTool('https://web.archive.org/')">Wayback Machine ►</button>
+                            <button class="tool-btn" onclick="openTool('https://web.archive.org/web/*/https://*')">Wayback Advanced ►</button>
+                            <button class="tool-btn" onclick="openTool('https://archive.is/')">Archive.today ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">MASSIVE DATA CRAWLS</div>
+                            <button class="tool-btn" onclick="openTool('https://commoncrawl.org/')">Common Crawl ►</button>
+                            <button class="tool-btn" onclick="openTool('https://commoncrawl.org/the-data/get-started/')">CC Web Index ►</button>
+                            <button class="tool-btn" onclick="openTool('https://index.commoncrawl.org/')">CC Index Search ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">CODE & DEV ARCHIVES</div>
+                            <button class="tool-btn" onclick="openTool('https://github.com/search')">GitHub Search ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.gharchive.org/')">GH Archive ►</button>
+                            <button class="tool-btn" onclick="openTool('https://grep.app/')">Grep.app (Code) ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Specialized Tools -->
+                <div style="margin: 30px 0;">
+                    <div class="tool-title" style="text-align: center; font-size: 1.3rem; margin-bottom: 20px;">🛠️ SPECIALIZED OSINT TOOLS</div>
+                    <div class="tool-grid">
+                        <div class="tool-card">
+                            <div class="tool-title">POWERFUL LEGAL INTEL</div>
+                            <button class="tool-btn" onclick="openTool('https://www.shodan.io/')">Shodan (IoT/Device) ►</button>
+                            <button class="tool-btn" onclick="openTool('https://haveibeenpwned.com/')">Have I Been Pwned ►</button>
+                            <button class="tool-btn" onclick="openTool('https://crt.sh/')">crt.sh (Cert Logs) ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">OSINT FRAMEWORKS</div>
+                            <button class="tool-btn" onclick="openTool('https://www.maltego.com/')">Maltego (Desktop) ►</button>
+                            <button class="tool-btn" onclick="openTool('https://osintframework.com/')">OSINT Framework ►</button>
+                            <button class="tool-btn" onclick="openTool('https://start.me/p/DPYPMz/the-ultimate-osint-collection')">Ultimate OSINT ►</button>
+                        </div>
+                        
+                        <div class="tool-card">
+                            <div class="tool-title">AWS & BIG DATA</div>
+                            <button class="tool-btn" onclick="openTool('https://registry.opendata.aws/')">AWS Open Data ►</button>
+                            <button class="tool-btn" onclick="openTool('https://commoncrawl.org/the-data/get-started/')">Common Crawl AWS ►</button>
+                            <button class="tool-btn" onclick="openTool('https://www.gharchive.org/')">GitHub Archive ►</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Search Tool -->
+                <div class="tool-card" style="max-width: 800px; margin: 30px auto;">
+                    <div class="tool-title">◈ ELITE POWER TOOLS - QUICK ACCESS</div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                        <button class="tool-btn" onclick="openTool('https://web.archive.org/')">⏳ Wayback Machine</button>
+                        <button class="tool-btn" onclick="openTool('https://commoncrawl.org/')">🌐 Common Crawl</button>
+                        <button class="tool-btn" onclick="openTool('https://www.shodan.io/')">🔍 Shodan</button>
+                        <button class="tool-btn" onclick="openTool('https://haveibeenpwned.com/')">🔐 Have I Been Pwned</button>
+                        <button class="tool-btn" onclick="openTool('https://crt.sh/')">📜 crt.sh</button>
+                        <button class="tool-btn" onclick="openTool('https://www.gharchive.org/')">📊 GH Archive</button>
+                    </div>
+                </div>
+
+                <!-- Multi-Tool Search -->
+                <div class="tool-card" style="max-width: 800px; margin: 30px auto;">
+                    <div class="tool-title">◈ MULTI-TOOL OSINT SEARCH</div>
+                    <input type="text" id="osintQuery" placeholder="Enter target (email, username, domain, IP, phone...)">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 15px;">
+                        <button class="tool-btn" onclick="multiSearch('google')">Google ►</button>
+                        <button class="tool-btn" onclick="multiSearch('shodan')">Shodan ►</button>
+                        <button class="tool-btn" onclick="multiSearch('wayback')">Wayback ►</button>
+                        <button class="tool-btn" onclick="multiSearch('haveibeenpwned')">HIBP ►</button>
+                        <button class="tool-btn" onclick="multiSearch('hunter')">Hunter ►</button>
+                        <button class="tool-btn" onclick="multiSearch('virustotal')">VirusTotal ►</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1048,6 +1320,32 @@
             }
 
             output.innerHTML = html;
+        }
+
+        // OSINT Arsenal Functions
+        function openTool(url) {
+            window.open(url, '_blank');
+        }
+
+        function multiSearch(tool) {
+            const query = document.getElementById('osintQuery').value.trim();
+            if (!query) {
+                alert('⚠ ENTER SEARCH TARGET');
+                return;
+            }
+
+            const searches = {
+                google: `https://www.google.com/search?q=${encodeURIComponent(query)}`,
+                shodan: `https://www.shodan.io/search?query=${encodeURIComponent(query)}`,
+                wayback: `https://web.archive.org/web/*/${encodeURIComponent(query)}`,
+                haveibeenpwned: `https://haveibeenpwned.com/account/${encodeURIComponent(query)}`,
+                hunter: `https://hunter.io/search/${encodeURIComponent(query)}`,
+                virustotal: `https://www.virustotal.com/gui/search/${encodeURIComponent(query)}`
+            };
+
+            if (searches[tool]) {
+                window.open(searches[tool], '_blank');
+            }
         }
 
         createParticles();
