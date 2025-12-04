@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0a0e27">
-    <title>POWDER-RANGER | Elite Repositories</title>
+    <meta name="theme-color" content="#0d0000">
+    <title>POWDER-RANGER | Command Center</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         :root {
-            --primary: #00f0ff;
-            --secondary: #ff00ff;
-            --accent: #7000ff;
-            --bg-dark: #0a0e27;
-            --bg-card: rgba(15, 23, 42, 0.7);
+            --primary: #ff0000;
+            --secondary: #dc143c;
+            --accent: #8b0000;
+            --gold: #ffd700;
+            --bg-dark: #0d0000;
+            --bg-card: rgba(20, 0, 0, 0.8);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #0a0e27, #1a1f3a, #0a0e27);
-            color: white;
+            font-family: 'Courier New', Consolas, monospace;
+            background: linear-gradient(135deg, #0d0000, #1a0000, #0d0000);
+            color: #ffffff;
             overflow-x: hidden;
             min-height: 100vh;
             position: relative;
@@ -41,8 +42,9 @@
             height: 2px;
             background: var(--primary);
             border-radius: 50%;
-            opacity: 0.3;
+            opacity: 0.4;
             animation: float 20s infinite;
+            box-shadow: 0 0 10px var(--primary);
         }
 
         @keyframes float {
@@ -51,7 +53,7 @@
         }
 
         .container { 
-            max-width: 1200px; 
+            max-width: 1400px; 
             margin: 0 auto; 
             padding: 20px;
             position: relative;
@@ -62,196 +64,484 @@
             text-align: center;
             padding: 60px 20px 40px;
             animation: fadeIn 0.8s ease-out;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 40px;
+        }
+
+        .header-accent {
+            font-size: 0.9rem;
+            color: var(--primary);
+            letter-spacing: 8px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
         }
 
         h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
             margin-bottom: 20px;
+            letter-spacing: 4px;
             position: relative;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            color: #94a3b8;
+            font-size: 1.1rem;
+            color: var(--gold);
             margin-top: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-tab {
+            padding: 12px 30px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid var(--secondary);
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .nav-tab:hover, .nav-tab.active {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px var(--primary);
+            transform: scale(1.05);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
         }
 
         .filter-section {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
             margin: 30px 0;
             animation: fadeIn 1s ease-out;
         }
 
         .filter-btn {
-            padding: 8px 20px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 20px;
+            padding: 10px 25px;
+            background: rgba(255, 0, 0, 0.1);
+            border: 2px solid var(--secondary);
             color: var(--primary);
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
         }
 
         .filter-btn:hover, .filter-btn.active {
             background: var(--primary);
-            color: var(--bg-dark);
-            border-color: var(--primary);
+            color: #000;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px var(--primary);
+            transform: scale(1.05);
         }
 
         .repos-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 20px;
+            gap: 25px;
             padding: 20px 0;
         }
 
         .repo-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
-            border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent);
+            padding: 30px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             opacity: 0;
             animation: slideIn 0.6s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .repo-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 3s infinite;
+        }
+
+        @keyframes scan {
+            0%, 100% { left: -100%; }
+            50% { left: 100%; }
         }
 
         .repo-card:hover {
-            transform: translateY(-8px) scale(1.02);
+            transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 0 40px rgba(0, 240, 255, 0.3);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .tool-section {
+            background: var(--bg-card);
+            border: 2px solid var(--accent);
+            padding: 40px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .tool-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: scan 4s infinite;
+        }
+
+        .tool-header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--gold);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
+        }
+
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .tool-card {
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid var(--secondary);
+            padding: 25px;
+        }
+
+        .tool-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--accent);
+            color: var(--primary);
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 10px 0;
+            resize: vertical;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .tool-btn {
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border: 2px solid var(--gold);
+            color: #fff;
+            font-weight: 900;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .tool-btn:hover {
+            background: var(--primary);
+            box-shadow: 0 5px 30px rgba(255, 0, 0, 0.6);
+            transform: scale(1.02);
+        }
+
+        .output-box {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid var(--primary);
+            color: var(--gold);
+            font-family: 'Courier New', monospace;
+            min-height: 60px;
+            word-break: break-all;
+        }
+
+        .image-preview {
+            margin-top: 15px;
+            max-width: 100%;
+            border: 2px solid var(--primary);
+            display: none;
+        }
+
+        .image-preview.show {
+            display: block;
+        }
+
+        .cia-result-card {
+            background: rgba(139, 0, 0, 0.3);
+            border: 1px solid var(--secondary);
+            padding: 20px;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .cia-result-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .result-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+        }
+
+        .result-title:hover {
+            color: var(--primary);
+        }
+
+        .result-meta {
+            color: #94a3b8;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .result-snippet {
+            color: #cccccc;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .ref-section {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            border-left: 3px solid var(--primary);
+        }
+
+        .ref-title {
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .ref-item {
+            color: #cccccc;
+            padding: 5px 0;
+            font-family: -apple-system, sans-serif;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .file-label {
+            padding: 12px 25px;
+            background: rgba(255, 0, 0, 0.2);
+            border: 2px solid var(--secondary);
+            color: var(--primary);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            display: block;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .file-label:hover {
+            background: var(--primary);
+            color: #000;
+            border-color: var(--gold);
         }
 
         .repo-header {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 15px;
         }
 
         .repo-icon {
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            border-radius: 10px;
+            border: 2px solid var(--gold);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            box-shadow: 0 0 15px var(--primary);
         }
 
         .repo-name {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 900;
             flex: 1;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .repo-desc {
-            color: #94a3b8;
+            color: #cccccc;
             font-size: 0.95rem;
-            line-height: 1.6;
-            margin: 15px 0;
+            line-height: 1.7;
+            margin: 20px 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .repo-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin: 15px 0;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .tag {
-            padding: 4px 12px;
-            background: rgba(0, 240, 255, 0.1);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-            font-size: 0.75rem;
-            color: var(--primary);
+            padding: 6px 14px;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid var(--primary);
+            font-size: 0.7rem;
+            color: var(--gold);
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
         }
 
         .tag:hover {
-            background: rgba(0, 240, 255, 0.2);
-            transform: scale(1.05);
+            background: var(--primary);
+            color: #000;
+            transform: scale(1.1);
+            box-shadow: 0 0 10px var(--primary);
         }
 
         .view-btn {
-            padding: 12px 20px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-weight: 600;
+            padding: 14px 20px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            border: 2px solid var(--gold);
+            color: #fff;
+            font-weight: 900;
             cursor: pointer;
             width: 100%;
-            margin-top: 15px;
+            margin-top: 20px;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Courier New', monospace;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
         }
 
         .view-btn:hover {
             transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(0, 240, 255, 0.4);
-        }
-
-        .view-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .view-btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-
-        .view-btn span {
-            position: relative;
-            z-index: 1;
+            box-shadow: 0 5px 30px rgba(255, 0, 0, 0.6);
+            background: var(--primary);
         }
 
         .stats-bar {
             display: flex;
             justify-content: space-around;
-            padding: 30px 0;
+            padding: 40px 0;
             text-align: center;
             animation: fadeIn 1.2s ease-out;
+            border: 2px solid var(--accent);
+            background: rgba(139, 0, 0, 0.2);
+            margin-bottom: 40px;
         }
 
         .stat {
             flex: 1;
+            position: relative;
+        }
+
+        .stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 20%;
+            height: 60%;
+            width: 1px;
+            background: var(--primary);
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 3rem;
             font-weight: 900;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
+            text-shadow: 0 0 20px var(--primary);
+            font-family: 'Courier New', monospace;
         }
 
         .stat-label {
-            color: #94a3b8;
-            margin-top: 5px;
+            color: var(--gold);
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
         @keyframes fadeIn {
@@ -272,7 +562,11 @@
 
         @media (max-width: 768px) {
             .repos-grid { grid-template-columns: 1fr; }
-            .stats-bar { flex-direction: column; gap: 20px; }
+            .tool-grid { grid-template-columns: 1fr; }
+            .stats-bar { flex-direction: column; gap: 30px; }
+            .stat:not(:last-child)::after { display: none; }
+            .nav-tabs { gap: 10px; }
+            .nav-tab { padding: 10px 20px; font-size: 0.8rem; }
         }
     </style>
 </head>
@@ -281,34 +575,124 @@
     
     <div class="container">
         <header>
-            <h1>🚀 POWDER-RANGER</h1>
-            <p class="subtitle">Elite Repository Showcase</p>
+            <div class="header-accent">◢ CLASSIFIED ◣</div>
+            <h1>POWDER-RANGER</h1>
+            <p class="subtitle">⬢ COMMAND CENTER ⬢</p>
         </header>
 
-        <div class="stats-bar">
-            <div class="stat">
-                <div class="stat-number">7</div>
-                <div class="stat-label">Projects</div>
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="repositories">REPOSITORIES</button>
+            <button class="nav-tab" data-tab="cryptex">CRYPTEX TOOLS</button>
+            <button class="nav-tab" data-tab="cia">CIA READING ROOM</button>
+        </div>
+
+        <!-- REPOSITORIES TAB -->
+        <div id="repositories" class="tab-content active">
+            <div class="stats-bar">
+                <div class="stat">
+                    <div class="stat-number">07</div>
+                    <div class="stat-label">Active Projects</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Technologies</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Capability</div>
+                </div>
             </div>
-            <div class="stat">
-                <div class="stat-number">12</div>
-                <div class="stat-label">Technologies</div>
+
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">ALL SYSTEMS</button>
+                <button class="filter-btn" data-filter="AI">AI</button>
+                <button class="filter-btn" data-filter="Gaming">GAMING</button>
+                <button class="filter-btn" data-filter="Automation">AUTOMATION</button>
+                <button class="filter-btn" data-filter="Research">RESEARCH</button>
             </div>
-            <div class="stat">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Innovation</div>
+
+            <div id="repos" class="repos-grid"></div>
+        </div>
+
+        <!-- CRYPTEX TOOLS TAB -->
+        <div id="cryptex" class="tab-content">
+            <div class="tool-section">
+                <div class="tool-header">⬢ CRYPTOGRAPHIC OPERATIONS ⬢</div>
+                <div class="tool-grid">
+                    <!-- Text Encoder/Decoder -->
+                    <div class="tool-card">
+                        <div class="tool-title">◈ HEX ENCODER/DECODER</div>
+                        <textarea id="textInput" rows="4" placeholder="Enter text to encode or hex to decode..."></textarea>
+                        <button class="tool-btn" onclick="encodeToHex()">ENCODE TO HEX ►</button>
+                        <button class="tool-btn" onclick="decodeFromHex()">DECODE FROM HEX ►</button>
+                        <div id="hexOutput" class="output-box">Output will appear here...</div>
+                    </div>
+
+                    <!-- Image Encoder -->
+                    <div class="tool-card">
+                        <div class="tool-title">◈ IMAGE TO HEX</div>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="imageInput" accept="image/*" onchange="encodeImageToHex()">
+                            <label for="imageInput" class="file-label">SELECT IMAGE FILE ►</label>
+                        </div>
+                        <div id="imageHexOutput" class="output-box">Base64 hex will appear here...</div>
+                    </div>
+
+                    <!-- Image Decoder -->
+                    <div class="tool-card">
+                        <div class="tool-title">◈ HEX TO IMAGE</div>
+                        <textarea id="hexImageInput" rows="4" placeholder="Paste base64 or data URI here..."></textarea>
+                        <button class="tool-btn" onclick="decodeHexToImage()">DECODE TO IMAGE ►</button>
+                        <img id="decodedImage" class="image-preview" alt="Decoded">
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="filter-section">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="AI">AI</button>
-            <button class="filter-btn" data-filter="Gaming">Gaming</button>
-            <button class="filter-btn" data-filter="Automation">Automation</button>
-            <button class="filter-btn" data-filter="Research">Research</button>
-        </div>
+        <!-- CIA READING ROOM TAB -->
+        <div id="cia" class="tab-content">
+            <div class="tool-section">
+                <div class="tool-header">⬢ CIA READING ROOM ACCESS ⬢</div>
+                
+                <div class="tool-card" style="max-width: 800px; margin: 0 auto;">
+                    <div class="tool-title">◈ DECLASSIFIED DOCUMENT SEARCH</div>
+                    <p style="color: #94a3b8; margin-bottom: 20px; font-family: -apple-system, sans-serif;">
+                        Search the CIA's Freedom of Information Act Electronic Reading Room for declassified documents, reports, and intelligence files.
+                    </p>
+                    
+                    <input type="text" id="ciaSearchQuery" placeholder="Enter search terms (e.g., MK-ULTRA, Cold War, UFO)..." style="margin-bottom: 10px;">
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px;">
+                        <button class="tool-btn" onclick="searchCIA()">SEARCH DOCUMENTS ►</button>
+                        <button class="tool-btn" onclick="quickSearch('MK-ULTRA')">QUICK: MK-ULTRA</button>
+                        <button class="tool-btn" onclick="quickSearch('UFO')">QUICK: UFO FILES</button>
+                        <button class="tool-btn" onclick="quickSearch('Cold War')">QUICK: COLD WAR</button>
+                        <button class="tool-btn" onclick="quickSearch('Osama Bin Laden')">QUICK: BIN LADEN</button>
+                        <button class="tool-btn" onclick="quickSearch('Cuba')">QUICK: CUBA</button>
+                    </div>
 
-        <div id="repos" class="repos-grid"></div>
+                    <div id="ciaStatus" class="output-box" style="min-height: 40px;">
+                        ⚡ Ready to search CIA archives...
+                    </div>
+
+                    <div id="ciaResults" style="margin-top: 20px;"></div>
+                </div>
+
+                <div class="tool-card" style="max-width: 800px; margin: 30px auto 0;">
+                    <div class="tool-title">◈ REFERENCE EXTRACTION</div>
+                    <p style="color: #94a3b8; margin-bottom: 20px; font-family: -apple-system, sans-serif;">
+                        Paste document text below to automatically extract references, dates, and key entities.
+                    </p>
+                    
+                    <textarea id="docText" rows="8" placeholder="Paste document text here for analysis..."></textarea>
+                    <button class="tool-btn" onclick="extractReferences()">EXTRACT REFERENCES ►</button>
+                    
+                    <div id="refOutput" class="output-box" style="min-height: 100px;">
+                        Analysis results will appear here...
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -317,49 +701,49 @@
                 name: 'nine-realities-netcode',
                 desc: 'Multi-client state reconciliation in multiplayer game networking. Original research into the N+1 concurrent simulation model.',
                 tags: ['Netcode', 'Research', 'Distributed Systems'],
-                icon: '🌐',
+                icon: '⬢',
                 url: 'https://github.com/POWDER-RANGER/nine-realities-netcode'
             },
             {
                 name: 'CONductOR',
                 desc: 'Windows-native AI orchestration assistant with multi-service chat, browser automation, and PowerShell control.',
                 tags: ['AI', 'PowerShell', 'Automation'],
-                icon: '🎭',
+                icon: '⚡',
                 url: 'https://github.com/POWDER-RANGER/CONductOR'
             },
             {
                 name: 'OBLISK',
                 desc: 'Multi-agent AI system with encrypted vaults, governance, and symbolic planning.',
                 tags: ['AI', 'Security', 'Python'],
-                icon: '🔮',
+                icon: '◈',
                 url: 'https://github.com/POWDER-RANGER/OBLISK'
             },
             {
                 name: 'CIVWATCH',
                 desc: 'Civic transparency platform with real-time monitoring capabilities.',
                 tags: ['Civic Tech', 'Monitoring', 'Python'],
-                icon: '👁️',
+                icon: '◉',
                 url: 'https://github.com/POWDER-RANGER/CIVWATCH'
             },
             {
                 name: 'NextGenGameAutomation',
                 desc: 'Next-generation automation platform for game testing and digital twin simulation.',
                 tags: ['Gaming', 'Automation', 'Testing'],
-                icon: '🎮',
+                icon: '▣',
                 url: 'https://github.com/POWDER-RANGER/NextGenGameAutomation'
             },
             {
                 name: 'powder-ranger.github.io',
                 desc: 'Portfolio site showcasing production-grade open-source systems: AI automation, game networking research, and cybersecurity tooling.',
                 tags: ['Portfolio', 'Web', 'HTML'],
-                icon: '💼',
+                icon: '◆',
                 url: 'https://github.com/POWDER-RANGER/powder-ranger.github.io'
             },
             {
                 name: 'PSPhone',
                 desc: 'PlayStation Mobile Mirror - Mirror PlayStation gameplay to Android/iOS devices with secure transport.',
                 tags: ['Gaming', 'Mobile', 'Kotlin'],
-                icon: '📱',
+                icon: '▲',
                 url: 'https://github.com/POWDER-RANGER/PSPhone'
             }
         ];
@@ -369,7 +753,7 @@
 
         function createParticles() {
             const container = document.getElementById('particles');
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = Math.random() * 100 + '%';
@@ -402,7 +786,7 @@
                         ${repo.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                     <button class="view-btn" onclick="window.open('${repo.url}', '_blank')">
-                        <span>View Repository →</span>
+                        <span>ACCESS REPOSITORY ►</span>
                     </button>
                 `;
                 
@@ -410,6 +794,19 @@
             });
         }
 
+        // Tab Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', (e) => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                e.target.classList.add('active');
+                const tabId = e.target.dataset.tab;
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Filter functionality
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
@@ -419,10 +816,242 @@
             });
         });
 
+        // Cryptex Functions
+        function encodeToHex() {
+            const text = document.getElementById('textInput').value;
+            if (!text) {
+                document.getElementById('hexOutput').textContent = '⚠ NO INPUT PROVIDED';
+                return;
+            }
+            const hex = Array.from(text).map(c => c.charCodeAt(0).toString(16).padStart(2, '0')).join('');
+            document.getElementById('hexOutput').textContent = '✓ ENCODED: ' + hex.toUpperCase();
+        }
+
+        function decodeFromHex() {
+            const hex = document.getElementById('textInput').value.replace(/[^0-9A-Fa-f]/g, '');
+            if (!hex) {
+                document.getElementById('hexOutput').textContent = '⚠ NO VALID HEX INPUT';
+                return;
+            }
+            try {
+                const text = hex.match(/.{1,2}/g).map(byte => String.fromCharCode(parseInt(byte, 16))).join('');
+                document.getElementById('hexOutput').textContent = '✓ DECODED: ' + text;
+            } catch (e) {
+                document.getElementById('hexOutput').textContent = '✗ DECODING FAILED';
+            }
+        }
+
+        function encodeImageToHex() {
+            const file = document.getElementById('imageInput').files[0];
+            if (!file) {
+                document.getElementById('imageHexOutput').textContent = '⚠ NO FILE SELECTED';
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const base64 = e.target.result;
+                document.getElementById('imageHexOutput').textContent = '✓ ENCODED: ' + base64.substring(0, 100) + '... [Click to copy full]';
+                document.getElementById('imageHexOutput').style.cursor = 'pointer';
+                document.getElementById('imageHexOutput').onclick = function() {
+                    navigator.clipboard.writeText(base64);
+                    this.textContent = '✓ COPIED TO CLIPBOARD';
+                    setTimeout(() => {
+                        this.textContent = '✓ ENCODED: ' + base64.substring(0, 100) + '... [Click to copy full]';
+                    }, 2000);
+                };
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function decodeHexToImage() {
+            let data = document.getElementById('hexImageInput').value.trim();
+            if (!data) {
+                alert('⚠ NO INPUT PROVIDED');
+                return;
+            }
+            
+            if (!data.startsWith('data:')) {
+                data = 'data:image/png;base64,' + data;
+            }
+            
+            const img = document.getElementById('decodedImage');
+            img.src = data;
+            img.classList.add('show');
+            img.onerror = function() {
+                alert('✗ INVALID IMAGE DATA');
+                img.classList.remove('show');
+            };
+        }
+
+        // CIA Reading Room Functions
+        function quickSearch(term) {
+            document.getElementById('ciaSearchQuery').value = term;
+            searchCIA();
+        }
+
+        async function searchCIA() {
+            const query = document.getElementById('ciaSearchQuery').value.trim();
+            if (!query) {
+                document.getElementById('ciaStatus').textContent = '⚠ ENTER SEARCH TERMS';
+                return;
+            }
+
+            document.getElementById('ciaStatus').textContent = '⏳ ACCESSING CIA ARCHIVES...';
+            document.getElementById('ciaResults').innerHTML = '';
+
+            try {
+                const searchUrl = `https://www.cia.gov/readingroom/search/site/${encodeURIComponent(query)}`;
+                
+                // Display direct link
+                document.getElementById('ciaResults').innerHTML = `
+                    <div class="cia-result-card">
+                        <div class="result-title">🔗 DIRECT ACCESS PORTAL</div>
+                        <div class="result-snippet">
+                            Click below to access the CIA Reading Room search results for: <strong>${query}</strong>
+                        </div>
+                        <button class="tool-btn" onclick="window.open('${searchUrl}', '_blank')" style="margin-top: 15px;">
+                            OPEN CIA READING ROOM ►
+                        </button>
+                    </div>
+                `;
+
+                // Common collection links
+                const collections = [
+                    { name: 'CREST (25+ Million Pages)', url: 'https://www.cia.gov/readingroom/collection/crest-25-year-program-archive' },
+                    { name: 'President Daily Briefs', url: 'https://www.cia.gov/readingroom/collection/presidents-daily-brief' },
+                    { name: 'Freedom of Information Act', url: 'https://www.cia.gov/readingroom/freedom-information-act-cia' },
+                    { name: 'Historical Collections', url: 'https://www.cia.gov/readingroom/historical-collections' }
+                ];
+
+                document.getElementById('ciaResults').innerHTML += `
+                    <div class="cia-result-card">
+                        <div class="result-title">📚 FEATURED COLLECTIONS</div>
+                        ${collections.map(col => `
+                            <div style="margin: 10px 0;">
+                                <a href="${col.url}" target="_blank" style="color: var(--gold); text-decoration: none;">
+                                    ► ${col.name}
+                                </a>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+
+                document.getElementById('ciaStatus').innerHTML = '✓ ACCESS GRANTED - Results loaded';
+
+            } catch (error) {
+                document.getElementById('ciaStatus').textContent = '✗ CONNECTION ERROR';
+                document.getElementById('ciaResults').innerHTML = `
+                    <div class="cia-result-card">
+                        <div class="result-title">⚠ SEARCH UNAVAILABLE</div>
+                        <div class="result-snippet">
+                            Direct database access restricted. Use the link below to search manually:
+                        </div>
+                        <button class="tool-btn" onclick="window.open('https://www.cia.gov/readingroom/', '_blank')" style="margin-top: 15px;">
+                            OPEN CIA READING ROOM ►
+                        </button>
+                    </div>
+                `;
+            }
+        }
+
+        function extractReferences() {
+            const text = document.getElementById('docText').value.trim();
+            if (!text) {
+                document.getElementById('refOutput').textContent = '⚠ NO TEXT PROVIDED';
+                return;
+            }
+
+            const output = document.getElementById('refOutput');
+            output.innerHTML = '';
+
+            // Extract dates (various formats)
+            const dateRegex = /\b(\d{1,2}[-\/]\d{1,2}[-\/]\d{2,4}|\d{4}[-\/]\d{1,2}[-\/]\d{1,2}|(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{1,2},? \d{4}|\d{1,2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{4})\b/gi;
+            const dates = [...new Set(text.match(dateRegex) || [])];
+
+            // Extract document/file references
+            const docRegex = /\b[A-Z]{2,}-?\d{3,}[-\/]?\d*\b|Doc(?:ument)?\s*#?\s*\d+|File\s*#?\s*\d+|Reference\s*#?\s*\d+/gi;
+            const docRefs = [...new Set(text.match(docRegex) || [])];
+
+            // Extract capitalized entities (potential names, places, operations)
+            const entityRegex = /\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)+\b/g;
+            const entities = [...new Set(text.match(entityRegex) || [])].filter(e => 
+                e.split(' ').length <= 4 && !e.match(/^(The|This|That|These|Those|When|Where|What|Which)/)
+            ).slice(0, 20);
+
+            // Extract years
+            const yearRegex = /\b(19|20)\d{2}\b/g;
+            const years = [...new Set(text.match(yearRegex) || [])].sort();
+
+            // Extract common classification markings
+            const classRegex = /\b(TOP SECRET|SECRET|CONFIDENTIAL|UNCLASSIFIED|CLASSIFIED|RESTRICTED|EYES ONLY|NOFORN|COSMIC TOP SECRET)\b/gi;
+            const classifications = [...new Set(text.match(classRegex) || [])];
+
+            // Build output
+            let html = '<div class="ref-section">';
+            html += '<div class="ref-title">⬢ ANALYSIS COMPLETE</div>';
+            html += `<div class="ref-item">📄 Document Length: ${text.length} characters</div>`;
+            html += `<div class="ref-item">📝 Word Count: ${text.split(/\s+/).length} words</div>`;
+            html += '</div>';
+
+            if (dates.length > 0) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">📅 DATES IDENTIFIED</div>';
+                dates.slice(0, 10).forEach(date => {
+                    html += `<div class="ref-item">► ${date}</div>`;
+                });
+                if (dates.length > 10) html += `<div class="ref-item">... and ${dates.length - 10} more</div>`;
+                html += '</div>';
+            }
+
+            if (years.length > 0) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">📊 YEARS REFERENCED</div>';
+                html += `<div class="ref-item">► ${years.join(', ')}</div>`;
+                html += '</div>';
+            }
+
+            if (docRefs.length > 0) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">📋 DOCUMENT REFERENCES</div>';
+                docRefs.slice(0, 10).forEach(ref => {
+                    html += `<div class="ref-item">► ${ref}</div>`;
+                });
+                if (docRefs.length > 10) html += `<div class="ref-item">... and ${docRefs.length - 10} more</div>`;
+                html += '</div>';
+            }
+
+            if (classifications.length > 0) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">🔒 CLASSIFICATION MARKINGS</div>';
+                classifications.forEach(cls => {
+                    html += `<div class="ref-item">► ${cls}</div>`;
+                });
+                html += '</div>';
+            }
+
+            if (entities.length > 0) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">👤 ENTITIES DETECTED</div>';
+                entities.slice(0, 15).forEach(entity => {
+                    html += `<div class="ref-item">► ${entity}</div>`;
+                });
+                if (entities.length > 15) html += `<div class="ref-item">... and ${entities.length - 15} more</div>`;
+                html += '</div>';
+            }
+
+            if (!dates.length && !docRefs.length && !entities.length && !classifications.length) {
+                html += '<div class="ref-section">';
+                html += '<div class="ref-title">⚠ LIMITED DATA</div>';
+                html += '<div class="ref-item">No structured references found. Document may require manual analysis.</div>';
+                html += '</div>';
+            }
+
+            output.innerHTML = html;
+        }
+
         createParticles();
         renderRepos();
-
-        
     </script>
 </body>
 </html>
