@@ -410,9 +410,9 @@
     
     <div class="container">
         <header>
-            <div class="header-accent">◢ CLASSIFIED ◣</div>
+            <div class="header-accent"> CLASSIFIED </div>
             <h1>POWDER-RANGER</h1>
-            <p class="subtitle">⬢ COMMAND CENTER ⬢</p>
+            <p class="subtitle"> COMMAND CENTER </p>
         </header>
 
         <div class="nav-tabs">
@@ -424,15 +424,15 @@
         <div id="repositories" class="tab-content active">
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-number">17</div>
-                    <div class="stat-label">Active Projects</div>
+                    <div class="stat-number" id="stat-commits">0</div>
+                    <div class="stat-label">Commits Today</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">12</div>
-                    <div class="stat-label">Technologies</div>
+                    <div class="stat-number" id="stat-last-push">0h</div>
+                    <div class="stat-label">Last Push</div>
                 </div>
                 <div class="stat">
-                    <div class="stat-number">∞</div>
+                    <div class="stat-number"></div>
                     <div class="stat-label">Capability</div>
                 </div>
             </div>
@@ -444,24 +444,24 @@
         <div id="games" class="tab-content">
             <div class="stats-bar">
                 <div class="stat">
-                    <div class="stat-number">🎮</div>
+                    <div class="stat-number"></div>
                     <div class="stat-label">Mini Games</div>
                 </div>
             </div>
 
             <div class="games-grid">
                 <a href="/games/flappy/" class="game-card">
-                    <div class="game-icon">🐦</div>
+                    <div class="game-icon">2</div>
                     <h3>Flappy Bird</h3>
                     <p>Tap to fly through pipes</p>
                 </a>
                 <div class="game-card coming-soon">
-                    <div class="game-icon">🐍</div>
+                    <div class="game-icon">4</div>
                     <h3>Snake</h3>
                     <p>Coming Soon</p>
                 </div>
                 <div class="game-card coming-soon">
-                    <div class="game-icon">🏓</div>
+                    <div class="game-icon">6</div>
                     <h3>Pong</h3>
                     <p>Coming Soon</p>
                 </div>
@@ -475,49 +475,49 @@
                 name: 'nine-realities-netcode',
                 desc: 'Multi-client state reconciliation in multiplayer game networking. Original research into the N+1 concurrent simulation model.',
                 tags: ['Netcode', 'Research', 'Distributed Systems'],
-                icon: '⬢',
+                icon: '8',
                 url: 'https://github.com/POWDER-RANGER/nine-realities-netcode'
             },
             {
                 name: 'CONductOR',
                 desc: 'Windows-native AI orchestration assistant with multi-service chat, browser automation, and PowerShell control.',
                 tags: ['AI', 'PowerShell', 'Automation'],
-                icon: '⚡',
+                icon: '9',
                 url: 'https://github.com/POWDER-RANGER/CONductOR'
             },
             {
                 name: 'OBLISK',
                 desc: 'Multi-agent AI system with encrypted vaults, governance, and symbolic planning.',
                 tags: ['AI', 'Security', 'Python'],
-                icon: '◈',
+                icon: 'a',
                 url: 'https://github.com/POWDER-RANGER/OBLISK'
             },
             {
                 name: 'CIVWATCH',
                 desc: 'Civic transparency platform with real-time monitoring capabilities.',
                 tags: ['Civic Tech', 'Monitoring', 'Python'],
-                icon: '◉',
+                icon: 'b',
                 url: 'https://github.com/POWDER-RANGER/CIVWATCH'
             },
             {
                 name: 'NextGenGameAutomation',
                 desc: 'Next-generation automation platform for game testing and digital twin simulation.',
                 tags: ['Gaming', 'Automation', 'Testing'],
-                icon: '▣',
+                icon: 'c',
                 url: 'https://github.com/POWDER-RANGER/NextGenGameAutomation'
             },
             {
                 name: 'powder-ranger.github.io',
                 desc: 'Command center showcasing production-grade open-source systems: AI automation, game networking research, and cybersecurity tooling.',
                 tags: ['Portfolio', 'Web', 'HTML'],
-                icon: '◆',
+                icon: 'd',
                 url: 'https://github.com/POWDER-RANGER/powder-ranger.github.io'
             },
             {
                 name: 'PSPhone',
                 desc: 'PlayStation Mobile Mirror - Mirror PlayStation gameplay to Android/iOS devices with secure transport.',
                 tags: ['Gaming', 'Mobile', 'Kotlin'],
-                icon: '▲',
+                icon: 'e',
                 url: 'https://github.com/POWDER-RANGER/PSPhone'
             }
         ];
@@ -555,7 +555,7 @@
                         ${repo.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
                     </div>
                     <button class="view-btn" onclick="window.open('${repo.url}', '_blank')">
-                        <span>ACCESS REPOSITORY ►</span>
+                        <span>ACCESS REPOSITORY </span>
                     </button>
                 `;
                 
@@ -574,6 +574,25 @@
                 document.getElementById(tabId).classList.add('active');
             });
         });
+
+        // Load dynamic stats from repo-stats.json
+        fetch('repo-stats.json')
+            .then(response => response.json())
+            .then(data => {
+                const commitsEl = document.getElementById('stat-commits');
+                const lastPushEl = document.getElementById('stat-last-push');
+
+                if (commitsEl && data.todayCommits !== undefined) {
+                    commitsEl.textContent = data.todayCommits;
+                }
+
+                if (lastPushEl && data.lastUpdate !== undefined) {
+                    lastPushEl.textContent = `${data.lastUpdate}h`;
+                }
+            })
+            .catch(error => {
+                console.warn('Stats unavailable:', error);
+            });
 
         createParticles();
         renderRepos();
