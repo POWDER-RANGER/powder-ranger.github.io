@@ -12,48 +12,59 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0d0000, #1a0000, #0d0000);
+            font-family: 'Courier New', Consolas, monospace;
         }
         #gameContainer {
             text-align: center;
         }
         canvas {
-            border: 4px solid #fff;
+            border: 4px solid #ff0000;
             border-radius: 8px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 0 40px rgba(255, 0, 0, 0.5);
         }
         h1 {
-            color: white;
+            color: #ffd700;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 0 0 20px #ff0000;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
         }
         .controls {
-            color: white;
+            color: #ffd700;
             margin-top: 15px;
             font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
         a {
             color: #fff;
             text-decoration: none;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.2);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #8b0000, #ff0000);
+            border: 2px solid #ffd700;
             border-radius: 4px;
             display: inline-block;
-            margin-top: 10px;
-            transition: background 0.3s;
+            margin-top: 20px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
         }
         a:hover {
-            background: rgba(255,255,255,0.3);
+            background: #ff0000;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
     <div id="gameContainer">
-        <h1>🐦 Flappy Bird</h1>
+        <h1>🐦 FLAPPY BIRD</h1>
         <canvas id="game"></canvas>
-        <div class="controls">Press SPACE to jump</div>
-        <a href="/">← Back to Home</a>
+        <div class="controls">Press SPACE or CLICK to jump</div>
+        <a href="/">◄ Back to Command Center</a>
     </div>
     <script type="module">
         import kaboom from "https://unpkg.com/kaboom@3000/dist/kaboom.mjs";
@@ -65,85 +76,103 @@
             background: [135, 206, 235]
         });
 
-        loadSprite("bird", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%23FFE600'/%3E%3C/svg%3E");
+        // Load bird sprite (yellow circle)
+        loadSprite("bird", "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='24'%3E%3Cellipse cx='17' cy='12' rx='17' ry='12' fill='%23FFD700'/%3E%3Ccircle cx='22' cy='9' r='3' fill='%23000'/%3E%3C/svg%3E");
 
         scene("game", () => {
-            const PIPE_GAP = 140;
+            const PIPE_GAP = 160;
             const PIPE_SPEED = 180;
+            const JUMP_FORCE = 400;
             let score = 0;
 
+            // Background
             add([
                 rect(width(), height()),
                 color(135, 206, 235),
                 z(-1)
             ]);
 
+            // Bird
             const bird = add([
                 pos(120, height() / 2),
                 sprite("bird"),
-                scale(1.5),
+                scale(1.2),
                 area(),
                 body(),
-                z(10)
+                z(10),
+                rotate(0)
             ]);
 
-            gravity(1200);
+            gravity(1400);
 
+            // Score display
             const scoreText = add([
-                text("0", { size: 48 }),
-                pos(width() / 2, 50),
+                text("0", { size: 64 }),
+                pos(width() / 2, 80),
                 anchor("center"),
                 z(100),
-                color(255, 255, 255)
+                color(255, 255, 255),
+                outline(4, rgb(0, 0, 0))
             ]);
 
+            // Jump function
             function jump() {
-                bird.jump(360);
-                play("jump");
+                bird.jump(JUMP_FORCE);
             }
 
+            // Controls
             onKeyPress("space", jump);
             onClick(jump);
+            onTouchStart(jump);
 
-            function addPipe(x) {
-                const topHeight = rand(50, height() - PIPE_GAP - 50);
+            // Add pipes
+            function addPipe() {
+                const pipeX = width();
+                const topHeight = rand(80, height() - PIPE_GAP - 80);
                 
+                // Top pipe
                 add([
-                    pos(x, 0),
-                    rect(60, topHeight),
-                    color(0, 200, 70),
+                    pos(pipeX, 0),
+                    rect(64, topHeight),
+                    color(0, 200, 50),
+                    outline(3, rgb(0, 150, 30)),
                     area(),
                     "pipe",
                     { passed: false }
                 ]);
 
+                // Bottom pipe
                 add([
-                    pos(x, topHeight + PIPE_GAP),
-                    rect(60, height() - topHeight - PIPE_GAP),
-                    color(0, 200, 70),
+                    pos(pipeX, topHeight + PIPE_GAP),
+                    rect(64, height() - topHeight - PIPE_GAP),
+                    color(0, 200, 50),
+                    outline(3, rgb(0, 150, 30)),
                     area(),
                     "pipe",
                     { passed: false }
                 ]);
 
+                // Score trigger (invisible)
                 add([
-                    pos(x, topHeight + PIPE_GAP / 2),
-                    rect(1, PIPE_GAP),
+                    pos(pipeX, 0),
+                    rect(2, height()),
                     "score-trigger",
                     { passed: false }
                 ]);
             }
 
+            // Spawn pipes
             let pipeTimer = 0;
-            const PIPE_INTERVAL = 1.5;
+            const PIPE_INTERVAL = 1.8;
 
             onUpdate(() => {
                 pipeTimer += dt();
                 if (pipeTimer > PIPE_INTERVAL) {
-                    addPipe(width());
+                    addPipe();
                     pipeTimer = 0;
                 }
 
+                // Move pipes
                 every("pipe", (pipe) => {
                     pipe.move(-PIPE_SPEED, 0);
                     if (pipe.pos.x + pipe.width < 0) {
@@ -151,66 +180,80 @@
                     }
                 });
 
+                // Score triggers
                 every("score-trigger", (trigger) => {
                     trigger.move(-PIPE_SPEED, 0);
-                    if (!trigger.passed && trigger.pos.x < bird.pos.x) {
+                    if (!trigger.passed && trigger.pos.x + trigger.width < bird.pos.x) {
                         trigger.passed = true;
                         score++;
                         scoreText.text = score;
                     }
-                    if (trigger.pos.x < -10) {
+                    if (trigger.pos.x + trigger.width < 0) {
                         destroy(trigger);
                     }
                 });
 
+                // Bird rotation based on velocity
+                const maxRotation = 30;
+                if (bird.vel.y < 0) {
+                    bird.angle = -maxRotation;
+                } else {
+                    bird.angle = Math.min(maxRotation, bird.vel.y / 10);
+                }
+
+                // Check boundaries
                 if (bird.pos.y > height() || bird.pos.y < 0) {
                     go("gameOver", score);
                 }
             });
 
-            onCollide("pipe", (a) => {
-                if (a.is("pipe")) {
-                    go("gameOver", score);
-                }
-            });
-
+            // Collision
             bird.onCollide("pipe", () => {
                 go("gameOver", score);
             });
         });
 
-        scene("gameOver", (score) => {
+        scene("gameOver", (finalScore) => {
+            // Dark overlay
             add([
                 rect(width(), height()),
                 color(0, 0, 0),
-                opacity(0.7)
+                opacity(0.8)
             ]);
 
+            // Game Over text
             add([
-                text("Game Over", { size: 48 }),
-                pos(width() / 2, height() / 2 - 80),
+                text("GAME OVER", { size: 56 }),
+                pos(width() / 2, height() / 2 - 120),
                 anchor("center"),
-                color(255, 255, 255)
+                color(255, 50, 50),
+                outline(4, rgb(0, 0, 0))
             ]);
 
+            // Score display
             add([
-                text(`Score: ${score}`, { size: 36 }),
-                pos(width() / 2, height() / 2),
+                text(`SCORE: ${finalScore}`, { size: 42 }),
+                pos(width() / 2, height() / 2 - 30),
                 anchor("center"),
-                color(255, 255, 255)
+                color(255, 215, 0),
+                outline(3, rgb(0, 0, 0))
             ]);
 
+            // Restart instruction
             add([
-                text("Press SPACE to restart", { size: 24 }),
+                text("PRESS SPACE TO RESTART", { size: 22 }),
                 pos(width() / 2, height() / 2 + 80),
                 anchor("center"),
                 color(200, 200, 200)
             ]);
 
+            // Restart controls
             onKeyPress("space", () => go("game"));
             onClick(() => go("game"));
+            onTouchStart(() => go("game"));
         });
 
+        // Start game
         go("game");
     </script>
 </body>
