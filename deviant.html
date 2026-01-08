@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>DEVIANT_2026 | Curtis Farrar</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #050509;
+      --text-primary: #f5f5f7;
+      --text-secondary: #b3b3c0;
+      --accent: #ff4500;
+      --accent-soft: rgba(255, 69, 0, 0.35);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+        "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 20px;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("DEVIANT2026.jpg") center center / cover no-repeat;
+      filter: saturate(1.2) contrast(1.1);
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+          circle at 50% 15%,
+          rgba(255, 140, 0, 0.75),
+          transparent 60%
+        ),
+        radial-gradient(circle at 50% 100%, rgba(0, 0, 0, 0.95), #000000);
+      mix-blend-mode: multiply;
+      z-index: -1;
+    }
+
+    .hero-inner {
+      max-width: 720px;
+      padding: 32px 24px;
+      border-radius: 24px;
+      background: radial-gradient(
+          circle at 0% 0%,
+          rgba(255, 69, 0, 0.18),
+          transparent 55%
+        ),
+        rgba(5, 5, 12, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(18px) saturate(160%);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.85);
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .glitch {
+      position: relative;
+      display: inline-block;
+      text-shadow:
+        0 0 14px rgba(255, 69, 0, 0.85),
+        0 0 40px rgba(0, 0, 0, 0.9);
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: screen;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+
+    .glitch::before {
+      transform: translateX(-2px);
+      color: #ff6a00;
+    }
+
+    .glitch::after {
+      transform: translateX(2px);
+      color: #ff2200;
+    }
+
+    .subtitle {
+      margin-top: 18px;
+      font-size: 0.98rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .subtitle strong {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px 20px;
+      margin: 26px 0 30px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .pill {
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.22s ease-out;
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #ff4500, #ffb347);
+      color: #050509;
+      box-shadow: 0 0 16px var(--accent-soft);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px) scale(1.02);
+      box-shadow: 0 0 26px var(--accent-soft);
+    }
+
+    .btn-ghost {
+      background: rgba(0, 0, 0, 0.7);
+      border-color: rgba(255, 255, 255, 0.24);
+      color: var(--text-secondary);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .footer {
+      margin-top: 24px;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      opacity: 0.85;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 24px 16px;
+      }
+
+      .hero-inner {
+        padding: 22px 18px;
+        border-radius: 18px;
+      }
+
+      .meta {
+        gap: 8px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <section class="hero-inner">
+      <div class="eyebrow">ALT MODE // RED TEAM</div>
+      <h1>
+        <span class="glitch" data-text="DEVIANT_2026">DEVIANT_2026</span>
+      </h1>
+      <p class="subtitle">
+        Endgame profile for a systems engineer who designs
+        <strong>failure-tolerant orchestration</strong>, weaponized
+        <strong>simulation stacks</strong>, and AI security that assumes the
+        model is already compromised.
+      </p>
+
+      <div class="meta">
+        <span class="pill">OSINT / AI SECURITY</span>
+        <span class="pill">CIVWATCH · OBELISK · GAIN</span>
+        <span class="pill">HYDRA / PHANTOM / SPECTRE</span>
+      </div>
+
+      <div class="cta-row">
+        <a href="index.html" class="btn btn-primary">
+          ← Return to Primary Profile
+        </a>
+        <a
+          href="https://github.com/POWDER-RANGER"
+          class="btn btn-ghost"
+          target="_blank"
+          rel="noopener"
+        >
+          View Operational Repos
+        </a>
+      </div>
+
+      <div class="footer">
+        Signal, not spectacle. This page is a visual checksum for the work
+        already shipped.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
