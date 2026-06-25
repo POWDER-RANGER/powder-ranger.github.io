@@ -105,6 +105,20 @@ footer a{color:var(--dim);text-decoration:none;transition:color .3s;}
 footer a:hover{color:var(--g);}
 body.dv{--g:#ff2d78;--g2:#c4004d;--glow:rgba(255,45,120,.28);--border:rgba(255,45,120,.32);--cyan:#00f5ff;--pink:#00ffff;}
 body.dv #sl{background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(255,45,120,.12) 1px,rgba(255,45,120,.12) 3px);}
+/* CROSS-PROJECT NAV */
+.xpn{position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(5,5,5,0.95);backdrop-filter:blur(20px);border-top:1px solid rgba(0,255,65,0.2);padding:10px 20px;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;font-family:'Share Tech Mono',monospace;font-size:12px;transition:transform 0.3s;box-shadow:0 -4px 30px rgba(0,0,0,0.5)}
+.xpn a{color:#4a7a4a;text-decoration:none;padding:6px 14px;border-radius:4px;transition:all 0.3s;white-space:nowrap;border:1px solid rgba(0,255,65,0.1)}
+.xpn a:hover{color:#00ff41;border-color:#00ff41;background:rgba(0,255,65,0.08);box-shadow:0 0 12px rgba(0,255,65,0.22)}
+.xpn a.xa{color:#00ff41;border-color:#00ff41;background:rgba(0,255,65,0.12);font-weight:700;text-shadow:0 0 8px rgba(0,255,65,0.22)}
+.xpn .xt{color:#ff2d78;margin-right:10px;font-size:11px;letter-spacing:3px;text-transform:uppercase}
+.xpnt{position:fixed;bottom:52px;right:20px;z-index:9999;background:rgba(0,0,0,0.8);border:1px solid rgba(0,255,65,0.2);color:#00ff41;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:900;cursor:pointer;transition:all 0.3s;box-shadow:0 0 15px rgba(0,255,65,0.1)}
+.xpnt:hover{background:rgba(0,255,65,0.15);box-shadow:0 0 20px rgba(0,255,65,0.3);transform:scale(1.1)}
+@media(max-width:768px){.xpn{font-size:10px;gap:4px;padding:8px 10px}.xpn a{padding:4px 8px;font-size:10px}.xpn .xt{display:none}.xpnt{bottom:48px;width:32px;height:32px;font-size:12px}}
+#khelp{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:rgba(0,0,0,0.95);border:2px solid var(--g);padding:30px 40px;border-radius:8px;z-index:10000;font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--text);opacity:0;transition:all 0.3s;pointer-events:none;box-shadow:0 0 60px rgba(0,255,65,0.2)}
+#khelp.vis{opacity:1;transform:translate(-50%,-50%) scale(1);pointer-events:auto}
+#khelp h3{font-family:'Orbitron',sans-serif;color:var(--cyan);margin-bottom:15px;font-size:16px;letter-spacing:3px}
+#khelp .kh{display:flex;gap:15px;margin:8px 0;align-items:center}
+#khelp .kk{background:rgba(0,255,65,0.15);border:1px solid var(--g);padding:3px 10px;border-radius:4px;font-size:11px;color:var(--g);min-width:80px;text-align:center}
 @media(max-width:640px){nav{padding:12px 16px;}.nl{font-size:16px;letter-spacing:3px;}.hframe{padding:28px 20px;}#rg{grid-template-columns:1fr;}}
 </style>
 </head>
@@ -134,7 +148,7 @@ body.dv #sl{background:repeating-linear-gradient(0deg,transparent,transparent 1p
       </div>
       <div class="trow">
         <span class="p">$</span>
-        <input id="cmd" type="text" placeholder="ls | hack &lt;name&gt; | filter &lt;lang&gt; | breach" onkeydown="if(event.key==='Enter')runCmd(this.value)"/>
+        <input id="cmd" type="text" placeholder="ls | hack &lt;name&gt; | filter &lt;lang&gt; | breach | help" onkeydown="if(event.key==='Enter')runCmd(this.value)"/>
       </div>
       <div id="cout"></div>
     </div>
@@ -166,33 +180,50 @@ body.dv #sl{background:repeating-linear-gradient(0deg,transparent,transparent 1p
   </section>
   <footer>
     <div style="margin-bottom:10px;">
-      <a href="https://github.com/powder-ranger" style="margin:0 12px">// GITHUB</a>
-      <a href="https://orcid.org/0009-0008-9273-2458" style="margin:0 12px">// ORCID</a>
-      <a href="https://www.linkedin.com/in/curtis-farrar-20aa3525b" style="margin:0 12px">// LINKEDIN</a>
-      <a href="https://www.upwork.com/freelancers/~0165288f789d304e87" style="margin:0 12px">// UPWORK</a>
-      <a href="https://github.com/sponsors/powder-ranger" style="margin:0 12px">// SPONSOR</a>
+      <a href="https://github.com/powder-ranger" style="margin:0 12px" target="_blank">// GITHUB</a>
+      <a href="https://orcid.org/0009-0008-9273-2458" style="margin:0 12px" target="_blank">// ORCID</a>
+      <a href="https://www.linkedin.com/in/curtis-farrar-20aa3525b" style="margin:0 12px" target="_blank">// LINKEDIN</a>
+      <a href="https://www.upwork.com/freelancers/~0165288f789d304e87" style="margin:0 12px" target="_blank">// UPWORK</a>
+      <a href="https://github.com/sponsors/powder-ranger" style="margin:0 12px" target="_blank">// SPONSOR</a>
     </div>
-    <div>POWDER-RANGER © 2026 // MYTHOTECHNICS ACTIVE // BREACH COMPLETE</div>
+    <div>POWDER-RANGER &copy; 2026 // MYTHOTECHNICS ACTIVE // BREACH COMPLETE</div>
   </footer>
 </div>
+<!-- KEYBOARD HELP -->
+<div id="khelp">
+  <h3>// KEYBOARD SHORTCUTS</h3>
+  <div class="kh"><span class="kk">Enter</span><span>Execute command</span></div>
+  <div class="kh"><span class="kk">Shift + E</span><span>Toggle ecosystem nav</span></div>
+  <div class="kh"><span class="kk">Shift + T</span><span>Scroll to top</span></div>
+  <div class="kh"><span class="kk">Shift + H</span><span>Toggle this help</span></div>
+  <div class="kh"><span class="kk">ls</span><span>Enter the grid</span></div>
+  <div class="kh"><span class="kk">breach</span><span>Deviant mode</span></div>
+</div>
+<!-- CROSS-PROJECT NAVIGATION -->
+<div class="xpn" id="xpn">
+<span class="xt">// ECOSYSTEM</span>
+<a href="https://powder-ranger.github.io" id="xpn-portfolio">Portfolio</a>
+<a href="https://powder-ranger.github.io/nso-kryptonite-platform" id="xpn-nso">NSO Kryptonite</a>
+<a href="https://powder-ranger.github.io/CIVWATCH" id="xpn-civwatch">CIVWATCH</a>
+<a href="https://powder-ranger.github.io/OBLISK" id="xpn-oblisk">OBLISK</a>
+<a href="https://powder-ranger.github.io/ai-nexus" id="xpn-ainexus">AI Nexus</a>
+<a href="https://powder-ranger.github.io/dollar-gravity-framework" id="xpn-dollar">Dollar Gravity</a>
+</div>
+<button class="xpnt" id="xpnt" onclick="tgxpn()" title="Toggle nav (Shift+E)">&#9650;</button>
 <script>
-/* MATRIX + PARTICLES + DEBRIS (maxed) */
+/* MATRIX + PARTICLES + DEBRIS */
 (function(){const c=document.getElementById('mc'),ctx=c.getContext('2d');const CH='アイウエオカキクケコタチツテトナニヌネノ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*POWDER_RANGER';let W,H,cols,drops;function resize(){W=c.width=innerWidth;H=c.height=innerHeight;cols=Math.floor(W/13);drops=Array.from({length:cols},()=>Math.random()*-100);}resize();addEventListener('resize',resize);setInterval(()=>{const dv=document.body.classList.contains('dv');ctx.fillStyle='rgba(5,5,5,.055)';ctx.fillRect(0,0,W,H);for(let i=0;i<cols;i++){const ch=CH[Math.floor(Math.random()*CH.length)],y=drops[i]*13;ctx.fillStyle=dv?'#fff0f8':'#ccffcc';ctx.font='bold 14px monospace';ctx.fillText(ch,i*13,y);if(y>H&&Math.random()>.97)drops[i]=0;drops[i]+=.6+Math.random()*.5;}},32);})();
 (function(){const c=document.getElementById('pc');c.width=innerWidth;c.height=innerHeight;const renderer=new THREE.WebGLRenderer({canvas:c,alpha:true});renderer.setSize(innerWidth,innerHeight);const scene=new THREE.Scene(),camera=new THREE.PerspectiveCamera(75,innerWidth/innerHeight,.1,2000);camera.position.z=450;const geo=new THREE.BufferGeometry();const v=[];for(let i=0;i<12000;i++){v.push((Math.random()-.5)*1200,(Math.random()-.5)*1200,(Math.random()-.5)*1200);}geo.setAttribute('position',new THREE.Float32BufferAttribute(v,3));const mat=new THREE.PointsMaterial({color:0x00f5ff,size:2.8,transparent:true,opacity:.65});const pts=new THREE.Points(geo,mat);scene.add(pts);(function anim(){requestAnimationFrame(anim);pts.rotation.y+=.0012;pts.rotation.x+=.0004;mat.color.setHex(document.body.classList.contains('dv')?0xff2d78:0x00f5ff);renderer.render(scene,camera);})();addEventListener('resize',()=>{c.width=innerWidth;c.height=innerHeight;renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();});})();
 (function(){const w=document.getElementById('db');for(let i=0;i<18;i++){const d=document.createElement('div'),s=30+Math.random()*140;d.className='debris';d.style.cssText=`width:${s}px;height:${s*.7}px;left:${Math.random()*100}%;background:#001a00;animation-duration:${18+Math.random()*42}s;animation-delay:${-Math.random()*42}s;border-radius:30% 70% 40% 60%;opacity:.08;`;w.appendChild(d);}})();
 /* TICKER + TYPE + COUNTS */
-const LINES=['> DOLLAR-GRAVITY-FRAMEWORK BREACHED...','> RAINGOD-COMFY-STUDIO RENDERING LIVE...','> CONTEXTUAL-MEMORY-UI ONLINE...','> POETRY-HEX- SYMBOLS DECRYPTED...','> MYTHOTECHNICS FRAMEWORK FULL POWER...'];
+const LINES=['> DOLLAR-GRAVITY-FRAMEWORK BREACHED...','> RAINGOD-COMFY-STUDIO RENDERING LIVE...','> CONTEXTUAL-MEMORY-UI ONLINE...','> POETRY-HEX- SYMBOLS DECRYPTED...','> MYTHOTECHNICS FRAMEWORK FULL POWER...','> NSO-KRYPTONITE ARMED...','> CIVWATCH SCANNING...','> OBLISK AGENTS ACTIVE...','> AI-NEXUS INFERENCE READY...'];
 let ti=0;setInterval(()=>{document.getElementById('hs').textContent=LINES[ti++%LINES.length];},1300);
 function typeText(el,txt,spd=24){let i=0;el.textContent='';return new Promise(r=>{const iv=setInterval(()=>{el.textContent=txt.slice(0,++i);if(i>=txt.length){clearInterval(iv);r();}},spd);});}
 function countUp(el,target){let s=null;requestAnimationFrame(function step(ts){if(!s)s=ts;const p=Math.min((ts-s)/1100,1);el.textContent=Math.floor(p*target);if(p<1)requestAnimationFrame(step);else el.textContent=target;});}
-/* REPO FETCH + RENDER (maxed) */
+/* REPO FETCH + RENDER */
 let allRepos=[],activeLang='all',searchTerm='';
 async function fetchRepos(){let pg=1,out=[];while(true){const r=await fetch(`https://api.github.com/users/powder-ranger/repos?per_page=100&page=${pg}`);if(!r.ok)break;const d=await r.json();if(!d.length)break;out=out.concat(d);if(d.length<100)break;pg++;}return out;}
-function buildCard(repo){const og=`https://opengraph.githubassets.com/1/powder-ranger/${repo.name}`;const live=repo.pushed_at&&repo.pushed_at.startsWith('2026');const d=document.createElement('div');d.className='rc';d.dataset.lang=repo.language||'';d.dataset.name=(repo.name+' '+(repo.description||'')).toLowerCase();d.innerHTML=`
-<div class="cp"><div class="pg">${repo.name.slice(0,4).toUpperCase()}</div><img class="og" src="${og}" onload="this.classList.add('ld')" onerror="this.style.display='none'"/>
-${live?'<div class="bl">LIVE</div>':'<div class="ba">ARCHIVED</div>'}<a class="ei" href="${repo.html_url}" target="_blank">↗</a></div>
-<div class="cb"><div class="cn">${repo.name}</div><div class="cm"><span>★ ${repo.stargazers_count}</span><span>⚡ ${repo.pushed_at?repo.pushed_at.slice(0,10):'—'}</span></div><div class="cd">${repo.description||'// interactive cyber-experience ready'}</div></div>
-<div class="cf"><a class="bla" href="${repo.homepage||repo.html_url}" target="_blank">${repo.homepage?'LAUNCH DEMO →':'VIEW REPO →'}</a><a class="bgh" href="${repo.html_url}" target="_blank">GH</a></div>`;return d;}
+function buildCard(repo){const og=`https://opengraph.githubassets.com/1/powder-ranger/${repo.name}`;const live=repo.pushed_at&&repo.pushed_at.startsWith('2026');const d=document.createElement('div');d.className='rc';d.dataset.lang=repo.language||'';d.dataset.name=(repo.name+' '+(repo.description||'')).toLowerCase();d.innerHTML=`<div class="cp"><div class="pg">${repo.name.slice(0,4).toUpperCase()}</div><img class="og" src="${og}" onload="this.classList.add('ld')" onerror="this.style.display='none'"/>${live?'<div class="bl">LIVE</div>':'<div class="ba">ARCHIVED</div>'}<a class="ei" href="${repo.html_url}" target="_blank">↗</a></div><div class="cb"><div class="cn">${repo.name}</div><div class="cm"><span>★ ${repo.stargazers_count}</span><span>⚡ ${repo.pushed_at?repo.pushed_at.slice(0,10):'—'}</span></div><div class="cd">${repo.description||'// interactive cyber-experience ready'}</div></div><div class="cf"><a class="bla" href="${repo.homepage||repo.html_url}" target="_blank">${repo.homepage?'LAUNCH DEMO →':'VIEW REPO →'}</a><a class="bgh" href="${repo.html_url}" target="_blank">GH</a></div>`;return d;}
 function getFiltered(){return allRepos.filter(r=>{const lOk=activeLang==='all'?true:activeLang==='other'?(!r.language||!['Python','JavaScript','TypeScript','PowerShell','Rust','C#'].includes(r.language)):r.language===activeLang;const sOk=!searchTerm||r.name.toLowerCase().includes(searchTerm)||(r.description||'').toLowerCase().includes(searchTerm);return lOk&&sOk;});}
 function renderGrid(){const g=document.getElementById('rg');g.innerHTML='';getFiltered().forEach(r=>g.appendChild(buildCard(r)));const obs=new IntersectionObserver(e=>e.forEach((en,i)=>{if(en.isIntersecting){setTimeout(()=>en.target.classList.add('vis'),i*40);obs.unobserve(en.target);}}),{threshold:.1});g.querySelectorAll('.rc').forEach(c=>obs.observe(c));}
 function setF(btn,lang){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('on'));btn.classList.add('on');activeLang=lang;renderGrid();}
@@ -201,8 +232,13 @@ function applyFilter(){searchTerm=document.getElementById('search').value.toLowe
 function enterGrid(){gsap.to('#hero',{opacity:0,y:-80,duration:.8,ease:'power4.in',onComplete:()=>{document.getElementById('hero').style.display='none';document.getElementById('gs').style.display='block';gsap.from('#gs',{opacity:0,duration:.6});gsap.from('.rc',{y:80,opacity:0,stagger:.035,duration:.8,ease:'power4.out',delay:.4});}});}
 function randomHack(){if(!allRepos.length)return;const r=allRepos[Math.floor(Math.random()*allRepos.length)];window.open(r.homepage||r.html_url,'_blank');setCout(`> HACK TARGET ACQUIRED: ${r.name}`);}
 function setCout(msg){document.getElementById('cout').textContent=msg;}
-function runCmd(raw){const cmd=raw.trim().toLowerCase();document.getElementById('cmd').value='';if(cmd.startsWith('ls')){enterGrid();setCout(`> BREACHING ${allRepos.length} REPOS...`);return;}if(cmd.startsWith('hack ')){const n=cmd.slice(5).trim(),found=allRepos.find(r=>r.name.toLowerCase().includes(n));if(found){window.open(found.homepage||found.html_url,'_blank');setCout(`> TARGET LOCKED: ${found.name}`);}else setCout(`> REPO NOT FOUND`,'#ff2d78');return;}if(cmd==='breach'){document.body.classList.add('dv');document.getElementById('dtgl').checked=true;toggleDev();setCout('> DEVIANT MODE FORCED');}if(cmd==='help'){setCout('> ls | hack <name> | filter <lang> | breach');}}
+function runCmd(raw){const cmd=raw.trim().toLowerCase();document.getElementById('cmd').value='';if(cmd.startsWith('ls')){enterGrid();setCout(`> BREACHING ${allRepos.length} REPOS...`);return;}if(cmd.startsWith('hack ')){const n=cmd.slice(5).trim(),found=allRepos.find(r=>r.name.toLowerCase().includes(n));if(found){window.open(found.homepage||found.html_url,'_blank');setCout(`> TARGET LOCKED: ${found.name}`);}else setCout(`> REPO NOT FOUND`,'#ff2d78');return;}if(cmd==='breach'){document.body.classList.add('dv');document.getElementById('dtgl').checked=true;toggleDev();setCout('> DEVIANT MODE FORCED');return;}if(cmd==='help'){document.getElementById('khelp').classList.add('vis');setCout('> KEYBOARD SHORTCUTS DISPLAYED');return;}setCout(`> UNKNOWN COMMAND: ${cmd} — TYPE 'help' FOR OPTIONS`);}
 function toggleDev(){const on=document.getElementById('dtgl').checked;document.body.classList.toggle('dv',on);const l=document.getElementById('dlbl');l.style.color=on?'#00f5ff':'#ff2d78';}
+/* CROSS-NAV */
+const pn=document.getElementById('xpn'),pt=document.getElementById('xpnt');
+function tgxpn(){const h=pn.style.transform==='translateY(100%)';pn.style.transform=h?'translateY(0)':'translateY(100%)';pt.innerHTML=h?'&#9650;':'&#9660;';pt.style.bottom=h?'52px':'20px';}
+document.getElementById('xpn-portfolio').classList.add('xa');
+document.addEventListener('keydown',e=>{if(e.shiftKey&&e.key==='E')tgxpn();if(e.shiftKey&&e.key==='T')window.scrollTo({top:0,behavior:'smooth'});if(e.shiftKey&&e.key==='H'){const kh=document.getElementById('khelp');kh.classList.toggle('vis');}});
 /* INIT */
 (async()=>{try{allRepos=await fetchRepos();allRepos.sort((a,b)=>new Date(b.pushed_at)-new Date(a.pushed_at));const stars=allRepos.reduce((s,r)=>s+r.stargazers_count,0);const langs=new Set(allRepos.map(r=>r.language).filter(Boolean));const a26=allRepos.filter(r=>r.pushed_at&&r.pushed_at.startsWith('2026')).length;await typeText(document.getElementById('ht'),`> INITIALIZING ALL ${allRepos.length} INTERACTIVE REPOS`);countUp(document.getElementById('s1'),allRepos.length);countUp(document.getElementById('s2'),langs.size);countUp(document.getElementById('s3'),stars);countUp(document.getElementById('s4'),a26);document.getElementById('loading').style.display='none';renderGrid();gsap.from('.hframe',{y:-80,opacity:0,duration:1.4,ease:'power4.out'});}catch(e){document.getElementById('loading').innerHTML=`<span style="color:#ff2d78">// BREACH FAILED — ${e.message}</span>`;}})();
 </script>
