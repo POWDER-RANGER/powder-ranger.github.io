@@ -8,28 +8,45 @@
   <meta property="og:description" content="Civic intelligence, multi-agent governance, adversarial security, and distributed networking — open source.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://powder-ranger.github.io">
-  <meta name="theme-color" content="#0a0a0b">
+  <meta name="theme-color" content="#0c0d10">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <title>POWDER-RANGER | Portfolio</title>
   <style>
+    /*
+      Balanced system (approx. 60 / 30 / 10):
+      60% neutrals — surfaces, body, chrome
+      30% cool complement — secondary accents, links, status calm
+      10% warm pop — CTAs, hero glitch, status “hot”
+
+      Warm (pop):     coral #FF5A3D · rose #E84A6F · amber #FF8A3D
+      Cool (complement of red-orange): teal #2EC4B6 · steel #5B8FA8
+      Neutrals:       ink #0C0D10 · panel #15171C · line #2A2E36
+                      text #E6E8EC · muted #9AA0AA
+    */
     :root {
-      --bg: #0a0a0b;
-      --surface: #141416;
-      --surface-2: #1c1c1f;
-      --border: #2a2a2e;
-      --text: #e8e4df;
-      --text-muted: #9a9590;
-      --accent: #e83a3a;
-      --accent-soft: #ff6b4a;
-      --accent-pink: #e85a7a;
-      --accent-dim: #a82828;
+      --ink: #0c0d10;
+      --panel: #15171c;
+      --panel-2: #1b1e25;
+      --line: #2a2e36;
+      --text: #e6e8ec;
+      --muted: #9aa0aa;
+
+      --warm: #ff5a3d;
+      --warm-soft: #ff8a3d;
+      --warm-rose: #e84a6f;
+
+      --cool: #2ec4b6;
+      --cool-steel: #5b8fa8;
+
+      --radius: 12px;
+      --radius-pill: 980px;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
+      background: var(--ink);
       color: var(--text);
       line-height: 1.55;
       overflow-x: hidden;
@@ -42,7 +59,7 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.14;
+      opacity: 0.11;
       pointer-events: none;
     }
 
@@ -68,23 +85,28 @@
       justify-content: space-between;
       gap: 1rem;
       padding: 0.9rem 1.5rem;
-      background: rgba(10, 10, 11, 0.85);
-      border-bottom: 1px solid var(--border);
-      backdrop-filter: saturate(180%) blur(16px);
-      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      background: rgba(12, 13, 16, 0.82);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: saturate(160%) blur(16px);
+      -webkit-backdrop-filter: saturate(160%) blur(16px);
     }
 
     .nav-brand {
       font-family: "Arial Black", "Helvetica Neue", Impact, sans-serif;
       font-weight: 900;
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
+      font-size: 0.92rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text);
       text-decoration: none;
     }
 
-    .nav-brand span { color: var(--accent); }
+    .nav-brand span {
+      background: linear-gradient(90deg, var(--warm), var(--warm-rose));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
 
     .nav-links {
       display: flex;
@@ -93,13 +115,13 @@
     }
 
     .nav-links a {
-      color: var(--text-muted);
+      color: var(--muted);
       text-decoration: none;
       font-size: 0.85rem;
       font-weight: 500;
     }
 
-    .nav-links a:hover { color: var(--accent-soft); }
+    .nav-links a:hover { color: var(--cool); }
 
     .container {
       width: min(980px, 100%);
@@ -107,20 +129,17 @@
       padding: 2.5rem 1.35rem 4rem;
     }
 
-    .hero {
-      padding: 4rem 0 2.5rem;
-    }
+    .hero { padding: 4rem 0 2.5rem; }
 
     .hero-label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent-pink);
+      color: var(--cool-steel);
       margin-bottom: 1rem;
     }
 
-    /* Block lettering — English, constructivist weight */
     .hero h1 {
       font-family: "Arial Black", "Helvetica Neue", Impact, "Arial Narrow", sans-serif;
       font-weight: 900;
@@ -147,21 +166,20 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
+      pointer-events: none;
     }
 
     .glitch::before {
-      color: var(--accent);
+      color: var(--warm);
       clip-path: inset(0 0 55% 0);
-      transform: translate(-2px, 0);
-      opacity: 0.85;
+      opacity: 0.7;
       animation: glitch-a 3.5s infinite linear alternate-reverse;
     }
 
     .glitch::after {
-      color: var(--accent-pink);
+      color: var(--cool);
       clip-path: inset(45% 0 0 0);
-      transform: translate(2px, 0);
-      opacity: 0.75;
+      opacity: 0.65;
       animation: glitch-b 2.8s infinite linear alternate-reverse;
     }
 
@@ -181,10 +199,9 @@
 
     .hero .lead {
       font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 32rem;
+      color: var(--muted);
+      max-width: 34rem;
       margin-bottom: 1.75rem;
-      font-weight: 400;
     }
 
     .cta-row {
@@ -197,31 +214,32 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.7rem 1.2rem;
-      border-radius: 980px;
+      padding: 0.7rem 1.25rem;
+      border-radius: var(--radius-pill);
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
       border: 1px solid transparent;
-      transition: opacity 0.15s, background 0.15s, border-color 0.15s;
+      transition: opacity 0.15s, background 0.15s, border-color 0.15s, color 0.15s;
     }
 
     .btn-primary {
-      background: var(--accent);
+      background: linear-gradient(135deg, var(--warm) 0%, var(--warm-rose) 100%);
       color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 90, 61, 0.25);
     }
 
-    .btn-primary:hover { opacity: 0.9; }
+    .btn-primary:hover { opacity: 0.92; }
 
     .btn-ghost {
       background: transparent;
       color: var(--text);
-      border-color: var(--border);
+      border-color: var(--line);
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent-soft);
-      color: var(--accent-soft);
+      border-color: var(--cool);
+      color: var(--cool);
     }
 
     .stats {
@@ -235,14 +253,14 @@
       font-size: 0.78rem;
       font-weight: 500;
       padding: 0.35rem 0.8rem;
-      border-radius: 980px;
-      background: var(--surface-2);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--panel-2);
+      color: var(--muted);
+      border: 1px solid var(--line);
     }
 
     .chip strong {
-      color: var(--accent-soft);
+      color: var(--cool);
       font-weight: 600;
     }
 
@@ -251,10 +269,10 @@
     section h2 {
       font-family: "Arial Black", "Helvetica Neue", Impact, sans-serif;
       font-weight: 900;
-      font-size: 0.8rem;
-      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--muted);
       margin-bottom: 1.1rem;
     }
 
@@ -265,9 +283,9 @@
     }
 
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       padding: 1.25rem 1.3rem;
       display: flex;
       flex-direction: column;
@@ -276,7 +294,7 @@
     }
 
     .card:hover {
-      border-color: #3d3d42;
+      border-color: #3a4050;
       transform: translateY(-2px);
     }
 
@@ -292,10 +310,10 @@
       text-decoration: none;
     }
 
-    .card h3 a:hover { color: var(--accent-soft); }
+    .card h3 a:hover { color: var(--cool); }
 
     .card p {
-      color: var(--text-muted);
+      color: var(--muted);
       font-size: 0.9rem;
       flex: 1;
     }
@@ -305,8 +323,13 @@
       font-weight: 600;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      color: var(--accent-pink);
     }
+
+    .status-released { color: var(--cool); }
+    .status-beta { color: var(--warm-soft); }
+    .status-dev { color: var(--warm-rose); }
+    .status-research { color: var(--cool-steel); }
+    .status-stable { color: var(--cool); }
 
     .tags {
       display: flex;
@@ -318,23 +341,23 @@
       font-size: 0.7rem;
       padding: 0.2rem 0.5rem;
       border-radius: 6px;
-      background: var(--surface-2);
-      color: var(--text-muted);
-      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--muted);
+      border: 1px solid var(--line);
     }
 
     .card .more {
       font-size: 0.85rem;
-      color: var(--accent-soft);
+      color: var(--cool);
       text-decoration: none;
       font-weight: 600;
       margin-top: 0.25rem;
     }
 
-    .card .more:hover { color: var(--accent); }
+    .card .more:hover { color: var(--warm-soft); }
 
     .about {
-      color: var(--text-muted);
+      color: var(--muted);
       max-width: 36rem;
       font-size: 0.98rem;
     }
@@ -343,19 +366,19 @@
 
     footer {
       margin-top: auto;
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--line);
       padding: 1.5rem;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--muted);
       font-size: 0.82rem;
     }
 
     footer a {
-      color: var(--accent-soft);
+      color: var(--cool);
       text-decoration: none;
     }
 
-    footer a:hover { text-decoration: underline; }
+    footer a:hover { color: var(--warm-soft); }
 
     @media (max-width: 600px) {
       .nav { flex-direction: column; align-items: flex-start; }
@@ -368,7 +391,7 @@
 
   <div class="site">
     <nav class="nav">
-      <a class="nav-brand" href="/">POWDER<span>-</span>RANGER</a>
+      <a class="nav-brand" href="/">POWDER<span>-RANGER</span></a>
       <div class="nav-links">
         <a href="#projects">Projects</a>
         <a href="repos.html">Repos</a>
@@ -405,7 +428,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/RED-AGENT-GOV">RED-AGENT-GOV</a></h3>
             <p>Governance-enforced agent engine: six-directive output gate, deterministic FSM, hash-chained audit.</p>
-            <span class="status">Released</span>
+            <span class="status status-released">Released</span>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">FSM</span>
@@ -417,7 +440,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/OBLISK">OBLISK</a></h3>
             <p>Multi-agent AI with encrypted vaults, symbolic planning, and policy enforcement.</p>
-            <span class="status">Beta</span>
+            <span class="status status-beta">Beta</span>
             <div class="tags">
               <span class="tag">Python</span>
               <span class="tag">AES-256</span>
@@ -429,7 +452,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/CIVWATCH">CIVWATCH</a></h3>
             <p>Civic transparency and anomaly-detection platform for public-interest monitoring.</p>
-            <span class="status">In development</span>
+            <span class="status status-dev">In development</span>
             <div class="tags">
               <span class="tag">TypeScript</span>
               <span class="tag">Civic tech</span>
@@ -440,7 +463,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/nine-realities-netcode">nine-realities-netcode</a></h3>
             <p>N+1 concurrent simulation model for multiplayer state reconciliation.</p>
-            <span class="status">Research</span>
+            <span class="status status-research">Research</span>
             <div class="tags">
               <span class="tag">C++</span>
               <span class="tag">Netcode</span>
@@ -451,7 +474,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/nso-kryptonite-platform">NSO Kryptonite</a></h3>
             <p>Adversarial defense command center for authorized purple-team work.</p>
-            <span class="status">Stable</span>
+            <span class="status status-stable">Stable</span>
             <div class="tags">
               <span class="tag">TypeScript</span>
               <span class="tag">Security</span>
@@ -462,7 +485,7 @@
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/CharlesAI">CharlesAI</a></h3>
             <p>Desktop AI orchestration with browser automation and vault integration.</p>
-            <span class="status">Stable</span>
+            <span class="status status-stable">Stable</span>
             <div class="tags">
               <span class="tag">PowerShell</span>
               <span class="tag">Automation</span>
@@ -529,8 +552,12 @@
       var drops = [];
       var running = true;
       var raf = null;
-      /* Red / coral rain instead of lime */
-      var colors = ['#e83a3a', '#ff6b4a', '#e85a7a', '#c43030'];
+      /* Balanced rain: mostly cool neutrals, occasional warm pop */
+      var colors = [
+        '#5b8fa8', '#2ec4b6', '#5b8fa8',
+        '#9aa0aa', '#5b8fa8',
+        '#ff5a3d', '#e84a6f'
+      ];
 
       function resize() {
         canvas.width = window.innerWidth;
@@ -542,7 +569,7 @@
 
       function draw() {
         if (!running) return;
-        ctx.fillStyle = 'rgba(10, 10, 11, 0.1)';
+        ctx.fillStyle = 'rgba(12, 13, 16, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.font = fontSize + 'px ui-monospace, monospace';
         for (var i = 0; i < drops.length; i++) {
