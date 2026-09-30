@@ -28,7 +28,9 @@
       content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
       background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(220,20,60,.015) 2px,rgba(220,20,60,.015) 4px);
     }
-    @media (prefers-reduced-motion:reduce){body::after{display:none}}
+    @media (prefers-reduced-motion:reduce){
+      body::after,.status-dot{animation:none!important}
+    }
     .nav{
       position:fixed;top:0;left:0;right:0;z-index:1000;
       background:rgba(10,10,15,.95);backdrop-filter:blur(20px);
@@ -40,12 +42,22 @@
       color:var(--white);text-decoration:none;font-size:.85rem;
     }
     .nav-brand span{color:var(--red-glow)}
+    .nav-right{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
     .nav-links{display:flex;gap:1.25rem;flex-wrap:wrap}
     .nav-links a{
       font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.12em;
       text-transform:uppercase;color:rgba(224,224,224,.55);text-decoration:none;
     }
     .nav-links a:hover,.nav-links a.active{color:var(--red-glow)}
+    .nav-status{
+      font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.1em;
+      color:var(--green);display:flex;align-items:center;gap:.4rem;
+    }
+    .status-dot{
+      width:7px;height:7px;border-radius:50%;background:var(--green);
+      box-shadow:0 0 8px var(--green);animation:pulse 1.6s ease-in-out infinite;
+    }
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
     .hero{
       min-height:78vh;display:flex;align-items:center;
       padding:7rem 1.5rem 4rem;position:relative;overflow:hidden;
@@ -59,13 +71,14 @@
     .container{width:min(1100px,100%);margin:0 auto;position:relative;z-index:1}
     .kicker{
       font-family:'Share Tech Mono',monospace;font-size:.75rem;color:var(--red-glow);
-      text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;
+      text-transform:uppercase;letter-spacing:3px;margin-bottom:1rem;min-height:1.2em;
     }
     h1{
       font-family:'Orbitron',sans-serif;font-weight:900;
       font-size:clamp(2.1rem,7vw,4rem);line-height:.95;letter-spacing:.04em;
       margin-bottom:1.1rem;
     }
+    h1 span{color:var(--red-glow)}
     .lead{font-size:1.2rem;font-weight:500;color:rgba(224,224,224,.6);max-width:34rem;margin-bottom:1.75rem}
     .cta{display:flex;flex-wrap:wrap;gap:.75rem}
     .btn{
@@ -132,20 +145,23 @@
 <body>
   <nav class="nav">
     <a class="nav-brand" href="/">POWDER<span>-</span>RANGER</a>
-    <div class="nav-links">
-      <a class="active" href="/">Home</a>
-      <a href="#projects">Projects</a>
-      <a href="repos.html">Repos</a>
-      <a href="https://github.com/POWDER-RANGER">GitHub</a>
-      <a href="#contact">Contact</a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a class="active" href="/">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="repos.html">Repos</a>
+        <a href="pages.html">Pages</a>
+        <a href="https://github.com/POWDER-RANGER">GitHub</a>
+      </div>
+      <div class="nav-status"><span class="status-dot"></span>ONLINE</div>
     </div>
   </nav>
 
   <header class="hero">
     <div class="container">
-      <p class="kicker">Systems architecture // Open source</p>
-      <h1>POWDER<br>RANGER</h1>
-      <p class="lead">Systems that think, defend, and serve the public good. Multi-agent governance, civic intelligence, and zero-trust design.</p>
+      <p class="kicker" id="kicker">Systems architecture // Open source</p>
+      <h1 id="hero-title">POWDER<br><span>RANGER</span></h1>
+      <p class="lead" id="lead">Systems that think, defend, and serve the public good. Multi-agent governance, civic intelligence, and zero-trust design.</p>
       <div class="cta">
         <a class="btn btn-crimson" href="#projects">View projects</a>
         <a class="btn btn-outline" href="https://github.com/POWDER-RANGER">GitHub</a>
@@ -229,7 +245,7 @@
   </section>
 
   <footer>
-    <span id="year"></span> POWDER-RANGER · <a href="https://github.com/POWDER-RANGER">GitHub</a>
+    <span id="year"></span> POWDER-RANGER · <a href="pages.html">Live pages</a> · <a href="https://github.com/POWDER-RANGER">GitHub</a>
   </footer>
 
   <script>
@@ -241,6 +257,59 @@
         if(u&&typeof u.public_repos==='number') el.innerHTML='<strong>'+u.public_repos+'</strong> public repos';
         else el.textContent='Open source';
       }).catch(function(){document.getElementById('repo-count').textContent='Open source';});
+
+    (function liveText() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var title = document.getElementById('hero-title');
+      var original = title.innerHTML;
+      var chars = '!@#$%^&*()_+-=[]{}|;:,.<>?/~`ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+
+      function glitch() {
+        var iterations = 0;
+        var interval = setInterval(function () {
+          title.innerHTML = original.split('').map(function (char, i) {
+            if (char === '<' || original.slice(i, i + 4) === '<br>' || original.slice(Math.max(0, i - 3), i + 1).indexOf('<br>') !== -1) return char;
+            if (char === '/' || char === '>') return char;
+            if (i < iterations) return original[i];
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          iterations += 2;
+          if (iterations >= original.length) {
+            title.innerHTML = original;
+            clearInterval(interval);
+          }
+        }, 30);
+      }
+
+      setTimeout(glitch, 800);
+      setInterval(glitch, 12000);
+
+      var lines = [
+        'Systems architecture // Open source',
+        'Agent governance // Audit by design',
+        'Civic intelligence // Local-first',
+        'Zero-trust // Failures are data'
+      ];
+      var k = 0;
+      var kicker = document.getElementById('kicker');
+      setInterval(function () {
+        k = (k + 1) % lines.length;
+        var next = lines[k];
+        var i = 0;
+        var scramble = setInterval(function () {
+          kicker.textContent = next.split('').map(function (ch, idx) {
+            if (idx < i) return next[idx];
+            return chars[Math.floor(Math.random() * chars.length)];
+          }).join('');
+          i += 2;
+          if (i >= next.length) {
+            kicker.textContent = next;
+            clearInterval(scramble);
+          }
+        }, 24);
+      }, 4000);
+    })();
   </script>
 </body>
 </html>
