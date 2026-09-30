@@ -1,334 +1,496 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Master portfolio showcasing production-grade open-source systems: AI automation, adversarial security, civic intelligence, multi-agent orchestration, and game networking research.">
-    <meta property="og:title" content="POWDER-RANGER Portfolio | Cybersecurity & AI">
-    <meta property="og:description" content="Interactive cyber-themed portfolio with 3D animations, AI systems, and security research.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://powder-ranger.github.io">
-    <title>POWDER-RANGER | Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Curtis Charles Farrar — systems architect. Open infrastructure for civic intelligence, multi-agent AI, and zero-trust security.">
+  <meta property="og:title" content="POWDER-RANGER | Systems Architecture Portfolio">
+  <meta property="og:description" content="Civic intelligence, multi-agent governance, adversarial security, and distributed networking — open source.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://powder-ranger.github.io">
+  <meta property="og:image" content="https://raw.githubusercontent.com/POWDER-RANGER/POWDER-RANGER/main/assets/banner.svg">
+  <meta name="theme-color" content="#0D1117">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <title>POWDER-RANGER | Portfolio</title>
+  <style>
+    :root {
+      --bg: #0D1117;
+      --surface: rgba(22, 27, 34, 0.92);
+      --border: #238636;
+      --accent: #00FF88;
+      --accent-dim: #3fb950;
+      --text: #c9d1d9;
+      --text-muted: #8b949e;
+      --heading: #e6edf3;
+    }
 
-        body {
-            font-family: 'Courier New', monospace;
-            background: #0D1117;
-            color: #00FF88;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Matrix Background */
-        canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+    canvas#matrix {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+    }
 
-        header {
-            text-align: center;
-            margin: 4rem 0;
-            animation: fadeIn 1s ease-in;
-        }
+    @media (prefers-reduced-motion: reduce) {
+      canvas#matrix { display: none; }
+    }
 
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 20px #00FF88;
-            letter-spacing: 3px;
-        }
+    .site {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #00EEFF;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 10px #00EEFF;
-        }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.5rem;
+      background: rgba(13, 17, 23, 0.92);
+      border-bottom: 1px solid #21262d;
+      backdrop-filter: blur(8px);
+    }
 
-        .badges {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 2rem 0;
-        }
+    .nav-brand {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 700;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+    }
 
-        .badge {
-            background: #1f6feb;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-decoration: none;
-            color: #fff;
-            border: 2px solid #00FF88;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
+    .nav-links {
+      display: flex;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
 
-        .badge:hover {
-            background: #00FF88;
-            color: #0D1117;
-            box-shadow: 0 0 20px #00FF88;
-        }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
+    .nav-links a:hover { color: var(--accent); }
 
-        .project-card {
-            background: rgba(13, 17, 23, 0.8);
-            border: 2px solid #00FF88;
-            padding: 1.5rem;
-            border-radius: 8px;
-            transition: all 0.3s;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-        }
+    .container {
+      width: min(1100px, 100%);
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 20px #00FF88;
-            border-color: #00EEFF;
-        }
+    .hero {
+      padding: 3.5rem 0 2.5rem;
+      max-width: 40rem;
+    }
 
-        .project-card h3 {
-            color: #00EEFF;
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem;
-        }
+    .hero h1 {
+      font-size: clamp(1.75rem, 4vw, 2.35rem);
+      color: var(--heading);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.75rem;
+    }
 
-        .project-card p {
-            color: #30363d;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
-        }
+    .hero h1 span {
+      color: var(--accent);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
 
-        .tech-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-        }
+    .hero .lead {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
 
-        .tag {
-            background: #161b22;
-            color: #00FF88;
-            padding: 0.25rem 0.75rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            border: 1px solid #00FF88;
-        }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
 
-        .project-link {
-            display: inline-block;
-            margin-top: 1rem;
-            color: #00FF88;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.15rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
 
-        .project-link:hover {
-            color: #00EEFF;
-            text-shadow: 0 0 10px #00EEFF;
-        }
+    .btn-primary {
+      background: var(--accent);
+      color: #0D1117;
+    }
 
-        .footer {
-            text-align: center;
-            margin-top: 4rem;
-            padding-top: 2rem;
-            border-top: 2px solid #00FF88;
-            font-size: 0.9rem;
-            color: #30363d;
-        }
+    .btn-primary:hover {
+      background: var(--accent-dim);
+    }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            justify-content: center;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-        }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border-color: #30363d;
+    }
 
-        .nav-links a {
-            color: #00FF88;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-weight: bold;
-        }
+    .btn-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
 
-        .nav-links a:hover {
-            color: #00EEFF;
-            text-shadow: 0 0 10px #00EEFF;
-        }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 2rem 0 0.5rem;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    .chip {
+      font-size: 0.8rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid #238636;
+      color: var(--accent);
+      background: rgba(35, 134, 54, 0.12);
+    }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .subtitle { font-size: 1rem; }
-            .projects-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+    section {
+      margin-top: 3rem;
+    }
+
+    section h2 {
+      font-size: 1.15rem;
+      color: var(--heading);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+      transition: border-color 0.15s, transform 0.15s;
+    }
+
+    .card:hover {
+      border-color: var(--border);
+      transform: translateY(-2px);
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      color: var(--heading);
+      font-weight: 600;
+    }
+
+    .card h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .card h3 a:hover { color: var(--accent); }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      flex: 1;
+    }
+
+    .status {
+      font-size: 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--accent-dim);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid #30363d;
+      color: var(--text-muted);
+      background: #0D1117;
+    }
+
+    .card .more {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .card .more:hover { text-decoration: underline; }
+
+    .about {
+      color: var(--text-muted);
+      max-width: 40rem;
+    }
+
+    .about strong { color: var(--text); }
+
+    footer {
+      margin-top: auto;
+      border-top: 1px solid #21262d;
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .nav { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
+  <canvas id="matrix" aria-hidden="true"></canvas>
 
-    <div class="container">
-        <header>
-            <h1>⚡ POWDER-RANGER</h1>
-            <p class="subtitle">Master Portfolio | Production-Grade Systems | Cybersecurity Research</p>
-            
-            <div class="nav-links">
-                <a href="https://github.com/POWDER-RANGER">GitHub</a>
-                <a href="repos.html">Repository Browser</a>
-                <a href="deviant.html">Deviant Mode</a>
-            </div>
-        </header>
+  <div class="site">
+    <nav class="nav">
+      <a class="nav-brand" href="/">POWDER-RANGER</a>
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="repos.html">All repos</a>
+        <a href="https://github.com/POWDER-RANGER">GitHub</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
 
-        <div class="badges">
-            <span class="badge">46+ Repositories</span>
-            <span class="badge">AI Automation</span>
-            <span class="badge">Cybersecurity</span>
-            <span class="badge">Game Networking</span>
+    <main class="container">
+      <header class="hero">
+        <h1><span>POWDER-RANGER</span> — systems that think, defend, and serve</h1>
+        <p class="lead">
+          Independent systems architect building open infrastructure for
+          civic intelligence, multi-agent governance, and zero-trust security.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#projects">View projects</a>
+          <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub profile</a>
         </div>
-
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>🛡️ NSO Kryptonite</h3>
-                <p>Adversarial defense command center and security research platform</p>
-                <div class="tech-tags">
-                    <span class="tag">React</span>
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Security</span>
-                </div>
-                <a href="https://powder-ranger.github.io/nso-kryptonite-platform" class="project-link">→ Explore</a>
-            </div>
-
-            <div class="project-card">
-                <h3>🤖 OBLISK</h3>
-                <p>Multi-agent AI orchestration with encrypted vaults and Prolog reasoning</p>
-                <div class="tech-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Prolog</span>
-                    <span class="tag">AI</span>
-                </div>
-                <a href="https://powder-ranger.github.io/OBLISK" class="project-link">→ Explore</a>
-            </div>
-
-            <div class="project-card">
-                <h3>🏛️ CIVWATCH</h3>
-                <p>Civic transparency & accountability platform for government tracking</p>
-                <div class="tech-tags">
-                    <span class="tag">TypeScript</span>
-                    <span class="tag">Python</span>
-                    <span class="tag">Civic Tech</span>
-                </div>
-                <a href="https://powder-ranger.github.io/CIVWATCH" class="project-link">→ Explore</a>
-            </div>
-
-            <div class="project-card">
-                <h3>🧠 AI Nexus</h3>
-                <p>Browser-based AI platform with local inference capabilities</p>
-                <div class="tech-tags">
-                    <span class="tag">WebAssembly</span>
-                    <span class="tag">WebGPU</span>
-                    <span class="tag">ML</span>
-                </div>
-                <a href="https://powder-ranger.github.io/ai-nexus" class="project-link">→ Explore</a>
-            </div>
-
-            <div class="project-card">
-                <h3>💰 Dollar Gravity</h3>
-                <p>3D USD gravity visualization and financial analysis framework</p>
-                <div class="tech-tags">
-                    <span class="tag">Three.js</span>
-                    <span class="tag">D3</span>
-                    <span class="tag">Finance</span>
-                </div>
-                <a href="https://powder-ranger.github.io/dollar-gravity-framework" class="project-link">→ Explore</a>
-            </div>
-
-            <div class="project-card">
-                <h3>🎮 Game Networking</h3>
-                <p>Nine Realities netcode research and multiplayer gaming systems</p>
-                <div class="tech-tags">
-                    <span class="tag">Game Dev</span>
-                    <span class="tag">Networking</span>
-                    <span class="tag">Research</span>
-                </div>
-                <a href="repos.html?filter=game" class="project-link">→ Explore</a>
-            </div>
+        <div class="stats">
+          <span class="chip" id="repo-count">Repos…</span>
+          <span class="chip">AI · Security · Civic · Netcode</span>
         </div>
+      </header>
 
-        <footer class="footer">
-            <p>© 2026 POWDER-RANGER | MYTHOTECHNICS ACTIVE | Zero Trust by Design</p>
-            <p>
-                <a href="https://www.linkedin.com/in/curtis-farrar-20aa3525b" style="color: #00FF88; text-decoration: none;">LinkedIn</a> • 
-                <a href="https://orcid.org/0009-0008-9273-2458" style="color: #00FF88; text-decoration: none;">ORCID</a> • 
-                <a href="https://github.com/sponsors/powder-ranger" style="color: #00FF88; text-decoration: none;">Sponsor</a>
-            </p>
-        </footer>
-    </div>
+      <section id="projects">
+        <h2>Featured systems</h2>
+        <div class="projects">
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/RED-AGENT-GOV">RED-AGENT-GOV</a></h3>
+            <p>Governance-enforced agent engine: six-directive output gate, deterministic FSM, hash-chained audit.</p>
+            <span class="status">Released</span>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">FSM</span>
+              <span class="tag">Governance</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/RED-AGENT-GOV">Repository →</a>
+          </article>
 
-    <script>
-        // Matrix background animation
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/OBLISK">OBLISK</a></h3>
+            <p>Multi-agent AI with encrypted vaults, symbolic planning, and policy enforcement.</p>
+            <span class="status">Beta</span>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">AES-256</span>
+              <span class="tag">Multi-agent</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/OBLISK">Repository →</a>
+          </article>
 
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/CIVWATCH">CIVWATCH</a></h3>
+            <p>Civic transparency and anomaly-detection platform for public-interest monitoring.</p>
+            <span class="status">In development</span>
+            <div class="tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Civic tech</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/CIVWATCH">Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/nine-realities-netcode">nine-realities-netcode</a></h3>
+            <p>N+1 concurrent simulation model for multiplayer state reconciliation.</p>
+            <span class="status">Research</span>
+            <div class="tags">
+              <span class="tag">C++</span>
+              <span class="tag">Netcode</span>
+              <span class="tag">Research</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/nine-realities-netcode">Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/nso-kryptonite-platform">NSO Kryptonite</a></h3>
+            <p>Adversarial defense command center for authorized purple-team and detection work.</p>
+            <span class="status">Stable</span>
+            <div class="tags">
+              <span class="tag">TypeScript</span>
+              <span class="tag">Security</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/nso-kryptonite-platform">Repository →</a>
+          </article>
+
+          <article class="card">
+            <h3><a href="https://github.com/POWDER-RANGER/CharlesAI">CharlesAI</a></h3>
+            <p>Desktop AI orchestration with browser automation and encrypted vault integration.</p>
+            <span class="status">Stable</span>
+            <div class="tags">
+              <span class="tag">PowerShell</span>
+              <span class="tag">Automation</span>
+            </div>
+            <a class="more" href="https://github.com/POWDER-RANGER/CharlesAI">Repository →</a>
+          </article>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>Approach</h2>
+        <p class="about">
+          <strong>Compliance is architectural</strong> — gates and audit trails are part of the design, not bolted on later.
+          Work is self-funded and public by default. Status labels track releases and demos, not marketing tiers.
+          Browse the full set on
+          <a href="repos.html" style="color: var(--accent)">Repository Browser</a>
+          or
+          <a href="https://github.com/POWDER-RANGER" style="color: var(--accent)">GitHub</a>.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <p class="about">
+          Open to systems architecture consulting, multi-agent / governance design, and civic-tech collaboration.
+        </p>
+        <div class="cta-row" style="margin-top: 1rem">
+          <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub</a>
+          <a class="btn btn-ghost" href="https://orcid.org/0009-0008-9273-2458">ORCID</a>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/curtis-farrar-20aa3525b">LinkedIn</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p><span id="year"></span> POWDER-RANGER · Zero trust by design</p>
+      <p style="margin-top: 0.35rem">
+        <a href="https://github.com/POWDER-RANGER">GitHub</a> ·
+        <a href="https://orcid.org/0009-0008-9273-2458">ORCID</a> ·
+        <a href="https://github.com/sponsors/powder-ranger">Sponsor</a>
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = '© ' + new Date().getFullYear();
+
+    fetch('https://api.github.com/users/POWDER-RANGER')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (u) {
+        if (u && typeof u.public_repos === 'number') {
+          document.getElementById('repo-count').textContent = u.public_repos + ' public repositories';
+        } else {
+          document.getElementById('repo-count').textContent = 'Open-source systems';
+        }
+      })
+      .catch(function () {
+        document.getElementById('repo-count').textContent = 'Open-source systems';
+      });
+
+    (function matrixRain() {
+      var canvas = document.getElementById('matrix');
+      if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var ctx = canvas.getContext('2d');
+      var fontSize = 14;
+      var chars = '01POWDER-RANGER';
+      var drops = [];
+      var running = true;
+      var raf = null;
+
+      function resize() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
+        var cols = Math.max(1, Math.floor(canvas.width / fontSize));
+        drops = Array(cols);
+        for (var i = 0; i < cols; i++) drops[i] = Math.random() * (canvas.height / fontSize);
+      }
 
-        const chars = '01POWDER-RANGER';
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
-
-        function draw() {
-            ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#00FF88';
-            ctx.font = fontSize + 'px Courier New';
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = chars[Math.floor(Math.random() * chars.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
+      function draw() {
+        if (!running) return;
+        ctx.fillStyle = 'rgba(13, 17, 23, 0.08)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#00FF88';
+        ctx.font = fontSize + 'px ui-monospace, monospace';
+        for (var i = 0; i < drops.length; i++) {
+          var ch = chars[Math.floor(Math.random() * chars.length)];
+          ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+          if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+          drops[i]++;
         }
-
-        setInterval(draw, 50);
-
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+        raf = requestAnimationFrame(function () {
+          setTimeout(draw, 55);
         });
-    </script>
+      }
+
+      document.addEventListener('visibilitychange', function () {
+        running = !document.hidden;
+        if (running && !raf) draw();
+        if (!running && raf) {
+          cancelAnimationFrame(raf);
+          raf = null;
+        }
+      });
+
+      window.addEventListener('resize', resize);
+      resize();
+      draw();
+    })();
+  </script>
 </body>
 </html>
