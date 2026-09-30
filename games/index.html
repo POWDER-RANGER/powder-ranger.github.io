@@ -9,158 +9,108 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#0a0000; --panel:#120000; --panel-2:#1a0000;
-  --red:#E31C23; --red-dark:#8B0000; --ink:#F2E8E8; --mute:#A08080; --line:#4A1010;
-  --display:'Oswald',Impact,'Arial Narrow',sans-serif;
-  --mono:'Share Tech Mono',ui-monospace,monospace;
-}
+:root{--bg:#0a0000;--panel:#120000;--panel-2:#1a0000;--red:#E31C23;--red-dark:#8B0000;--ink:#F2E8E8;--mute:#A08080;--line:#4A1010;--display:'Oswald',Impact,'Arial Narrow',sans-serif;--mono:'Share Tech Mono',ui-monospace,monospace}
 *{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
-html{scroll-behavior:smooth}
-body{
-  background:var(--bg);color:var(--ink);
-  font-family:var(--display);font-weight:500;
-  text-transform:uppercase;letter-spacing:.06em;
-  line-height:1.35;min-height:100vh;overflow-x:hidden;
-}
-body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
-  background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);
-  opacity:.4;
-}
-body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
-  background:radial-gradient(ellipse at 50% -10%,rgba(227,28,35,.25),transparent 55%);
-}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);opacity:.4}
 a{color:inherit;text-decoration:none}
-.wrap{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
-
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:50;
-  background:#0a0000;border-bottom:3px solid var(--red);
-}
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
-.brand{font-weight:700;font-size:1rem;letter-spacing:.2em;color:var(--red)}
-nav ul{display:flex;gap:20px;list-style:none;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--mute)}
-nav ul a:hover{color:var(--red)}
-
-.hero{
-  padding:110px 0 64px;
-  border-bottom:3px solid var(--red);
-  background:linear-gradient(180deg,rgba(227,28,35,.12),transparent 70%);
-}
-.stripe{
-  height:8px;background:var(--red);margin:0 0 28px;
-  box-shadow:0 0 0 1px #000;
-}
-.badge{
-  display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
-  background:var(--red);color:#fff;padding:8px 14px;margin-bottom:18px;
-}
-h1{
-  font-weight:700;font-size:clamp(3rem,12vw,6.5rem);line-height:.88;
-  letter-spacing:.04em;color:var(--ink);
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#0a0000;border-bottom:3px solid var(--red)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1100px;margin:0 auto;padding:0 20px}
+.brand{font-weight:700;font-size:.95rem;letter-spacing:.2em;color:var(--red)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+main{max-width:1100px;margin:0 auto;padding:104px 20px 48px;position:relative;z-index:1}
+.stripe{height:8px;background:var(--red);margin-bottom:24px}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:12px}
+h1{font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.95;letter-spacing:.04em;margin-bottom:14px}
+h1 span{color:var(--red)}
+.lead{color:var(--mute);max-width:40rem;font-size:1rem;margin-bottom:24px;border-left:6px solid var(--red);padding-left:16px}
+h2{font-weight:700;font-size:1.3rem;letter-spacing:.06em;margin:28px 0 14px}
+footer{border-top:8px solid var(--red);padding:32px 20px;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute)}
+footer a{color:var(--red)}
+@media(max-width:640px){.nav-links{display:none}}
+.wrap{max-width:1100px;margin:0 auto}
+section{padding:56px 0;border-bottom:3px solid var(--line)}
+.hero{padding:110px 0 64px;border-bottom:3px solid var(--red);background:linear-gradient(180deg,rgba(227,28,35,.12),transparent 70%)}
+.hero .wrap{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
+.badge{display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;background:var(--red);color:#fff;padding:8px 14px;margin-bottom:18px}
+.badge i{display:inline-block;width:8px;height:8px;background:#fff;margin-right:8px;animation:pulse 1.6s ease-in-out infinite;vertical-align:middle}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+h1{font-weight:700;font-size:clamp(3rem,12vw,6.5rem);line-height:.88;letter-spacing:.04em;color:var(--ink)}
 h1.glitch{color:var(--red);text-shadow:4px 0 #000,-4px 0 var(--red-dark)}
-.lede{
-  max-width:40rem;margin:22px 0 0;font-size:1.05rem;color:var(--mute);
-  font-weight:500;border-left:6px solid var(--red);padding-left:16px;
-}
+.lede{max-width:40rem;margin:22px 0 0;font-size:1.05rem;color:var(--mute);border-left:6px solid var(--red);padding-left:16px}
 .stats{display:flex;flex-wrap:wrap;margin-top:40px;border:3px solid var(--red)}
 .stat{padding:18px 28px;border-right:3px solid var(--red);background:var(--panel)}
 .stat:last-child{border-right:0}
 .stat b{display:block;font-size:2.4rem;font-weight:700;color:var(--red);line-height:1}
 .stat span{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
-.cta{display:flex;flex-wrap:wrap;gap:0;margin-top:32px}
-.btn{
-  font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;
-  padding:16px 24px;border:3px solid var(--red);display:inline-block;
-  transition:background .1s,color .1s;
-}
+.cta{display:flex;flex-wrap:wrap;margin-top:32px}
+.btn{font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;padding:16px 24px;border:3px solid var(--red);display:inline-block}
 .btn.primary{background:var(--red);color:#fff}
 .btn.primary:hover{background:#fff;color:#000;border-color:#fff}
 .btn.ghost{background:transparent;color:var(--ink);margin-left:-3px}
 .btn.ghost:hover{background:var(--red);color:#fff}
-
-section{padding:64px 0;border-bottom:3px solid var(--line)}
 .tag{font-family:var(--mono);color:var(--red);font-size:.72rem;letter-spacing:.22em;margin-bottom:10px}
 h2{font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.06em;margin-bottom:12px}
 .sec-sub{color:var(--mute);max-width:42rem;margin-bottom:32px;font-size:1rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:3px solid var(--red);border-left:3px solid var(--red)}
-.card{
-  display:block;background:var(--panel);border-right:3px solid var(--red);border-bottom:3px solid var(--red);
-  padding:24px;min-height:160px;
-}
+.card{display:block;background:var(--panel);border-right:3px solid var(--red);border-bottom:3px solid var(--red);padding:24px;min-height:160px}
 .card h3{font-size:1.15rem;font-weight:700;letter-spacing:.08em;margin-bottom:10px}
 .card p{color:var(--mute);font-size:.9rem}
-.chip{
-  display:inline-block;margin-top:18px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
-  padding:6px 10px;background:var(--panel-2);border:2px solid var(--line);color:var(--mute);
-}
+.chip{display:inline-block;margin-top:18px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;padding:6px 10px;background:var(--panel-2);border:2px solid var(--line);color:var(--mute)}
 .card.live{background:var(--panel-2)}
 .card.live .chip{background:var(--red);border-color:var(--red);color:#fff}
 .card.live:hover{background:var(--red)}
 .card.live:hover h3,.card.live:hover p,.card.live:hover .chip{color:#fff}
 .card.queued{opacity:.65}
 .laws{display:grid;gap:0;border:3px solid var(--red)}
-.law{
-  display:grid;grid-template-columns:72px 1fr;gap:0;
-  border-bottom:3px solid var(--red);background:var(--panel);
-}
+.law{display:grid;grid-template-columns:72px 1fr;border-bottom:3px solid var(--red);background:var(--panel)}
 .law:last-child{border-bottom:0}
-.law .n{
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.8rem;font-weight:700;background:var(--red);color:#fff;
-}
+.law .n{display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:700;background:var(--red);color:#fff}
 .law div:last-child{padding:20px 22px}
 .law h4{font-weight:700;letter-spacing:.08em;margin-bottom:6px}
 .law p{color:var(--mute);font-size:.95rem}
-.stack{display:flex;flex-wrap:wrap;gap:0;border:3px solid var(--red)}
-.stack span{
-  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;
-  padding:12px 16px;border-right:3px solid var(--red);background:var(--panel);
-}
+.stack{display:flex;flex-wrap:wrap;border:3px solid var(--red)}
+.stack span{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;padding:12px 16px;border-right:3px solid var(--red);background:var(--panel)}
 .stack span:last-child{border-right:0}
-footer{
-  padding:48px 0 64px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute);
-  border-top:8px solid var(--red);
-}
-footer .row{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:14px}
-footer a:hover{color:var(--red)}
+.gfoot{padding:48px 0 64px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute);border-top:8px solid var(--red)}
+.gfoot .wrap{max-width:1100px;margin:0 auto;padding:0 20px}
+.gfoot .row{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:14px}
+.gfoot a:hover,.back:hover{color:var(--red)}
 .back{display:inline-block;margin-bottom:20px;color:var(--red);font-weight:700}
 @media (max-width:640px){
-  nav ul{display:none}
+  .nav-links{display:none}
   .hero{padding:90px 0 48px}
   .law{grid-template-columns:1fr}
   .law .n{padding:12px;justify-content:flex-start}
   .btn.ghost{margin-left:0;margin-top:-3px}
 }
-@media (prefers-reduced-motion:reduce){.status i,h1.glitch{animation:none}}
+@media (prefers-reduced-motion:reduce){.badge i,h1.glitch{animation:none}}
 </style>
 </head>
 <body>
 <nav>
-  <div class="wrap">
+  <div class="inner">
     <a class="brand" href="#top">GAMES DIVISION</a>
-    <ul>
-      <li><a href="#roster">Roster</a></li>
-      <li><a href="#standards">Standards</a></li>
-      <li><a href="#engine">Engine</a></li>
-      <li><a href="/">Home</a></li>
-      <li><a href="/pages.html">Pages</a></li>
-    </ul>
+    <div class="nav-links">
+      <a href="#roster">Roster</a>
+      <a href="#standards">Standards</a>
+      <a href="#engine">Engine</a>
+      <a href="/">Home</a>
+      <a href="/pages.html">Pages</a>
+    </div>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap">
     <div class="stripe"></div>
-    <div class="badge">Arcade online</div>
+    <div class="badge"><i></i>Arcade online</div>
     <h1 id="hero-title" aria-label="MINI GAMES">MINI GAMES</h1>
-    <p class="lede">Browser arcade. Kaboom.js. Open. Press start. Play. No install. No account.</p>
+    <p class="lede">Browser arcade. Open. Press start. Play. No install. No account.</p>
     <div class="stats">
-      <div class="stat"><b data-final="01">01</b><span>Playable now</span></div>
-      <div class="stat"><b data-final="05">05</b><span>Build queue</span></div>
+      <div class="stat"><b data-final="05">05</b><span>Playable now</span></div>
+      <div class="stat"><b data-final="01">01</b><span>Build queue</span></div>
       <div class="stat"><b data-final="06">06</b><span>Total titles</span></div>
     </div>
     <div class="cta">
@@ -173,18 +123,34 @@ footer a:hover{color:var(--red)}
 <section id="roster">
   <div class="wrap">
     <p class="tag">// Arcade roster</p>
-    <h2>Six titles · One live</h2>
-    <p class="sec-sub">Flappy Bird is live. Five remain queued until they meet the bar.</p>
+    <h2>Six titles · Five live</h2>
+    <p class="sec-sub">Flappy, Snake, Pong, Space Invaders and Tetris are playable. Breakout remains queued until it meets the bar.</p>
     <div class="grid">
       <a class="card live" href="/games/flappy/">
         <h3>Flappy Bird</h3>
         <p>Navigate pipes. Tap or space to fly.</p>
-        <span class="chip">Playable · Launch</span>
+        <span class="chip">Playable</span>
       </a>
-      <div class="card queued"><h3>Snake</h3><p>Eat. Grow. Avoid the wall.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Pong</h3><p>Ping-pong versus AI.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Space Invaders</h3><p>Hold the line.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Tetris</h3><p>Stack. Clear. Survive.</p><span class="chip">Queued</span></div>
+      <a class="card live" href="/games/snake/">
+        <h3>Snake</h3>
+        <p>Eat. Grow. Avoid the wall.</p>
+        <span class="chip">Playable</span>
+      </a>
+      <a class="card live" href="/games/pong/">
+        <h3>Pong</h3>
+        <p>Ping-pong versus AI.</p>
+        <span class="chip">Playable</span>
+      </a>
+      <a class="card live" href="/games/invaders/">
+        <h3>Space Invaders</h3>
+        <p>Hold the line.</p>
+        <span class="chip">Playable</span>
+      </a>
+      <a class="card live" href="/games/tetris/">
+        <h3>Tetris</h3>
+        <p>Stack. Clear. Survive.</p>
+        <span class="chip">Playable</span>
+      </a>
       <div class="card queued"><h3>Breakout</h3><p>Break the wall.</p><span class="chip">Queued</span></div>
     </div>
   </div>
@@ -214,7 +180,7 @@ footer a:hover{color:var(--red)}
   </div>
 </section>
 
-<footer>
+<footer class="gfoot">
   <div class="wrap">
     <a class="back" href="/">Back to command center</a>
     <div>POWDER-RANGER</div>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0000">
+<title>Space <span>Invaders</span> — POWDER-RANGER GAMES</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0000;--panel:#120000;--panel-2:#1a0000;--red:#E31C23;--red-dark:#8B0000;--ink:#F2E8E8;--mute:#A08080;--line:#4A1010;--display:'Oswald',Impact,'Arial Narrow',sans-serif;--mono:'Share Tech Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);opacity:.4}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#0a0000;border-bottom:3px solid var(--red)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1100px;margin:0 auto;padding:0 20px}
+.brand{font-weight:700;font-size:.95rem;letter-spacing:.2em;color:var(--red)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+main{max-width:1100px;margin:0 auto;padding:104px 20px 48px;position:relative;z-index:1}
+.stripe{height:8px;background:var(--red);margin-bottom:24px}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:12px}
+h1{font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.95;letter-spacing:.04em;margin-bottom:14px}
+h1 span{color:var(--red)}
+.lead{color:var(--mute);max-width:40rem;font-size:1rem;margin-bottom:24px;border-left:6px solid var(--red);padding-left:16px}
+h2{font-weight:700;font-size:1.3rem;letter-spacing:.06em;margin:28px 0 14px}
+footer{border-top:8px solid var(--red);padding:32px 20px;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute)}
+footer a{color:var(--red)}
+@media(max-width:640px){.nav-links{display:none}}
+.stage{border:3px solid var(--red);background:var(--panel);max-width:100%;display:block;image-rendering:pixelated;touch-action:none}
+.ctl{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute);margin:14px 0 20px}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;padding:14px 20px;border:3px solid var(--red);display:inline-block}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:#fff;color:#000;border-color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);margin-left:-3px}
+.btn.ghost:hover{background:var(--red);color:#fff}
+.pad{display:none;flex-wrap:wrap;border:3px solid var(--red);margin-bottom:16px}
+.pad button{flex:1;font-family:var(--mono);font-size:1rem;padding:18px 0;border:0;border-right:3px solid var(--red);background:var(--panel);color:var(--ink);cursor:pointer}
+.pad button:last-child{border-right:0}
+.pad button:active{background:var(--red);color:#fff}
+@media(max-width:640px){.pad{display:flex}}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="brand" href="/games/">GAMES DIVISION</a>
+    <div class="nav-links">
+      <a href="/games/">Roster</a>
+      <a href="/">Home</a>
+      <a href="/pages.html">Pages</a>
+    </div>
+  </div>
+</nav>
+<main style="max-width:560px;padding-top:120px">
+  <div class="stripe"></div>
+  <p class="kicker">// Arcade 04</p>
+  <h1>Space <span>Invaders</span></h1>
+  <p class="lead">Hold the line. They descend on the beat.</p>
+  
+  <canvas id="stage" class="stage" width="480" height="480"></canvas>
+  <p class="ctl">Arrows or A/D to move · space to fire · drag and auto-fire on touch</p>
+  <div>
+    <a class="btn primary" href="/games/">Back to roster</a>
+    <a class="btn ghost" href="/">Home</a>
+  </div>
+</main>
+<footer><a href="/games/">Games</a> · <a href="/">Home</a> · <a href="https://github.com/POWDER-RANGER">GitHub</a></footer>
+<script>
+
+var C=document.getElementById('stage'),X=C.getContext('2d');
+var W=C.width,H=C.height;
+var RED='#E31C23',INK='#F2E8E8',MUTE='#A08080',LINE='#4A1010',BG='#0a0000',DARK='#8B0000';
+var ship,bul,ebul,inv,dir,stepT,stepI,lives,wave,score,dead,tPrev=0,fireT=0,touching=false;
+var COLS=8,ROWS=4,IW=30,IH=18;
+function reset(){
+  ship={x:W/2};bul=null;ebul=[];dir=1;stepT=0;lives=3;wave=1;score=0;dead=false;fireT=0;
+  stepI=Math.max(.18,.6-wave*.05);
+  inv=[];
+  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++)inv.push({x:30+c*(IW+14),y:70+r*(IH+14),a:true});
+}
+document.addEventListener('keydown',function(e){
+  if(dead&&e.key===' '){reset();return;}
+  if(e.key==='ArrowLeft'||e.key==='a')ship.x-=22;
+  if(e.key==='ArrowRight'||e.key==='d')ship.x+=22;
+  if(e.key===' '){fire();e.preventDefault();}
+});
+C.addEventListener('touchstart',function(e){if(dead){reset();return;}touching=true;moveShip(e);},{passive:true});
+C.addEventListener('touchmove',function(e){moveShip(e);},{passive:true});
+C.addEventListener('touchend',function(){touching=false;},{passive:true});
+function moveShip(e){var r=C.getBoundingClientRect();ship.x=(e.touches[0].clientX-r.left)/r.width*W;}
+function fire(){if(!dead&&!bul)bul={x:ship.x,y:H-56};}
+function update(dt){
+  if(ship.x<24)ship.x=24;if(ship.x>W-24)ship.x=W-24;
+  fireT+=dt;
+  if(touching&&fireT>.32){fireT=0;fire();}
+  var alive=inv.filter(function(i){return i.a});
+  if(!alive.length){wave++;stepI=Math.max(.14,.6-wave*.05);score+=100;
+    for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++)inv.push({x:30+c*(IW+14),y:70+r*(IH+14),a:true});
+    alive=inv.filter(function(i){return i.a});
+  }
+  stepT+=dt;
+  if(stepT>=stepI){
+    stepT=0;
+    var edge=false;
+    alive.forEach(function(i){if(dir>0&&i.x+IW>W-16)edge=true;if(dir<0&&i.x<16)edge=true;});
+    if(edge){dir=-dir;alive.forEach(function(i){i.y+=16;if(i.y+IH>H-80)lives=0,dead=true;});}
+    else{alive.forEach(function(i){i.x+=10*dir;});}
+  }
+  if(bul){bul.y-=420*dt;if(bul.y<0)bul=null;
+    else for(var k=0;k<inv.length;k++){var it=inv[k];
+      if(it.a&&bul.x>it.x-4&&bul.x<it.x+IW+4&&bul.y>it.y&&bul.y<it.y+IH){it.a=false;bul=null;score+=10*wave;break;}}}
+  if(Math.random()<dt*(.5+wave*.15)&&alive.length){
+    var s=alive[Math.floor(Math.random()*alive.length)];
+    ebul.push({x:s.x+IW/2,y:s.y+IH});
+  }
+  for(var b=ebul.length-1;b>=0;b--){
+    ebul[b].y+=200*dt;
+    if(ebul[b].y>H){ebul.splice(b,1);continue;}
+    if(Math.abs(ebul[b].x-ship.x)<22&&ebul[b].y>H-56){ebul.splice(b,1);lives--;if(lives<=0)dead=true;}
+  }
+}
+function draw(){
+  X.fillStyle=BG;X.fillRect(0,0,W,H);
+  X.fillStyle=LINE;for(var y=0;y<H;y+=4){X.fillRect(0,y,W,1);}
+  inv.forEach(function(i){if(!i.a)return;
+    X.fillStyle=i.y>150?RED:DARK;
+    X.fillRect(i.x,i.y,IW,IH);
+    X.fillStyle=BG;X.fillRect(i.x+5,i.y+5,5,5);X.fillRect(i.x+IW-10,i.y+5,5,5);X.fillRect(i.x+IW/2-2,i.y+10,4,4);});
+  if(bul){X.fillStyle=INK;X.fillRect(bul.x-2,bul.y-10,4,10);}
+  ebul.forEach(function(b){X.fillStyle=RED;X.fillRect(b.x-2,b.y,4,10);});
+  X.fillStyle=INK;
+  X.fillRect(ship.x-22,H-52,44,12);X.fillRect(ship.x-4,H-58,8,6);
+  X.fillStyle=RED;
+  for(var l=0;l<lives;l++)X.fillRect(10+l*16,H-16,10,10);
+  X.fillStyle=MUTE;X.font='16px "Share Tech Mono",monospace';
+  X.fillText('SCORE '+score,W-130,H-16);
+  X.fillText('WAVE '+wave,10,20);
+  if(dead){
+    X.fillStyle='rgba(10,0,0,.85)';X.fillRect(0,H/2-60,W,120);
+    X.fillStyle=RED;X.fillRect(0,H/2-60,W,3);X.fillRect(0,H/2+57,W,3);
+    X.fillStyle=INK;X.font='700 30px "Share Tech Mono",monospace';X.textAlign='center';
+    X.fillText('LINE LOST',W/2,H/2-8);
+    X.fillStyle=MUTE;X.font='15px "Share Tech Mono",monospace';
+    X.fillText('SCORE '+score+' — SPACE / TAP TO RESTART',W/2,H/2+26);
+    X.textAlign='left';
+  }
+}
+function loop(t){
+  var dt=Math.min(.033,(t-tPrev)/1000);tPrev=t;
+  if(!dead)update(dt);
+  draw();requestAnimationFrame(loop);
+}
+reset();requestAnimationFrame(loop);
+</script>
+</body>
+</html>

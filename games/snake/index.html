@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0000">
+<title>Snake — POWDER-RANGER GAMES</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0000;--panel:#120000;--panel-2:#1a0000;--red:#E31C23;--red-dark:#8B0000;--ink:#F2E8E8;--mute:#A08080;--line:#4A1010;--display:'Oswald',Impact,'Arial Narrow',sans-serif;--mono:'Share Tech Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);opacity:.4}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#0a0000;border-bottom:3px solid var(--red)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1100px;margin:0 auto;padding:0 20px}
+.brand{font-weight:700;font-size:.95rem;letter-spacing:.2em;color:var(--red)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+main{max-width:1100px;margin:0 auto;padding:104px 20px 48px;position:relative;z-index:1}
+.stripe{height:8px;background:var(--red);margin-bottom:24px}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:12px}
+h1{font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.95;letter-spacing:.04em;margin-bottom:14px}
+h1 span{color:var(--red)}
+.lead{color:var(--mute);max-width:40rem;font-size:1rem;margin-bottom:24px;border-left:6px solid var(--red);padding-left:16px}
+h2{font-weight:700;font-size:1.3rem;letter-spacing:.06em;margin:28px 0 14px}
+footer{border-top:8px solid var(--red);padding:32px 20px;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute)}
+footer a{color:var(--red)}
+@media(max-width:640px){.nav-links{display:none}}
+.stage{border:3px solid var(--red);background:var(--panel);max-width:100%;display:block;image-rendering:pixelated;touch-action:none}
+.ctl{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute);margin:14px 0 20px}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;padding:14px 20px;border:3px solid var(--red);display:inline-block}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:#fff;color:#000;border-color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);margin-left:-3px}
+.btn.ghost:hover{background:var(--red);color:#fff}
+.pad{display:none;flex-wrap:wrap;border:3px solid var(--red);margin-bottom:16px}
+.pad button{flex:1;font-family:var(--mono);font-size:1rem;padding:18px 0;border:0;border-right:3px solid var(--red);background:var(--panel);color:var(--ink);cursor:pointer}
+.pad button:last-child{border-right:0}
+.pad button:active{background:var(--red);color:#fff}
+@media(max-width:640px){.pad{display:flex}}
+
+</style>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="brand" href="/games/">GAMES DIVISION</a>
+    <div class="nav-links">
+      <a href="/games/">Roster</a>
+      <a href="/">Home</a>
+      <a href="/pages.html">Pages</a>
+    </div>
+  </div>
+</nav>
+<main style="max-width:560px;padding-top:120px">
+  <div class="stripe"></div>
+  <p class="kicker">// Arcade 02</p>
+  <h1>Snake</h1>
+  <p class="lead">Eat. Grow. Avoid the wall and yourself.</p>
+  
+  <canvas id="stage" class="stage" width="480" height="480"></canvas>
+  <p class="ctl">Arrows or WASD · swipe on touch · space restarts</p>
+  <div>
+    <a class="btn primary" href="/games/">Back to roster</a>
+    <a class="btn ghost" href="/">Home</a>
+  </div>
+</main>
+<footer><a href="/games/">Games</a> · <a href="/">Home</a> · <a href="https://github.com/POWDER-RANGER">GitHub</a></footer>
+<script>
+
+var C=document.getElementById('stage'),X=C.getContext('2d');
+var CELL=24,N=20,snake,dir,next,food,score,best=0,dead,timer=0,step=0.13,tPrev=0;
+var RED='#E31C23',INK='#F2E8E8',MUTE='#A08080',LINE='#4A1010',PANEL='#120000',BG='#0a0000';
+function reset(){snake=[{x:8,y:10},{x:7,y:10},{x:6,y:10}];dir={x:1,y:0};next=dir;food=spawn();score=0;dead=false;timer=0;step=0.13;}
+function spawn(){var p;do{p={x:Math.floor(Math.random()*N),y:Math.floor(Math.random()*N)}}while(snake.some(function(s){return s.x===p.x&&s.y===p.y}));return p;}
+function turn(x,y){if(x===-dir.x&&y===-dir.y&&snake.length>1)return;next={x:x,y:y};}
+document.addEventListener('keydown',function(e){
+  if(dead&&(e.key===' '||e.key==='Enter')){reset();return;}
+  if(e.key==='ArrowUp'||e.key==='w'){turn(0,-1);e.preventDefault();}
+  if(e.key==='ArrowDown'||e.key==='s'){turn(0,1);e.preventDefault();}
+  if(e.key==='ArrowLeft'||e.key==='a'){turn(-1,0);e.preventDefault();}
+  if(e.key==='ArrowRight'||e.key==='d'){turn(1,0);e.preventDefault();}
+});
+var tS=null;
+C.addEventListener('touchstart',function(e){tS={x:e.touches[0].clientX,y:e.touches[0].clientY};e.preventDefault();},{passive:false});
+C.addEventListener('touchend',function(e){
+  if(!tS)return;
+  if(dead){reset();tS=null;return;}
+  var dx=e.changedTouches[0].clientX-tS.x,dy=e.changedTouches[0].clientY-tS.y;
+  if(Math.abs(dx)>Math.abs(dy)){turn(dx>0?1:-1,0);}else{turn(0,dy>0?1:-1);}
+  tS=null;
+},{passive:false});
+function update(){
+  dir=next;
+  var h={x:snake[0].x+dir.x,y:snake[0].y+dir.y};
+  if(h.x<0||h.y<0||h.x>=N||h.y>=N||snake.some(function(s){return s.x===h.x&&s.y===h.y})){dead=true;if(score>best)best=score;return;}
+  snake.unshift(h);
+  if(h.x===food.x&&h.y===food.y){score+=10;food=spawn();if(step>0.06)step-=0.004;}
+  else{snake.pop();}
+}
+function draw(){
+  X.fillStyle=BG;X.fillRect(0,0,C.width,C.height);
+  X.strokeStyle=LINE;X.lineWidth=1;
+  for(var i=1;i<N;i++){X.beginPath();X.moveTo(i*CELL,0);X.lineTo(i*CELL,C.height);X.stroke();X.beginPath();X.moveTo(0,i*CELL);X.lineTo(C.width,i*CELL);X.stroke();}
+  X.fillStyle=RED;var f=8+Math.sin(performance.now()/150)*3;X.fillRect(food.x*CELL+f/2,food.y*CELL+f/2,CELL-f,CELL-f);
+  for(var j=snake.length-1;j>=0;j--){
+    X.fillStyle=j===0?RED:(j%2?INK:MUTE);
+    X.fillRect(snake[j].x*CELL+2,snake[j].y*CELL+2,CELL-4,CELL-4);
+  }
+  X.fillStyle=INK;X.font='700 16px "Share Tech Mono",monospace';
+  X.fillText('SCORE '+score,10,20);
+  X.fillStyle=MUTE;X.fillText('BEST '+best,C.width-92,20);
+  if(dead){
+    X.fillStyle='rgba(10,0,0,.85)';X.fillRect(0,C.height/2-70,C.width,140);
+    X.fillStyle=RED;X.fillRect(0,C.height/2-70,C.width,3);X.fillRect(0,C.height/2+67,C.width,3);
+    X.fillStyle=INK;X.font='700 34px "Share Tech Mono",monospace';X.textAlign='center';
+    X.fillText('GAME OVER',C.width/2,C.height/2-16);
+    X.fillStyle=MUTE;X.font='16px "Share Tech Mono",monospace';
+    X.fillText('SCORE '+score+' — SPACE / TAP TO RESTART',C.width/2,C.height/2+20);
+    X.textAlign='left';
+  }
+}
+function loop(t){
+  var dt=(t-tPrev)/1000;tPrev=t;
+  if(!dead){timer+=dt;if(timer>=step){timer=0;update();}}
+  draw();requestAnimationFrame(loop);
+}
+reset();requestAnimationFrame(loop);
+</script>
+</body>
+</html>

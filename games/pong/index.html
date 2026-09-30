@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0000">
+<title>Pong — POWDER-RANGER GAMES</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0000;--panel:#120000;--panel-2:#1a0000;--red:#E31C23;--red-dark:#8B0000;--ink:#F2E8E8;--mute:#A08080;--line:#4A1010;--display:'Oswald',Impact,'Arial Narrow',sans-serif;--mono:'Share Tech Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:.06em;line-height:1.35;min-height:100vh;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);opacity:.4}
+a{color:inherit;text-decoration:none}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#0a0000;border-bottom:3px solid var(--red)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;height:52px;max-width:1100px;margin:0 auto;padding:0 20px}
+.brand{font-weight:700;font-size:.95rem;letter-spacing:.2em;color:var(--red)}
+.nav-links{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
+.nav-links a:hover,.nav-links a.active{color:var(--red)}
+main{max-width:1100px;margin:0 auto;padding:104px 20px 48px;position:relative;z-index:1}
+.stripe{height:8px;background:var(--red);margin-bottom:24px}
+.kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--red);margin-bottom:12px}
+h1{font-weight:700;font-size:clamp(2.2rem,6vw,3.6rem);line-height:.95;letter-spacing:.04em;margin-bottom:14px}
+h1 span{color:var(--red)}
+.lead{color:var(--mute);max-width:40rem;font-size:1rem;margin-bottom:24px;border-left:6px solid var(--red);padding-left:16px}
+h2{font-weight:700;font-size:1.3rem;letter-spacing:.06em;margin:28px 0 14px}
+footer{border-top:8px solid var(--red);padding:32px 20px;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute)}
+footer a{color:var(--red)}
+@media(max-width:640px){.nav-links{display:none}}
+.stage{border:3px solid var(--red);background:var(--panel);max-width:100%;display:block;image-rendering:pixelated;touch-action:none}
+.ctl{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute);margin:14px 0 20px}
+.btn{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;padding:14px 20px;border:3px solid var(--red);display:inline-block}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:#fff;color:#000;border-color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);margin-left:-3px}
+.btn.ghost:hover{background:var(--red);color:#fff}
+.pad{display:none;flex-wrap:wrap;border:3px solid var(--red);margin-bottom:16px}
+.pad button{flex:1;font-family:var(--mono);font-size:1rem;padding:18px 0;border:0;border-right:3px solid var(--red);background:var(--panel);color:var(--ink);cursor:pointer}
+.pad button:last-child{border-right:0}
+.pad button:active{background:var(--red);color:#fff}
+@media(max-width:640px){.pad{display:flex}}
+.stage{touch-action:none}
+</style>
+</head>
+<body>
+<nav>
+  <div class="inner">
+    <a class="brand" href="/games/">GAMES DIVISION</a>
+    <div class="nav-links">
+      <a href="/games/">Roster</a>
+      <a href="/">Home</a>
+      <a href="/pages.html">Pages</a>
+    </div>
+  </div>
+</nav>
+<main style="max-width:560px;padding-top:120px">
+  <div class="stripe"></div>
+  <p class="kicker">// Arcade 03</p>
+  <h1>Pong</h1>
+  <p class="lead">First to five. The AI does not tire.</p>
+  
+  <canvas id="stage" class="stage" width="480" height="480"></canvas>
+  <p class="ctl">Arrow keys or W/S · drag on touch · space restarts</p>
+  <div>
+    <a class="btn primary" href="/games/">Back to roster</a>
+    <a class="btn ghost" href="/">Home</a>
+  </div>
+</main>
+<footer><a href="/games/">Games</a> · <a href="/">Home</a> · <a href="https://github.com/POWDER-RANGER">GitHub</a></footer>
+<script>
+
+var C=document.getElementById('stage'),X=C.getContext('2d');
+var W=C.width,H=C.height;
+var RED='#E31C23',INK='#F2E8E8',MUTE='#A08080',LINE='#4A1010',BG='#0a0000';
+var PH=70,PW=10,pY,pAI,ball,ps,as,dead,tPrev=0,flash=0;
+function reset(){
+  pY=H/2-PH/2;pAI=H/2-PH/2;ps=0;as=0;dead=false;
+  serve(Math.random()<.5?1:-1);
+}
+function serve(d){ball={x:W/2,y:H/2,vx:260*d,vy:(Math.random()*2-1)*180};}
+document.addEventListener('keydown',function(e){
+  if(dead&&e.key===' '){reset();return;}
+  if(e.key==='ArrowUp'||e.key==='w'){pY-=34;e.preventDefault();}
+  if(e.key==='ArrowDown'||e.key==='s'){pY+=34;e.preventDefault();}
+});
+C.addEventListener('touchmove',function(e){pY=e.touches[0].clientY-C.getBoundingClientRect().top-PH/2;e.preventDefault();},{passive:false});
+C.addEventListener('touchstart',function(e){if(dead)reset();else pY=e.touches[0].clientY-C.getBoundingClientRect().top-PH/2;e.preventDefault();},{passive:false});
+C.addEventListener('click',function(){if(dead)reset();});
+function update(dt){
+  if(pY<0)pY=0;if(pY>H-PH)pY=H-PH;
+  var aiTarget=ball.vx>0?ball.y-PH/2:H/2-PH/2;
+  var aiSpeed=Math.min(Math.abs(aiTarget-pAI),240*dt);
+  pAI+=aiTarget>pAI?aiSpeed:-aiSpeed;
+  if(pAI<0)pAI=0;if(pAI>H-PH)pAI=H-PH;
+  ball.x+=ball.vx*dt;ball.y+=ball.vy*dt;
+  if(ball.y<6||ball.y>H-6){ball.vy=-ball.vy;ball.y=Math.max(6,Math.min(H-6,ball.y));}
+  if(ball.x<24+PW&&ball.vx<0&&ball.y>pY&&ball.y<pY+PH){ball.vx=-ball.vx*1.06;ball.vy+=((ball.y-(pY+PH/2))/PH)*160;}
+  if(ball.x>W-24-PW&&ball.vx>0&&ball.y>pAI&&ball.y<pAI+PH){ball.vx=-ball.vx*1.06;ball.vy+=((ball.y-(pAI+PH/2))/PH)*160;}
+  if(ball.x<-20){as++;flash=.4;serve(1);}
+  if(ball.x>W+20){ps++;flash=.4;serve(-1);}
+  if(ps>=5||as>=5){dead=true;}
+  if(flash>0)flash-=dt;
+}
+function draw(){
+  X.fillStyle=BG;X.fillRect(0,0,W,H);
+  X.fillStyle=LINE;for(var y=8;y<H;y+=26){X.fillRect(W/2-1,y,2,13);}
+  X.fillStyle=INK;X.font='700 40px "Share Tech Mono",monospace';X.textAlign='center';
+  X.fillText(ps,W/2-60,48);X.fillText(as,W/2+60,48);
+  X.fillStyle=RED;X.fillRect(24,pY,PW,PH);
+  X.fillStyle=INK;X.fillRect(W-24-PW,pAI,PW,PH);
+  X.fillRect(ball.x-5,ball.y-5,10,10);
+  if(flash>0){X.fillStyle='rgba(227,28,35,'+(flash*1.2)+')';X.fillRect(0,0,W,H);}
+  if(dead){
+    X.fillStyle='rgba(10,0,0,.85)';X.fillRect(0,H/2-60,W,120);
+    X.fillStyle=RED;X.fillRect(0,H/2-60,W,3);X.fillRect(0,H/2+57,W,3);
+    X.fillStyle=INK;X.font='700 30px "Share Tech Mono",monospace';
+    X.fillText(ps>=5?'YOU WIN':'AI WINS',W/2,H/2-8);
+    X.fillStyle=MUTE;X.font='15px "Share Tech Mono",monospace';
+    X.fillText(ps+' — '+as+' · SPACE / TAP TO RESTART',W/2,H/2+26);
+  }
+  X.textAlign='left';
+}
+function loop(t){
+  var dt=Math.min(.033,(t-tPrev)/1000);tPrev=t;
+  if(!dead)update(dt);else if(flash>0)flash-=dt;
+  draw();requestAnimationFrame(loop);
+}
+reset();requestAnimationFrame(loop);
+</script>
+</body>
+</html>
