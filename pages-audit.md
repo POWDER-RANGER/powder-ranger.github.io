@@ -1,52 +1,72 @@
-# Pages alignment audit
+# Alignment backlog
 
-Baseline: [NSO Kryptonite](https://powder-ranger.github.io/nso-kryptonite-platform/)
+**Baseline (going forward):** [BRAND.md](./BRAND.md)  
+**Look like:** [home](https://powder-ranger.github.io/) and [games](https://powder-ranger.github.io/games/)
 
-Shared tokens: `#0a0a0f` / `#111118`, crimson `#DC143C` / `#ff1744`, Orbitron + Rajdhani + Share Tech Mono, frosted nav, scanline overlay, mode-colored card rails.
+Directory of live hubs: [pages.html](https://powder-ranger.github.io/pages.html)
 
-Directory of live hubs: [pages.html](./pages.html)
+---
 
-## Already aligned
+## 1. Already on baseline
 
 | Surface | Notes |
 |---------|--------|
-| `/` (`index.html`) | Kryptonite baseline applied |
-| `/repos.html` | Same system + live GitHub API |
-| `/pages.html` | This gather page |
-| Profile banner `POWDER-RANGER/assets/banner.svg` | Crimson command banner only (README cannot load the fonts) |
-| NSO Kryptonite Pages | **Do not restyle away from this** |
+| https://powder-ranger.github.io/ | Constructivist home |
+| https://powder-ranger.github.io/games/ | Constructivist arcade hub |
+| [BRAND.md](./BRAND.md) | Written spec |
 
-## Portfolio repo pages still to update
+---
 
-| Surface | Why |
-|---------|-----|
-| `deviant.html` | Old theme; `DEVIANT2026.jpg` is ~2.9 MB |
-| `hf-bot.html` | Standalone chrome, not on baseline |
-| `games/index.html` | Games hub still pre-baseline |
-| `games/flappy/index.html` | Game page |
+## 2. Portfolio repo pages — not on baseline yet
 
-## Project Pages sites still to update
+These live in `POWDER-RANGER/powder-ranger.github.io`.
 
-Each lives in **its own repo** (`username.github.io/REPO/`). Restyle there, not only in the portfolio repo.
+| URL | File | Work |
+|-----|------|------|
+| https://powder-ranger.github.io/repos.html | `repos.html` | Still rounded Kryptonite shell; restyle to hard-edge + all-caps |
+| https://powder-ranger.github.io/pages.html | `pages.html` | Same |
+| https://powder-ranger.github.io/deviant.html | `deviant.html` | Legacy theme; compress/remove `DEVIANT2026.jpg` (~2.9 MB) |
+| https://powder-ranger.github.io/hf-bot.html | `hf-bot.html` | Old chrome |
+| https://powder-ranger.github.io/games/flappy/ | `games/flappy/index.html` | Game UI — wrap in baseline chrome |
 
-| Live URL | Repo | Work |
-|----------|------|------|
-| `/CIVWATCH/` | CIVWATCH | Apply baseline shell; keep product UI |
-| `/OBLISK/` | OBLISK | Same |
-| `/RED-AGENT-GOV/` | RED-AGENT-GOV | Same |
-| `/ai-nexus/` | ai-nexus | Same |
-| `/dollar-gravity-framework/` | dollar-gravity-framework | Same |
-| `/nine-realities-netcode/` | nine-realities-netcode | Same |
-| `/OBELISK-Desktop-AI/` | OBELISK-Desktop-AI | Same |
-| `/RainGod-Comfy-Studio/` | RainGod-Comfy-Studio | Same |
-| `/Artifact-Catalog/` | Artifact-Catalog | Same |
-| `/powder-ranger-bot/` | powder-ranger-bot | Same |
-| `/dojin-d/` | dojin-d | Same |
-| `/contextual-memory-ui/` | contextual-memory-ui | Same |
+---
 
-## No live Pages (404 when probed 2026-09-30)
+## 3. GitHub profile README — not fully on baseline
 
-Enable Pages or leave as GitHub-only repos:
+| Surface | Repo | Work |
+|---------|------|------|
+| https://github.com/POWDER-RANGER | `POWDER-RANGER/POWDER-RANGER` `README.md` | Crimson pass already done. Next: retint `assets/banner.svg` to exact `#E31C23` / `#0a0000`, keep all-caps tone, no lime, no Vercel widgets. Cannot use Oswald or live glitch here. |
+| `project-index.md` | same repo | Keep status language in sync with the README |
+
+---
+
+## 4. Project GitHub Pages — live (HTTP 200) but not on baseline
+
+Each is its **own repo**. Restyle the Pages site there.
+
+| Live URL | Repo |
+|----------|------|
+| https://powder-ranger.github.io/nso-kryptonite-platform/ | nso-kryptonite-platform |
+| https://powder-ranger.github.io/CIVWATCH/ | CIVWATCH |
+| https://powder-ranger.github.io/OBLISK/ | OBLISK |
+| https://powder-ranger.github.io/RED-AGENT-GOV/ | RED-AGENT-GOV |
+| https://powder-ranger.github.io/ai-nexus/ | ai-nexus |
+| https://powder-ranger.github.io/dollar-gravity-framework/ | dollar-gravity-framework |
+| https://powder-ranger.github.io/nine-realities-netcode/ | nine-realities-netcode |
+| https://powder-ranger.github.io/OBELISK-Desktop-AI/ | OBELISK-Desktop-AI |
+| https://powder-ranger.github.io/RainGod-Comfy-Studio/ | RainGod-Comfy-Studio |
+| https://powder-ranger.github.io/Artifact-Catalog/ | Artifact-Catalog |
+| https://powder-ranger.github.io/powder-ranger-bot/ | powder-ranger-bot |
+| https://powder-ranger.github.io/dojin-d/ | dojin-d |
+| https://powder-ranger.github.io/contextual-memory-ui/ | contextual-memory-ui |
+
+NSO is the original command aesthetic. Product UX can stay; **new chrome** (nav, type, corners, case) should follow BRAND.md when that repo is touched.
+
+---
+
+## 5. No Pages site (404 when probed)
+
+Leave as GitHub-only unless we decide they need a hub:
 
 - CharlesAI
 - raingod-studio-v4
@@ -56,10 +76,31 @@ Enable Pages or leave as GitHub-only repos:
 - powder-ranger-stone
 - systems-architecture-portfolio
 
-## Suggested update order
+---
 
-1. `deviant.html` + compress/remove `DEVIANT2026.jpg`
-2. `games/` hub
-3. Flagship project Pages: CIVWATCH, OBLISK, RED-AGENT-GOV
-4. Remaining live project Pages
-5. Decide which 404 repos should get a Pages site at all
+## 6. Games hub — titles still to ship
+
+Hub: https://powder-ranger.github.io/games/
+
+| Title | Status | Required |
+|-------|--------|----------|
+| Flappy Bird | Live | `/games/flappy/` — restyle chrome only |
+| **Snake** | Queued | Build + list as PLAYABLE |
+| **Pong** | Queued | Build + list as PLAYABLE |
+| **Space Invaders** | Queued | Build + list as PLAYABLE |
+| **Tetris** | Queued | Build + list as PLAYABLE |
+| Breakout | Queued | After the four above |
+
+Ship bar (already on the hub): instant play, touch + keyboard, short round / fast restart. Kaboom.js + GitHub Pages.
+
+---
+
+## 7. Suggested sequence
+
+1. `repos.html` + `pages.html` (same repo, same chrome)
+2. Profile `README.md` + banner SVG final pass
+3. `games/flappy/` chrome
+4. **Snake → Pong → Space Invaders → Tetris** on the games hub
+5. Flagship project Pages: CIVWATCH, OBLISK, RED-AGENT-GOV
+6. Remaining live project Pages
+7. `deviant.html` / `hf-bot.html` or retire them
