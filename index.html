@@ -8,30 +8,32 @@
   <meta property="og:description" content="Civic intelligence, multi-agent governance, adversarial security, and distributed networking — open source.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://powder-ranger.github.io">
-  <meta property="og:image" content="https://raw.githubusercontent.com/POWDER-RANGER/POWDER-RANGER/main/assets/banner.svg">
-  <meta name="theme-color" content="#0D1117">
+  <meta name="theme-color" content="#0a0a0b">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <title>POWDER-RANGER | Portfolio</title>
   <style>
     :root {
-      --bg: #0D1117;
-      --surface: rgba(22, 27, 34, 0.92);
-      --border: #238636;
-      --accent: #00FF88;
-      --accent-dim: #3fb950;
-      --text: #c9d1d9;
-      --text-muted: #8b949e;
-      --heading: #e6edf3;
+      --bg: #0a0a0b;
+      --surface: #141416;
+      --surface-2: #1c1c1f;
+      --border: #2a2a2e;
+      --text: #e8e4df;
+      --text-muted: #9a9590;
+      --accent: #e83a3a;
+      --accent-soft: #ff6b4a;
+      --accent-pink: #e85a7a;
+      --accent-dim: #a82828;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.55;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
     canvas#matrix {
@@ -40,12 +42,13 @@
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.22;
+      opacity: 0.14;
       pointer-events: none;
     }
 
     @media (prefers-reduced-motion: reduce) {
       canvas#matrix { display: none; }
+      .glitch::before, .glitch::after { display: none !important; }
     }
 
     .site {
@@ -64,155 +67,224 @@
       align-items: center;
       justify-content: space-between;
       gap: 1rem;
-      padding: 0.85rem 1.5rem;
-      background: rgba(13, 17, 23, 0.92);
-      border-bottom: 1px solid #21262d;
-      backdrop-filter: blur(8px);
+      padding: 0.9rem 1.5rem;
+      background: rgba(10, 10, 11, 0.85);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
     }
 
     .nav-brand {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-weight: 700;
-      color: var(--accent);
+      font-family: "Arial Black", "Helvetica Neue", Impact, sans-serif;
+      font-weight: 900;
+      font-size: 0.95rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text);
       text-decoration: none;
-      letter-spacing: 0.04em;
     }
+
+    .nav-brand span { color: var(--accent); }
 
     .nav-links {
       display: flex;
-      gap: 1.25rem;
+      gap: 1.35rem;
       flex-wrap: wrap;
     }
 
     .nav-links a {
       color: var(--text-muted);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 500;
     }
 
-    .nav-links a:hover { color: var(--accent); }
+    .nav-links a:hover { color: var(--accent-soft); }
 
     .container {
-      width: min(1100px, 100%);
+      width: min(980px, 100%);
       margin: 0 auto;
-      padding: 2rem 1.25rem 4rem;
+      padding: 2.5rem 1.35rem 4rem;
     }
 
     .hero {
-      padding: 3.5rem 0 2.5rem;
-      max-width: 40rem;
+      padding: 4rem 0 2.5rem;
     }
 
+    .hero-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-pink);
+      margin-bottom: 1rem;
+    }
+
+    /* Block lettering — English, constructivist weight */
     .hero h1 {
-      font-size: clamp(1.75rem, 4vw, 2.35rem);
-      color: var(--heading);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.75rem;
+      font-family: "Arial Black", "Helvetica Neue", Impact, "Arial Narrow", sans-serif;
+      font-weight: 900;
+      font-size: clamp(2.4rem, 8vw, 3.75rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 1.25rem;
+      max-width: 12ch;
     }
 
-    .hero h1 span {
+    .glitch {
+      position: relative;
+      display: inline-block;
+    }
+
+    .glitch::before,
+    .glitch::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .glitch::before {
       color: var(--accent);
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      clip-path: inset(0 0 55% 0);
+      transform: translate(-2px, 0);
+      opacity: 0.85;
+      animation: glitch-a 3.5s infinite linear alternate-reverse;
+    }
+
+    .glitch::after {
+      color: var(--accent-pink);
+      clip-path: inset(45% 0 0 0);
+      transform: translate(2px, 0);
+      opacity: 0.75;
+      animation: glitch-b 2.8s infinite linear alternate-reverse;
+    }
+
+    @keyframes glitch-a {
+      0%, 90%, 100% { transform: translate(0); }
+      92% { transform: translate(-3px, 1px); }
+      94% { transform: translate(2px, -1px); }
+      96% { transform: translate(-1px, 2px); }
+    }
+
+    @keyframes glitch-b {
+      0%, 88%, 100% { transform: translate(0); }
+      91% { transform: translate(3px, -1px); }
+      93% { transform: translate(-2px, 1px); }
+      97% { transform: translate(1px, -2px); }
     }
 
     .hero .lead {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 1.5rem;
+      max-width: 32rem;
+      margin-bottom: 1.75rem;
+      font-weight: 400;
     }
 
     .cta-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
     .btn {
-      display: inline-block;
-      padding: 0.6rem 1.15rem;
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.2rem;
+      border-radius: 980px;
       font-size: 0.9rem;
       font-weight: 600;
       text-decoration: none;
       border: 1px solid transparent;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      transition: opacity 0.15s, background 0.15s, border-color 0.15s;
     }
 
     .btn-primary {
       background: var(--accent);
-      color: #0D1117;
+      color: #fff;
     }
 
-    .btn-primary:hover {
-      background: var(--accent-dim);
-    }
+    .btn-primary:hover { opacity: 0.9; }
 
     .btn-ghost {
       background: transparent;
       color: var(--text);
-      border-color: #30363d;
+      border-color: var(--border);
     }
 
     .btn-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
+      border-color: var(--accent-soft);
+      color: var(--accent-soft);
     }
 
     .stats {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin: 2rem 0 0.5rem;
+      margin-top: 1.75rem;
     }
 
     .chip {
-      font-size: 0.8rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      padding: 0.35rem 0.75rem;
-      border-radius: 999px;
-      border: 1px solid #238636;
-      color: var(--accent);
-      background: rgba(35, 134, 54, 0.12);
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.35rem 0.8rem;
+      border-radius: 980px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
     }
 
-    section {
-      margin-top: 3rem;
+    .chip strong {
+      color: var(--accent-soft);
+      font-weight: 600;
     }
+
+    section { margin-top: 3.25rem; }
 
     section h2 {
-      font-size: 1.15rem;
-      color: var(--heading);
-      margin-bottom: 1rem;
-      font-weight: 600;
+      font-family: "Arial Black", "Helvetica Neue", Impact, sans-serif;
+      font-weight: 900;
+      font-size: 0.8rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
     }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
     .card {
       background: var(--surface);
-      border: 1px solid #30363d;
-      border-radius: 8px;
-      padding: 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.25rem 1.3rem;
       display: flex;
       flex-direction: column;
-      gap: 0.65rem;
+      gap: 0.55rem;
       transition: border-color 0.15s, transform 0.15s;
     }
 
     .card:hover {
-      border-color: var(--border);
+      border-color: #3d3d42;
       transform: translateY(-2px);
     }
 
     .card h3 {
       font-size: 1.05rem;
-      color: var(--heading);
-      font-weight: 600;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
     }
 
     .card h3 a {
@@ -220,62 +292,66 @@
       text-decoration: none;
     }
 
-    .card h3 a:hover { color: var(--accent); }
+    .card h3 a:hover { color: var(--accent-soft); }
 
     .card p {
       color: var(--text-muted);
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       flex: 1;
     }
 
     .status {
-      font-size: 0.75rem;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      color: var(--accent-dim);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent-pink);
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.35rem;
+      gap: 0.3rem;
     }
 
     .tag {
-      font-size: 0.72rem;
-      padding: 0.2rem 0.55rem;
-      border-radius: 999px;
-      border: 1px solid #30363d;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      background: var(--surface-2);
       color: var(--text-muted);
-      background: #0D1117;
+      border: 1px solid var(--border);
     }
 
     .card .more {
       font-size: 0.85rem;
-      color: var(--accent);
+      color: var(--accent-soft);
       text-decoration: none;
       font-weight: 600;
+      margin-top: 0.25rem;
     }
 
-    .card .more:hover { text-decoration: underline; }
+    .card .more:hover { color: var(--accent); }
 
     .about {
       color: var(--text-muted);
-      max-width: 40rem;
+      max-width: 36rem;
+      font-size: 0.98rem;
     }
 
-    .about strong { color: var(--text); }
+    .about strong { color: var(--text); font-weight: 600; }
 
     footer {
       margin-top: auto;
-      border-top: 1px solid #21262d;
+      border-top: 1px solid var(--border);
       padding: 1.5rem;
       text-align: center;
       color: var(--text-muted);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
 
     footer a {
-      color: var(--accent);
+      color: var(--accent-soft);
       text-decoration: none;
     }
 
@@ -283,6 +359,7 @@
 
     @media (max-width: 600px) {
       .nav { flex-direction: column; align-items: flex-start; }
+      .hero { padding-top: 2.5rem; }
     }
   </style>
 </head>
@@ -291,10 +368,10 @@
 
   <div class="site">
     <nav class="nav">
-      <a class="nav-brand" href="/">POWDER-RANGER</a>
+      <a class="nav-brand" href="/">POWDER<span>-</span>RANGER</a>
       <div class="nav-links">
         <a href="#projects">Projects</a>
-        <a href="repos.html">All repos</a>
+        <a href="repos.html">Repos</a>
         <a href="https://github.com/POWDER-RANGER">GitHub</a>
         <a href="#contact">Contact</a>
       </div>
@@ -302,18 +379,23 @@
 
     <main class="container">
       <header class="hero">
-        <h1><span>POWDER-RANGER</span> — systems that think, defend, and serve</h1>
+        <p class="hero-label">Systems architecture · Open source</p>
+        <h1>
+          <span class="glitch" data-text="POWDER">POWDER</span><br>
+          <span class="glitch" data-text="RANGER">RANGER</span>
+        </h1>
         <p class="lead">
-          Independent systems architect building open infrastructure for
-          civic intelligence, multi-agent governance, and zero-trust security.
+          Systems that think, defend, and serve the public good.
+          Multi-agent governance, civic intelligence, and zero-trust design —
+          built local-first and open by default.
         </p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#projects">View projects</a>
-          <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub profile</a>
+          <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub</a>
         </div>
         <div class="stats">
           <span class="chip" id="repo-count">Repos…</span>
-          <span class="chip">AI · Security · Civic · Netcode</span>
+          <span class="chip">Governance · Civic · Security</span>
         </div>
       </header>
 
@@ -362,14 +444,13 @@
             <div class="tags">
               <span class="tag">C++</span>
               <span class="tag">Netcode</span>
-              <span class="tag">Research</span>
             </div>
             <a class="more" href="https://github.com/POWDER-RANGER/nine-realities-netcode">Repository →</a>
           </article>
 
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/nso-kryptonite-platform">NSO Kryptonite</a></h3>
-            <p>Adversarial defense command center for authorized purple-team and detection work.</p>
+            <p>Adversarial defense command center for authorized purple-team work.</p>
             <span class="status">Stable</span>
             <div class="tags">
               <span class="tag">TypeScript</span>
@@ -380,7 +461,7 @@
 
           <article class="card">
             <h3><a href="https://github.com/POWDER-RANGER/CharlesAI">CharlesAI</a></h3>
-            <p>Desktop AI orchestration with browser automation and encrypted vault integration.</p>
+            <p>Desktop AI orchestration with browser automation and vault integration.</p>
             <span class="status">Stable</span>
             <div class="tags">
               <span class="tag">PowerShell</span>
@@ -394,19 +475,15 @@
       <section id="about">
         <h2>Approach</h2>
         <p class="about">
-          <strong>Compliance is architectural</strong> — gates and audit trails are part of the design, not bolted on later.
-          Work is self-funded and public by default. Status labels track releases and demos, not marketing tiers.
-          Browse the full set on
-          <a href="repos.html" style="color: var(--accent)">Repository Browser</a>
-          or
-          <a href="https://github.com/POWDER-RANGER" style="color: var(--accent)">GitHub</a>.
+          <strong>Compliance is architectural</strong> — gates and audit trails are structure, not afterthoughts.
+          Self-funded. Public by default. Status tracks releases and demos, not marketing tiers.
         </p>
       </section>
 
       <section id="contact">
         <h2>Contact</h2>
         <p class="about">
-          Open to systems architecture consulting, multi-agent / governance design, and civic-tech collaboration.
+          Consulting and collaboration on agent governance, security engineering, and civic-data tooling.
         </p>
         <div class="cta-row" style="margin-top: 1rem">
           <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub</a>
@@ -417,11 +494,10 @@
     </main>
 
     <footer>
-      <p><span id="year"></span> POWDER-RANGER · Zero trust by design</p>
+      <p><span id="year"></span> POWDER-RANGER</p>
       <p style="margin-top: 0.35rem">
         <a href="https://github.com/POWDER-RANGER">GitHub</a> ·
-        <a href="https://orcid.org/0009-0008-9273-2458">ORCID</a> ·
-        <a href="https://github.com/sponsors/powder-ranger">Sponsor</a>
+        <a href="https://orcid.org/0009-0008-9273-2458">ORCID</a>
       </p>
     </footer>
   </div>
@@ -432,10 +508,11 @@
     fetch('https://api.github.com/users/POWDER-RANGER')
       .then(function (r) { return r.ok ? r.json() : null; })
       .then(function (u) {
+        var el = document.getElementById('repo-count');
         if (u && typeof u.public_repos === 'number') {
-          document.getElementById('repo-count').textContent = u.public_repos + ' public repositories';
+          el.innerHTML = '<strong>' + u.public_repos + '</strong> public repositories';
         } else {
-          document.getElementById('repo-count').textContent = 'Open-source systems';
+          el.textContent = 'Open-source systems';
         }
       })
       .catch(function () {
@@ -447,11 +524,13 @@
       if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
       var ctx = canvas.getContext('2d');
-      var fontSize = 14;
-      var chars = '01POWDER-RANGER';
+      var fontSize = 13;
+      var chars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ';
       var drops = [];
       var running = true;
       var raf = null;
+      /* Red / coral rain instead of lime */
+      var colors = ['#e83a3a', '#ff6b4a', '#e85a7a', '#c43030'];
 
       function resize() {
         canvas.width = window.innerWidth;
@@ -463,28 +542,23 @@
 
       function draw() {
         if (!running) return;
-        ctx.fillStyle = 'rgba(13, 17, 23, 0.08)';
+        ctx.fillStyle = 'rgba(10, 10, 11, 0.1)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = '#00FF88';
         ctx.font = fontSize + 'px ui-monospace, monospace';
         for (var i = 0; i < drops.length; i++) {
+          ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
           var ch = chars[Math.floor(Math.random() * chars.length)];
           ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
           if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
           drops[i]++;
         }
-        raf = requestAnimationFrame(function () {
-          setTimeout(draw, 55);
-        });
+        raf = requestAnimationFrame(function () { setTimeout(draw, 60); });
       }
 
       document.addEventListener('visibilitychange', function () {
         running = !document.hidden;
         if (running && !raf) draw();
-        if (!running && raf) {
-          cancelAnimationFrame(raf);
-          raf = null;
-        }
+        if (!running && raf) { cancelAnimationFrame(raf); raf = null; }
       });
 
       window.addEventListener('resize', resize);
