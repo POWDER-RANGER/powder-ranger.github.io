@@ -3,147 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Browser arcade. Kaboom.js titles in the POWDER-RANGER command system.">
-<meta name="theme-color" content="#0a0a0f">
+<meta name="theme-color" content="#0a0000">
 <title>MINI GAMES — POWDER-RANGER</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0a0a0f; --panel:#111118; --panel-2:#17080c;
-  --blood:#8B0000; --hot:#ff1744; --crimson:#DC143C;
-  --text:#e0e0e0; --muted:#9a8080; --line:rgba(220,20,60,.28);
-  --cyan:#00E5FF;
+  --bg:#0a0000; --panel:#120000; --panel-2:#1a0000;
+  --red:#E31C23; --red-dark:#8B0000; --ink:#F2E8E8; --mute:#A08080; --line:#4A1010;
+  --display:'Oswald',Impact,'Arial Narrow',sans-serif;
+  --mono:'Share Tech Mono',ui-monospace,monospace;
 }
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
+*{box-sizing:border-box;margin:0;padding:0;border-radius:0!important}
+html{scroll-behavior:smooth}
 body{
-  background:var(--bg);color:var(--text);
-  font-family:'Rajdhani',sans-serif;font-weight:500;line-height:1.55;
-  min-height:100vh;overflow-x:hidden;letter-spacing:.02em;
+  background:var(--bg);color:var(--ink);
+  font-family:var(--display);font-weight:500;
+  text-transform:uppercase;letter-spacing:.06em;
+  line-height:1.35;min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9998;
+  background:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0,rgba(0,0,0,.2) 1px,transparent 1px,transparent 4px);
+  opacity:.4;
 }
 body::after{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
-  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(220,20,60,.015) 2px,rgba(220,20,60,.015) 4px);
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9997;
+  background:radial-gradient(ellipse at 50% -10%,rgba(227,28,35,.25),transparent 55%);
 }
 a{color:inherit;text-decoration:none}
-:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;position:relative;z-index:1}
 
 nav{
-  position:fixed;top:0;left:0;right:0;z-index:40;
-  background:rgba(10,10,15,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:#0a0000;border-bottom:3px solid var(--red);
 }
-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
-.brand{
-  font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.14em;
-  font-size:.82rem;text-transform:uppercase;color:var(--hot);
-}
-nav ul{display:flex;gap:22px;list-style:none;
-  font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.14em;
-  text-transform:uppercase;color:rgba(224,224,224,.5)}
-nav ul a:hover{color:var(--hot)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:52px}
+.brand{font-weight:700;font-size:1rem;letter-spacing:.2em;color:var(--red)}
+nav ul{display:flex;gap:20px;list-style:none;font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;color:var(--mute)}
+nav ul a:hover{color:var(--red)}
 
 .hero{
-  padding:120px 0 72px;border-bottom:1px solid var(--line);
-  background:radial-gradient(ellipse at 50% 0,rgba(220,20,60,.28),transparent 60%);
+  padding:110px 0 64px;
+  border-bottom:3px solid var(--red);
+  background:linear-gradient(180deg,rgba(227,28,35,.12),transparent 70%);
 }
-.status{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
-  border:1px solid var(--crimson);padding:6px 14px;color:var(--hot);
+.stripe{
+  height:8px;background:var(--red);margin:0 0 28px;
+  box-shadow:0 0 0 1px #000;
 }
-.status i{width:8px;height:8px;background:var(--hot);border-radius:50%;box-shadow:0 0 10px var(--hot);animation:pulse 1.6s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.sub-eyebrow{
-  margin:18px 0 10px;font-family:'Share Tech Mono',monospace;
-  color:var(--muted);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+.badge{
+  display:inline-block;font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;
+  background:var(--red);color:#fff;padding:8px 14px;margin-bottom:18px;
 }
 h1{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(2.8rem,10vw,5.8rem);line-height:.9;letter-spacing:.06em;
-  text-transform:uppercase;min-height:1.05em;
+  font-weight:700;font-size:clamp(3rem,12vw,6.5rem);line-height:.88;
+  letter-spacing:.04em;color:var(--ink);
 }
-h1.glitch{text-shadow:3px 0 var(--hot),-3px 0 #4a0000;transform:translateX(2px)}
+h1.glitch{color:var(--red);text-shadow:4px 0 #000,-4px 0 var(--red-dark)}
 .lede{
-  max-width:52ch;margin-top:22px;color:var(--muted);font-size:1.05rem;
-  text-transform:uppercase;letter-spacing:.06em;font-weight:700;
+  max-width:40rem;margin:22px 0 0;font-size:1.05rem;color:var(--mute);
+  font-weight:500;border-left:6px solid var(--red);padding-left:16px;
 }
-.stats{display:flex;flex-wrap:wrap;margin-top:44px;border:1px solid var(--line);width:fit-content}
-.stat{padding:16px 34px;border-right:1px solid var(--line)}
+.stats{display:flex;flex-wrap:wrap;margin-top:40px;border:3px solid var(--red)}
+.stat{padding:18px 28px;border-right:3px solid var(--red);background:var(--panel)}
 .stat:last-child{border-right:0}
-.stat b{display:block;font-family:'Orbitron',sans-serif;font-size:2rem;color:var(--hot);line-height:1.1}
-.stat span{
-  font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.12em;
-  text-transform:uppercase;color:var(--muted);
-}
-.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.stat b{display:block;font-size:2.4rem;font-weight:700;color:var(--red);line-height:1}
+.stat span{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;color:var(--mute)}
+.cta{display:flex;flex-wrap:wrap;gap:0;margin-top:32px}
 .btn{
-  font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
-  padding:12px 22px;border:1px solid var(--crimson);transition:.15s;
+  font-family:var(--mono);font-size:.78rem;letter-spacing:.16em;
+  padding:16px 24px;border:3px solid var(--red);display:inline-block;
+  transition:background .1s,color .1s;
 }
-.btn.primary{background:linear-gradient(135deg,var(--crimson),var(--blood));color:#fff}
-.btn.primary:hover{background:var(--hot)}
-.btn.ghost:hover{background:var(--panel-2);color:var(--hot)}
+.btn.primary{background:var(--red);color:#fff}
+.btn.primary:hover{background:#fff;color:#000;border-color:#fff}
+.btn.ghost{background:transparent;color:var(--ink);margin-left:-3px}
+.btn.ghost:hover{background:var(--red);color:#fff}
 
-section{padding:80px 0;border-bottom:1px solid var(--line)}
-.tag{
-  font-family:'Share Tech Mono',monospace;color:var(--hot);font-size:.72rem;
-  letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;
+section{padding:64px 0;border-bottom:3px solid var(--line)}
+.tag{font-family:var(--mono);color:var(--red);font-size:.72rem;letter-spacing:.22em;margin-bottom:10px}
+h2{font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.06em;margin-bottom:12px}
+.sec-sub{color:var(--mute);max-width:42rem;margin-bottom:32px;font-size:1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:3px solid var(--red);border-left:3px solid var(--red)}
+.card{
+  display:block;background:var(--panel);border-right:3px solid var(--red);border-bottom:3px solid var(--red);
+  padding:24px;min-height:160px;
 }
-h2{
-  font-family:'Orbitron',sans-serif;font-weight:900;
-  font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;
-}
-.sec-sub{
-  color:var(--muted);max-width:60ch;margin-bottom:36px;
-  text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:.95rem;
-}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
-.card{display:block;background:var(--panel);border:1px solid var(--line);padding:26px;position:relative;overflow:hidden}
-.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--crimson)}
-.card h3{
-  font-family:'Orbitron',sans-serif;font-size:1.05rem;letter-spacing:.08em;
-  text-transform:uppercase;margin:8px 0;
-}
-.card p{color:var(--muted);font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.card h3{font-size:1.15rem;font-weight:700;letter-spacing:.08em;margin-bottom:10px}
+.card p{color:var(--mute);font-size:.9rem}
 .chip{
-  display:inline-block;margin-top:16px;font-family:'Share Tech Mono',monospace;
-  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
-  padding:4px 10px;border:1px solid var(--line);color:var(--muted);
+  display:inline-block;margin-top:18px;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;
+  padding:6px 10px;background:var(--panel-2);border:2px solid var(--line);color:var(--mute);
 }
-.card.live{border-color:var(--crimson);background:var(--panel-2)}
-.card.live .chip{border-color:var(--hot);color:var(--hot)}
-.card.live:hover{border-color:var(--hot);transform:translateY(-3px)}
-.card.queued{opacity:.7}
-.laws{display:grid;gap:18px}
-.law{display:grid;grid-template-columns:64px 1fr;gap:20px;background:var(--panel);border:1px solid var(--line);padding:24px}
-.law .n{font-family:'Orbitron',sans-serif;font-size:2rem;color:var(--crimson);font-weight:900}
-.law h4{font-family:'Orbitron',sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
-.law p{color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
-.stack{display:flex;flex-wrap:wrap;gap:12px}
+.card.live{background:var(--panel-2)}
+.card.live .chip{background:var(--red);border-color:var(--red);color:#fff}
+.card.live:hover{background:var(--red)}
+.card.live:hover h3,.card.live:hover p,.card.live:hover .chip{color:#fff}
+.card.queued{opacity:.65}
+.laws{display:grid;gap:0;border:3px solid var(--red)}
+.law{
+  display:grid;grid-template-columns:72px 1fr;gap:0;
+  border-bottom:3px solid var(--red);background:var(--panel);
+}
+.law:last-child{border-bottom:0}
+.law .n{
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.8rem;font-weight:700;background:var(--red);color:#fff;
+}
+.law div:last-child{padding:20px 22px}
+.law h4{font-weight:700;letter-spacing:.08em;margin-bottom:6px}
+.law p{color:var(--mute);font-size:.95rem}
+.stack{display:flex;flex-wrap:wrap;gap:0;border:3px solid var(--red)}
 .stack span{
-  font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
-  border:1px solid var(--crimson);padding:8px 16px;background:var(--panel);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;
+  padding:12px 16px;border-right:3px solid var(--red);background:var(--panel);
 }
+.stack span:last-child{border-right:0}
 footer{
-  padding:56px 0 72px;color:var(--muted);font-size:.85rem;
-  font-family:'Share Tech Mono',monospace;letter-spacing:.1em;text-transform:uppercase;
+  padding:48px 0 64px;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute);
+  border-top:8px solid var(--red);
 }
-footer .row{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:14px}
-footer a:hover{color:var(--hot)}
-.back{display:inline-block;margin-bottom:28px;color:var(--hot)}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 24px;margin-top:14px}
+footer a:hover{color:var(--red)}
+.back{display:inline-block;margin-bottom:20px;color:var(--red);font-weight:700}
 @media (max-width:640px){
   nav ul{display:none}
-  .hero{padding:96px 0 48px}
-  .stat{padding:14px 22px}
+  .hero{padding:90px 0 48px}
   .law{grid-template-columns:1fr}
+  .law .n{padding:12px;justify-content:flex-start}
+  .btn.ghost{margin-left:0;margin-top:-3px}
 }
-@media (prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-  .status i{animation:none}
-}
+@media (prefers-reduced-motion:reduce){.status i,h1.glitch{animation:none}}
 </style>
 </head>
 <body>
@@ -162,14 +154,14 @@ footer a:hover{color:var(--hot)}
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="status"><i></i>Arcade online</div>
-    <p class="sub-eyebrow">// Gaming division · Command arcade</p>
+    <div class="stripe"></div>
+    <div class="badge">Arcade online</div>
     <h1 id="hero-title" aria-label="MINI GAMES">MINI GAMES</h1>
-    <p class="lede">Browser arcade built with Kaboom.js. Open a page. Press start. Play. No install. No account.</p>
-    <div class="stats" role="list">
-      <div class="stat" role="listitem"><b data-final="01">01</b><span>Playable now</span></div>
-      <div class="stat" role="listitem"><b data-final="05">05</b><span>In the build queue</span></div>
-      <div class="stat" role="listitem"><b data-final="06">06</b><span>Total titles</span></div>
+    <p class="lede">Browser arcade. Kaboom.js. Open. Press start. Play. No install. No account.</p>
+    <div class="stats">
+      <div class="stat"><b data-final="01">01</b><span>Playable now</span></div>
+      <div class="stat"><b data-final="05">05</b><span>Build queue</span></div>
+      <div class="stat"><b data-final="06">06</b><span>Total titles</span></div>
     </div>
     <div class="cta">
       <a class="btn primary" href="/games/flappy/">Play Flappy Bird</a>
@@ -181,19 +173,19 @@ footer a:hover{color:var(--hot)}
 <section id="roster">
   <div class="wrap">
     <p class="tag">// Arcade roster</p>
-    <h2>Six titles, one live</h2>
-    <p class="sec-sub">Flappy Bird is playable today. The other five stay queued until they meet the bar.</p>
+    <h2>Six titles · One live</h2>
+    <p class="sec-sub">Flappy Bird is live. Five remain queued until they meet the bar.</p>
     <div class="grid">
       <a class="card live" href="/games/flappy/">
         <h3>Flappy Bird</h3>
         <p>Navigate pipes. Tap or space to fly.</p>
         <span class="chip">Playable · Launch</span>
       </a>
-      <div class="card queued"><h3>Snake</h3><p>Eat. Grow. Do not hit the wall.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Pong</h3><p>Ping-pong against an AI paddle.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Space Invaders</h3><p>Hold the line against the drop.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Tetris</h3><p>Stack. Clear. Do not top out.</p><span class="chip">Queued</span></div>
-      <div class="card queued"><h3>Breakout</h3><p>Break the wall with the bounce.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Snake</h3><p>Eat. Grow. Avoid the wall.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Pong</h3><p>Ping-pong versus AI.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Space Invaders</h3><p>Hold the line.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Tetris</h3><p>Stack. Clear. Survive.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Breakout</h3><p>Break the wall.</p><span class="chip">Queued</span></div>
     </div>
   </div>
 </section>
@@ -201,12 +193,12 @@ footer a:hover{color:var(--hot)}
 <section id="standards">
   <div class="wrap">
     <p class="tag">// Build standards</p>
-    <h2>Same bar for every title</h2>
-    <p class="sec-sub">A game does not leave the queue until these hold.</p>
+    <h2>Same bar · Every title</h2>
+    <p class="sec-sub">Nothing leaves the queue until these hold.</p>
     <div class="laws">
       <div class="law"><div class="n">01</div><div><h4>Instant play</h4><p>One page. No download. No sign-in.</p></div></div>
-      <div class="law"><div class="n">02</div><div><h4>Touch and keyboard</h4><p>Tap on a phone. Key on a desk.</p></div></div>
-      <div class="law"><div class="n">03</div><div><h4>One round, one lesson</h4><p>Short sessions. Fast restart. Each attempt teaches.</p></div></div>
+      <div class="law"><div class="n">02</div><div><h4>Touch and keyboard</h4><p>Tap on phone. Key on desk.</p></div></div>
+      <div class="law"><div class="n">03</div><div><h4>One round · One lesson</h4><p>Short sessions. Fast restart.</p></div></div>
     </div>
   </div>
 </section>
@@ -215,8 +207,10 @@ footer a:hover{color:var(--hot)}
   <div class="wrap">
     <p class="tag">// Engine</p>
     <h2>Built lean</h2>
-    <p class="sec-sub">Small stack. Static host. Nothing to babysit.</p>
-    <div class="stack"><span>Kaboom.js</span><span>HTML5 Canvas</span><span>JavaScript</span><span>GitHub Pages</span></div>
+    <p class="sec-sub">Small stack. Static host.</p>
+    <div class="stack">
+      <span>Kaboom.js</span><span>HTML5 Canvas</span><span>JavaScript</span><span>GitHub Pages</span>
+    </div>
   </div>
 </section>
 
@@ -235,8 +229,7 @@ footer a:hover{color:var(--hot)}
 
 <script>
 (function(){
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduce) return;
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   var GLYPHS = "█▓▒░<>/\\|{}[]#$%&*+=?";
   var title = document.getElementById("hero-title");
   var finalTitle = title.textContent;
@@ -260,13 +253,12 @@ footer a:hover{color:var(--hot)}
   function run(){
     if (running || document.hidden) return;
     running = true;
-    title.setAttribute("aria-hidden","true");
-    decode(title, finalTitle, 1100, function(){
+    decode(title, finalTitle, 1000, function(){
       title.classList.add("glitch");
-      setTimeout(function(){ title.classList.remove("glitch"); title.removeAttribute("aria-hidden"); running = false; }, 160);
+      setTimeout(function(){ title.classList.remove("glitch"); running = false; }, 140);
     });
     stats.forEach(function(el, i){
-      setTimeout(function(){ decode(el, el.getAttribute("data-final"), 700); }, 250 + i*150);
+      setTimeout(function(){ decode(el, el.getAttribute("data-final"), 650); }, 200 + i*140);
     });
   }
   run();
