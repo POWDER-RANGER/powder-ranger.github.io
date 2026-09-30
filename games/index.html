@@ -1,309 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0d0000">
-    <title>Games - POWDER-RANGER Command Center</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        :root {
-            --primary: #ff0000;
-            --secondary: #dc143c;
-            --accent: #8b0000;
-            --gold: #ffd700;
-            --bg-dark: #0d0000;
-            --bg-card: rgba(20, 0, 0, 0.8);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Browser arcade. Kaboom.js titles in the POWDER-RANGER command system.">
+<meta name="theme-color" content="#0a0a0f">
+<title>MINI GAMES — POWDER-RANGER</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0f; --panel:#111118; --panel-2:#17080c;
+  --blood:#8B0000; --hot:#ff1744; --crimson:#DC143C;
+  --text:#e0e0e0; --muted:#9a8080; --line:rgba(220,20,60,.28);
+  --cyan:#00E5FF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:'Rajdhani',sans-serif;font-weight:500;line-height:1.55;
+  min-height:100vh;overflow-x:hidden;letter-spacing:.02em;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(220,20,60,.015) 2px,rgba(220,20,60,.015) 4px);
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
 
-        body {
-            font-family: 'Courier New', Consolas, monospace;
-            background: linear-gradient(135deg, #0d0000, #1a0000, #0d0000);
-            color: #ffffff;
-            overflow-x: hidden;
-            min-height: 100vh;
-            position: relative;
-        }
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:40;
+  background:rgba(10,10,15,.95);border-bottom:1px solid var(--line);backdrop-filter:blur(20px);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{
+  font-family:'Orbitron',sans-serif;font-weight:700;letter-spacing:.14em;
+  font-size:.82rem;text-transform:uppercase;color:var(--hot);
+}
+nav ul{display:flex;gap:22px;list-style:none;
+  font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:rgba(224,224,224,.5)}
+nav ul a:hover{color:var(--hot)}
 
-        .bg-particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 0;
-        }
+.hero{
+  padding:120px 0 72px;border-bottom:1px solid var(--line);
+  background:radial-gradient(ellipse at 50% 0,rgba(220,20,60,.28),transparent 60%);
+}
+.status{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  border:1px solid var(--crimson);padding:6px 14px;color:var(--hot);
+}
+.status i{width:8px;height:8px;background:var(--hot);border-radius:50%;box-shadow:0 0 10px var(--hot);animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.sub-eyebrow{
+  margin:18px 0 10px;font-family:'Share Tech Mono',monospace;
+  color:var(--muted);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+}
+h1{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(2.8rem,10vw,5.8rem);line-height:.9;letter-spacing:.06em;
+  text-transform:uppercase;min-height:1.05em;
+}
+h1.glitch{text-shadow:3px 0 var(--hot),-3px 0 #4a0000;transform:translateX(2px)}
+.lede{
+  max-width:52ch;margin-top:22px;color:var(--muted);font-size:1.05rem;
+  text-transform:uppercase;letter-spacing:.06em;font-weight:700;
+}
+.stats{display:flex;flex-wrap:wrap;margin-top:44px;border:1px solid var(--line);width:fit-content}
+.stat{padding:16px 34px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-family:'Orbitron',sans-serif;font-size:2rem;color:var(--hot);line-height:1.1}
+.stat span{
+  font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+.cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+.btn{
+  font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:12px 22px;border:1px solid var(--crimson);transition:.15s;
+}
+.btn.primary{background:linear-gradient(135deg,var(--crimson),var(--blood));color:#fff}
+.btn.primary:hover{background:var(--hot)}
+.btn.ghost:hover{background:var(--panel-2);color:var(--hot)}
 
-        .particle {
-            position: absolute;
-            width: 2px;
-            height: 2px;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0.4;
-            animation: float 20s infinite;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, -100px); }
-        }
-
-        .container { 
-            max-width: 1400px; 
-            margin: 0 auto; 
-            padding: 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-            animation: fadeIn 0.8s ease-out;
-            border-bottom: 2px solid var(--primary);
-            margin-bottom: 40px;
-        }
-
-        .header-accent {
-            font-size: 0.9rem;
-            color: var(--primary);
-            letter-spacing: 8px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        h1 {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 900;
-            color: var(--primary);
-            text-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
-            margin-bottom: 20px;
-            letter-spacing: 4px;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: var(--gold);
-            margin-top: 10px;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
-        .games-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 40px 0;
-        }
-
-        .game-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(20px);
-            border: 2px solid var(--accent);
-            padding: 50px 30px;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            position: relative;
-            overflow: hidden;
-            animation: slideIn 0.6s ease-out forwards;
-        }
-
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--primary), transparent);
-            animation: scan 3s infinite;
-        }
-
-        @keyframes scan {
-            0%, 100% { left: -100%; }
-            50% { left: 100%; }
-        }
-
-        .game-card:hover {
-            transform: translateY(-15px);
-            border-color: var(--primary);
-            box-shadow: 0 0 50px rgba(255, 0, 0, 0.6);
-        }
-
-        .game-icon {
-            font-size: 5rem;
-            margin-bottom: 25px;
-            filter: drop-shadow(0 0 10px var(--primary));
-        }
-
-        .game-card h2 {
-            color: var(--gold);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 0 0 10px var(--primary);
-        }
-
-        .game-card p {
-            color: #cccccc;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-        .game-card.coming-soon {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        .game-card.coming-soon:hover {
-            transform: none;
-            box-shadow: none;
-        }
-
-        .back-btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            border: 3px solid var(--gold);
-            color: #fff;
-            text-decoration: none;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            transition: all 0.3s ease;
-            margin-top: 40px;
-            box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
-        }
-
-        .back-btn:hover {
-            background: var(--primary);
-            transform: scale(1.05);
-            box-shadow: 0 0 35px rgba(255, 0, 0, 0.7);
-        }
-
-        .stats-bar {
-            display: flex;
-            justify-content: center;
-            padding: 30px;
-            text-align: center;
-            border: 2px solid var(--accent);
-            background: rgba(139, 0, 0, 0.2);
-            margin-bottom: 40px;
-        }
-
-        .stat-label {
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideIn {
-            from { 
-                opacity: 0; 
-                transform: translateY(30px) scale(0.95);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .games-grid { grid-template-columns: 1fr; }
-        }
-    </style>
+section{padding:80px 0;border-bottom:1px solid var(--line)}
+.tag{
+  font-family:'Share Tech Mono',monospace;color:var(--hot);font-size:.72rem;
+  letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;
+}
+h2{
+  font-family:'Orbitron',sans-serif;font-weight:900;
+  font-size:clamp(1.5rem,4vw,2.2rem);letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;
+}
+.sec-sub{
+  color:var(--muted);max-width:60ch;margin-bottom:36px;
+  text-transform:uppercase;letter-spacing:.05em;font-weight:700;font-size:.95rem;
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.card{display:block;background:var(--panel);border:1px solid var(--line);padding:26px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--crimson)}
+.card h3{
+  font-family:'Orbitron',sans-serif;font-size:1.05rem;letter-spacing:.08em;
+  text-transform:uppercase;margin:8px 0;
+}
+.card p{color:var(--muted);font-size:.95rem;text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.chip{
+  display:inline-block;margin-top:16px;font-family:'Share Tech Mono',monospace;
+  font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 10px;border:1px solid var(--line);color:var(--muted);
+}
+.card.live{border-color:var(--crimson);background:var(--panel-2)}
+.card.live .chip{border-color:var(--hot);color:var(--hot)}
+.card.live:hover{border-color:var(--hot);transform:translateY(-3px)}
+.card.queued{opacity:.7}
+.laws{display:grid;gap:18px}
+.law{display:grid;grid-template-columns:64px 1fr;gap:20px;background:var(--panel);border:1px solid var(--line);padding:24px}
+.law .n{font-family:'Orbitron',sans-serif;font-size:2rem;color:var(--crimson);font-weight:900}
+.law h4{font-family:'Orbitron',sans-serif;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.law p{color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.stack{display:flex;flex-wrap:wrap;gap:12px}
+.stack span{
+  font-family:'Share Tech Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
+  border:1px solid var(--crimson);padding:8px 16px;background:var(--panel);
+}
+footer{
+  padding:56px 0 72px;color:var(--muted);font-size:.85rem;
+  font-family:'Share Tech Mono',monospace;letter-spacing:.1em;text-transform:uppercase;
+}
+footer .row{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:14px}
+footer a:hover{color:var(--hot)}
+.back{display:inline-block;margin-bottom:28px;color:var(--hot)}
+@media (max-width:640px){
+  nav ul{display:none}
+  .hero{padding:96px 0 48px}
+  .stat{padding:14px 22px}
+  .law{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .status i{animation:none}
+}
+</style>
 </head>
 <body>
-    <div class="bg-particles" id="particles"></div>
-    
-    <div class="container">
-        <header>
-            <div class="header-accent">◢ GAMING DIVISION ◣</div>
-            <h1>🎮 MINI GAMES</h1>
-            <p class="subtitle">⬢ COMMAND CENTER ARCADE ⬢</p>
-        </header>
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">GAMES DIVISION</a>
+    <ul>
+      <li><a href="#roster">Roster</a></li>
+      <li><a href="#standards">Standards</a></li>
+      <li><a href="#engine">Engine</a></li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/pages.html">Pages</a></li>
+    </ul>
+  </div>
+</nav>
 
-        <div class="stats-bar">
-            <div class="stat-label">► Browser-Based Games Built with Kaboom.js ◄</div>
-        </div>
-
-        <div class="games-grid">
-            <a href="/games/flappy/" class="game-card">
-                <div class="game-icon">🐦</div>
-                <h2>Flappy Bird</h2>
-                <p>Navigate through pipes in this classic arcade challenge. Tap or press space to fly!</p>
-            </a>
-
-            <div class="game-card coming-soon">
-                <div class="game-icon">🐍</div>
-                <h2>Snake</h2>
-                <p>Classic snake game coming soon. Eat food and grow while avoiding walls!</p>
-            </div>
-
-            <div class="game-card coming-soon">
-                <div class="game-icon">🏓</div>
-                <h2>Pong</h2>
-                <p>Retro ping-pong action coming soon. Challenge the AI opponent!</p>
-            </div>
-
-            <div class="game-card coming-soon">
-                <div class="game-icon">🔫</div>
-                <h2>Space Invaders</h2>
-                <p>Defend Earth from alien invasion. Coming soon!</p>
-            </div>
-
-            <div class="game-card coming-soon">
-                <div class="game-icon">🧊</div>
-                <h2>Tetris</h2>
-                <p>Stack blocks and clear lines in this puzzle classic. Coming soon!</p>
-            </div>
-
-            <div class="game-card coming-soon">
-                <div class="game-icon">🎯</div>
-                <h2>Breakout</h2>
-                <p>Break bricks with the bouncing ball. Coming soon!</p>
-            </div>
-        </div>
-
-        <div style="text-align: center;">
-            <a href="/" class="back-btn">◄ BACK TO COMMAND CENTER</a>
-        </div>
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="status"><i></i>Arcade online</div>
+    <p class="sub-eyebrow">// Gaming division · Command arcade</p>
+    <h1 id="hero-title" aria-label="MINI GAMES">MINI GAMES</h1>
+    <p class="lede">Browser arcade built with Kaboom.js. Open a page. Press start. Play. No install. No account.</p>
+    <div class="stats" role="list">
+      <div class="stat" role="listitem"><b data-final="01">01</b><span>Playable now</span></div>
+      <div class="stat" role="listitem"><b data-final="05">05</b><span>In the build queue</span></div>
+      <div class="stat" role="listitem"><b data-final="06">06</b><span>Total titles</span></div>
     </div>
+    <div class="cta">
+      <a class="btn primary" href="/games/flappy/">Play Flappy Bird</a>
+      <a class="btn ghost" href="#roster">View roster</a>
+    </div>
+  </div>
+</header>
 
-    <script>
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 40; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.top = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
-            }
-        }
+<section id="roster">
+  <div class="wrap">
+    <p class="tag">// Arcade roster</p>
+    <h2>Six titles, one live</h2>
+    <p class="sec-sub">Flappy Bird is playable today. The other five stay queued until they meet the bar.</p>
+    <div class="grid">
+      <a class="card live" href="/games/flappy/">
+        <h3>Flappy Bird</h3>
+        <p>Navigate pipes. Tap or space to fly.</p>
+        <span class="chip">Playable · Launch</span>
+      </a>
+      <div class="card queued"><h3>Snake</h3><p>Eat. Grow. Do not hit the wall.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Pong</h3><p>Ping-pong against an AI paddle.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Space Invaders</h3><p>Hold the line against the drop.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Tetris</h3><p>Stack. Clear. Do not top out.</p><span class="chip">Queued</span></div>
+      <div class="card queued"><h3>Breakout</h3><p>Break the wall with the bounce.</p><span class="chip">Queued</span></div>
+    </div>
+  </div>
+</section>
 
-        createParticles();
-    </script>
+<section id="standards">
+  <div class="wrap">
+    <p class="tag">// Build standards</p>
+    <h2>Same bar for every title</h2>
+    <p class="sec-sub">A game does not leave the queue until these hold.</p>
+    <div class="laws">
+      <div class="law"><div class="n">01</div><div><h4>Instant play</h4><p>One page. No download. No sign-in.</p></div></div>
+      <div class="law"><div class="n">02</div><div><h4>Touch and keyboard</h4><p>Tap on a phone. Key on a desk.</p></div></div>
+      <div class="law"><div class="n">03</div><div><h4>One round, one lesson</h4><p>Short sessions. Fast restart. Each attempt teaches.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="engine">
+  <div class="wrap">
+    <p class="tag">// Engine</p>
+    <h2>Built lean</h2>
+    <p class="sec-sub">Small stack. Static host. Nothing to babysit.</p>
+    <div class="stack"><span>Kaboom.js</span><span>HTML5 Canvas</span><span>JavaScript</span><span>GitHub Pages</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="back" href="/">Back to command center</a>
+    <div>POWDER-RANGER</div>
+    <div class="row">
+      <a href="/">Portfolio</a>
+      <a href="/pages.html">Live pages</a>
+      <a href="https://powder-ranger.github.io/nso-kryptonite-platform/">NSO Kryptonite</a>
+      <a href="https://github.com/POWDER-RANGER">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  var GLYPHS = "█▓▒░<>/\\|{}[]#$%&*+=?";
+  var title = document.getElementById("hero-title");
+  var finalTitle = title.textContent;
+  var stats = Array.prototype.slice.call(document.querySelectorAll(".stat b"));
+  var running = false;
+  function rnd(){ return GLYPHS.charAt(Math.floor(Math.random()*GLYPHS.length)); }
+  function decode(el, finalText, duration, done){
+    var start = performance.now(), len = finalText.length;
+    (function frame(now){
+      var p = Math.min(1, (now - start) / duration);
+      var reveal = Math.floor(p * len), out = "";
+      for (var i = 0; i < len; i++){
+        var ch = finalText.charAt(i);
+        out += (ch === " " || i < reveal) ? ch : rnd();
+      }
+      el.textContent = out;
+      if (p < 1) requestAnimationFrame(frame);
+      else { el.textContent = finalText; if (done) done(); }
+    })(start);
+  }
+  function run(){
+    if (running || document.hidden) return;
+    running = true;
+    title.setAttribute("aria-hidden","true");
+    decode(title, finalTitle, 1100, function(){
+      title.classList.add("glitch");
+      setTimeout(function(){ title.classList.remove("glitch"); title.removeAttribute("aria-hidden"); running = false; }, 160);
+    });
+    stats.forEach(function(el, i){
+      setTimeout(function(){ decode(el, el.getAttribute("data-final"), 700); }, 250 + i*150);
+    });
+  }
+  run();
+  setInterval(run, 7000);
+})();
+</script>
 </body>
 </html>
