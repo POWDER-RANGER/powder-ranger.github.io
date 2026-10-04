@@ -14,7 +14,7 @@
         body {
             font-family: 'Courier New', Consolas, monospace;
             background: linear-gradient(135deg, #0d0000, #1a0000, #0d0000);
-            color: #00FF88;
+            color: #F2E8E8;
             overflow: hidden;
             min-height: 100vh;
             position: relative;
@@ -34,11 +34,11 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: #FFD700;
+            background: #E31C23;
             border-radius: 50%;
             opacity: 0.3;
             animation: float 20s infinite;
-            box-shadow: 0 0 8px #FFD700;
+            box-shadow: 0 0 8px #E31C23;
         }
 
         @keyframes float {
@@ -59,22 +59,22 @@
         header {
             text-align: center;
             padding: 20px;
-            border-bottom: 2px solid #FF0000;
+            border-bottom: 2px solid #E31C23;
             background: rgba(13, 17, 23, 0.7);
             backdrop-filter: blur(10px);
         }
 
         h1 {
             font-size: 2rem;
-            color: #FF0000;
-            text-shadow: 0 0 20px #FF0000;
+            color: #E31C23;
+            text-shadow: 0 0 20px #E31C23;
             letter-spacing: 3px;
             margin-bottom: 10px;
         }
 
         .subtitle {
             font-size: 0.9rem;
-            color: #FFD700;
+            color: #E31C23;
             letter-spacing: 2px;
             text-transform: uppercase;
         }
@@ -121,15 +121,15 @@
 
         .message.user .message-content {
             background: rgba(255, 0, 0, 0.2);
-            border-color: #FF0000;
-            color: #00FF88;
+            border-color: #E31C23;
+            color: #F2E8E8;
             text-align: right;
         }
 
         .message.assistant .message-content {
             background: rgba(255, 215, 0, 0.1);
-            border-color: #FFD700;
-            color: #FFD700;
+            border-color: #E31C23;
+            color: #E31C23;
         }
 
         .loading {
@@ -141,7 +141,7 @@
         .loading span {
             width: 8px;
             height: 8px;
-            background: #FFD700;
+            background: #E31C23;
             border-radius: 50%;
             animation: pulse 1.4s infinite;
         }
@@ -161,7 +161,7 @@
 
         .input-area {
             padding: 20px;
-            border-top: 2px solid #FF0000;
+            border-top: 2px solid #E31C23;
             background: rgba(13, 17, 23, 0.8);
             backdrop-filter: blur(10px);
             display: flex;
@@ -177,8 +177,8 @@
 
         select, input {
             background: rgba(255, 215, 0, 0.1);
-            border: 1px solid #FFD700;
-            color: #FFD700;
+            border: 1px solid #E31C23;
+            color: #E31C23;
             padding: 8px 12px;
             border-radius: 4px;
             font-family: 'Courier New', Consolas, monospace;
@@ -187,8 +187,8 @@
 
         select:focus, input:focus {
             outline: none;
-            border-color: #FF0000;
-            box-shadow: 0 0 10px #FF0000;
+            border-color: #E31C23;
+            box-shadow: 0 0 10px #E31C23;
         }
 
         .input-group {
@@ -200,22 +200,22 @@
         #userInput {
             flex: 1;
             padding: 12px 16px;
-            border: 2px solid #FFD700;
+            border: 2px solid #E31C23;
             border-radius: 4px;
             background: rgba(13, 17, 23, 0.9);
-            color: #00FF88;
+            color: #F2E8E8;
             font-size: 1rem;
         }
 
         #userInput:focus {
-            border-color: #FF0000;
-            box-shadow: 0 0 15px #FF0000;
+            border-color: #E31C23;
+            box-shadow: 0 0 15px #E31C23;
         }
 
         button {
             padding: 12px 24px;
-            background: linear-gradient(135deg, #8b0000, #FF0000);
-            border: 2px solid #FFD700;
+            background: linear-gradient(135deg, #8b0000, #E31C23);
+            border: 2px solid #E31C23;
             color: #fff;
             font-weight: bold;
             border-radius: 4px;
@@ -227,8 +227,8 @@
         }
 
         button:hover {
-            background: #FF0000;
-            box-shadow: 0 0 20px #FF0000;
+            background: #E31C23;
+            box-shadow: 0 0 20px #E31C23;
             transform: scale(1.05);
         }
 
@@ -239,11 +239,11 @@
 
         .model-info {
             font-size: 0.8rem;
-            color: #00EEFF;
+            color: #A08080;
             padding: 5px 10px;
             background: rgba(0, 255, 136, 0.1);
             border-radius: 4px;
-            border: 1px solid #00EEFF;
+            border: 1px solid #A08080;
         }
 
         ::-webkit-scrollbar {
@@ -255,12 +255,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #FF0000;
+            background: #E31C23;
             border-radius: 5px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #FFD700;
+            background: #E31C23;
         }
 
         @media (max-width: 768px) {
@@ -339,7 +339,7 @@
             HF_TOKEN = token;
             localStorage.setItem('HF_TOKEN', token);
             modelInfo.textContent = '✓ Token configured. Ready to chat!';
-            modelInfo.style.borderColor = '#00FF88';
+            modelInfo.style.borderColor = '#F2E8E8';
             modelInfo.style.background = 'rgba(0, 255, 136, 0.2)';
         };
 
@@ -447,7 +447,7 @@
         
         if (HF_TOKEN) {
             modelInfo.textContent = '✓ Token found in storage. Ready to chat!';
-            modelInfo.style.borderColor = '#00FF88';
+            modelInfo.style.borderColor = '#F2E8E8';
             modelInfo.style.background = 'rgba(0, 255, 136, 0.2)';
         } else {
             modelInfo.textContent = '⚠ Token not configured. Use console to set token.';
