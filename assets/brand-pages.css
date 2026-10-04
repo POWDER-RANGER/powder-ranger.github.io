@@ -103,3 +103,53 @@ body.pr-brand-surface a{
 @media(prefers-reduced-motion:reduce){
   .pr-brand-ribbon-status::before{animation:none}
 }
+
+/* Shared control skin for legacy/project surfaces */
+body.pr-brand-surface button,
+body.pr-brand-surface .btn,
+body.pr-brand-surface .button,
+body.pr-brand-surface a.btn,
+body.pr-brand-surface a.button{
+  border:3px solid var(--pr-red)!important;
+  border-radius:0!important;
+  background:var(--pr-panel)!important;
+  color:var(--pr-ink)!important;
+  font-family:var(--pr-mono)!important;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  box-shadow:none!important;
+}
+body.pr-brand-surface button:hover,
+body.pr-brand-surface .btn:hover,
+body.pr-brand-surface .button:hover,
+body.pr-brand-surface a.btn:hover,
+body.pr-brand-surface a.button:hover{
+  background:var(--pr-red)!important;
+  color:#fff!important;
+  transform:none!important;
+}
+body.pr-brand-surface input,
+body.pr-brand-surface select,
+body.pr-brand-surface textarea{
+  border:3px solid var(--pr-line)!important;
+  border-radius:0!important;
+  background:var(--pr-bg)!important;
+  color:var(--pr-ink)!important;
+  font-family:var(--pr-mono)!important;
+}
+body.pr-brand-surface input:focus,
+body.pr-brand-surface select:focus,
+body.pr-brand-surface textarea:focus{
+  border-color:var(--pr-red)!important;
+  outline:2px solid var(--pr-red)!important;
+  outline-offset:2px;
+  box-shadow:none!important;
+}
+body.pr-brand-surface h1,
+body.pr-brand-surface h2,
+body.pr-brand-surface h3,
+body.pr-brand-surface h4,
+body.pr-brand-surface h5,
+body.pr-brand-surface h6{color:var(--pr-ink)!important}
+body.pr-brand-surface a{color:var(--pr-red)}
+body.pr-brand-surface a:hover{color:#fff}
