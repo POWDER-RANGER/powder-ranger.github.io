@@ -1,105 +1,70 @@
-# Alignment backlog
+# POWDER-RANGER GitHub Pages alignment
 
-**Baseline (going forward):** [BRAND.md](./BRAND.md)  
-**Look like:** [home](https://powder-ranger.github.io/) and [games](https://powder-ranger.github.io/games/)
+**Baseline:** [BRAND.md](./BRAND.md)
+**Reference implementations:** [home](https://powder-ranger.github.io/) · [games](https://powder-ranger.github.io/games/)
 
-Directory of live hubs: [pages.html](https://powder-ranger.github.io/pages.html)
+This audit was refreshed 2026-10-04 after the Pages branding pass.
 
----
+## 1. Portfolio core
 
-## 1. Current baseline
+| Surface | State |
+|---|---|
+| `/` | Baseline-aligned |
+| `/pages.html` | Baseline-aligned + live status refreshed |
+| `/repos.html` | Baseline-aligned |
+| `/games/` | Baseline-aligned |
+| `/games/flappy/` | Baseline-aligned |
+| `/deviant.html` | Shared brand rail added |
+| `/hf-bot.html` | Shared brand rail added |
 
-| Surface | Notes |
-|---------|--------|
-| https://powder-ranger.github.io/ | Constructivist home |
-| https://powder-ranger.github.io/games/ | Constructivist arcade hub |
-| [BRAND.md](./BRAND.md) | Written spec |
+## 2. Shared Pages branding
 
----
+`assets/brand-pages.css` and `assets/brand-pages.js` now provide a common compatibility layer for project Pages.
 
-## 2. Portfolio repo pages — not on baseline yet
+The layer enforces the POWDER-RANGER visual baseline: hard edges, crimson geometry, Oswald/Share Tech Mono UI type, reduced-motion handling, a live edge/ribbon, and source navigation where a project surface lacks its own navigation.
 
-These live in `POWDER-RANGER/powder-ranger.github.io`.
+Project product/runtime UIs were preserved rather than replaced.
 
-| URL | File | Work |
-|-----|------|------|
-| https://powder-ranger.github.io/repos.html | `repos.html` | Still rounded Kryptonite shell; restyle to hard-edge + all-caps |
-| https://powder-ranger.github.io/pages.html | `pages.html` | Same |
-| https://powder-ranger.github.io/deviant.html | `deviant.html` | Legacy theme; compress/remove `DEVIANT2026.jpg` (~2.9 MB) |
-| https://powder-ranger.github.io/hf-bot.html | `hf-bot.html` | Old chrome |
-| https://powder-ranger.github.io/games/flappy/ | `games/flappy/index.html` | Game UI — wrap in baseline chrome |
+## 3. Project Pages
 
----
+| Live URL | Repo | State |
+|---|---|---|
+| `/CivilianIntelligence/` | CivilianIntelligence | Baseline + shared rail |
+| `/nso-kryptonite-platform/` | nso-kryptonite-platform | Product UI preserved + shared rail |
+| `/CIVWATCH/` | CIVWATCH | Legacy/source UI preserved + shared rail |
+| `/OBLISK/` | OBLISK | Shared rail |
+| `/RED-AGENT-GOV/` | RED-AGENT-GOV | Shared rail |
+| `/ai-nexus/` | ai-nexus | Shared rail |
+| `/dollar-gravity-framework/` | dollar-gravity-framework | Shared rail |
+| `/nine-realities-netcode/` | nine-realities-netcode | Shared rail |
+| `/OBELISK-Desktop-AI/` | OBELISK-Desktop-AI | Shared rail |
+| `/RainGod-Comfy-Studio/` | RainGod-Comfy-Studio | Shared rail |
+| `/Artifact-Catalog/` | Artifact-Catalog | Shared rail |
+| `/powder-ranger-bot/` | powder-ranger-bot | Shared rail |
+| `/contextual-memory-ui/` | contextual-memory-ui | Shared rail |
+| `/dojin-d/` | dojin-d | New branded docs/index.html landing page added |
 
-## 3. GitHub profile README — not fully on baseline
+## 4. Games
 
-| Surface | Repo | Work |
-|---------|------|------|
-| https://github.com/POWDER-RANGER | `POWDER-RANGER/POWDER-RANGER` `README.md` | Crimson pass already done. Next: retint `assets/banner.svg` to exact `#E31C23` / `#0a0000`, keep all-caps tone, no lime, no Vercel widgets. Cannot use Oswald or live glitch here. |
-| `project-index.md` | same repo | Keep status language in sync with the README |
+Current source tree contains six titles:
 
----
+| Title | State |
+|---|---|
+| Flappy Bird | Playable |
+| Snake | Playable |
+| Pong | Playable |
+| Space Invaders | Playable |
+| Tetris | Playable |
+| Breakout | Queued |
 
-## 4. Project GitHub Pages — live / current architecture
+The previous backlog entry claiming those four games were still queued was stale and has been corrected.
 
-These are public project-page surfaces. CIVINTELLIGENCE is the current civic system of record; CIVWATCH remains a legacy/source page.
+## 5. Current civic spine
 
-| Live URL | Repo | Status |
-|----------|------|--------|
-| https://powder-ranger.github.io/CivilianIntelligence/ | CivilianIntelligence | **Current civic system of record; baseline-aligned** |
-| https://powder-ranger.github.io/nso-kryptonite-platform/ | nso-kryptonite-platform | Product surface; preserve its original UX. |
-| https://powder-ranger.github.io/CIVWATCH/ | CIVWATCH | **Legacy/source page; runtime ownership moved to CivilianIntelligence + specialized rails** |
-| https://powder-ranger.github.io/OBLISK/ | OBLISK | Needs baseline pass |
-| https://powder-ranger.github.io/RED-AGENT-GOV/ | RED-AGENT-GOV | Needs baseline pass |
-| https://powder-ranger.github.io/ai-nexus/ | ai-nexus | Needs baseline pass |
-| https://powder-ranger.github.io/dollar-gravity-framework/ | dollar-gravity-framework | Needs baseline pass |
-| https://powder-ranger.github.io/nine-realities-netcode/ | nine-realities-netcode | Needs baseline pass |
-| https://powder-ranger.github.io/OBELISK-Desktop-AI/ | OBELISK-Desktop-AI | Needs baseline pass |
-| https://powder-ranger.github.io/RainGod-Comfy-Studio/ | RainGod-Comfy-Studio | Needs baseline pass |
-| https://powder-ranger.github.io/Artifact-Catalog/ | Artifact-Catalog | Needs baseline pass |
-| https://powder-ranger.github.io/powder-ranger-bot/ | powder-ranger-bot | Needs baseline pass |
-| https://powder-ranger.github.io/dojin-d/ | dojin-d | Needs baseline pass |
-| https://powder-ranger.github.io/contextual-memory-ui/ | contextual-memory-ui | Needs baseline pass |
+- CivilianIntelligence remains the current civic system of record.
+- CIVWATCH remains a legacy/source surface.
+- Watchtower and Cell Titan remain specialized rails.
 
-NSO is the original command aesthetic. Product UX can stay; **new chrome** (nav, type, corners, case) should follow BRAND.md when that repo is touched.
+## 6. Remaining housekeeping
 
-## 5. No Pages site (404 when probed)
-
-Leave as GitHub-only unless we decide they need a hub:
-
-- CharlesAI
-- raingod-studio-v4
-- guiding-light-ai
-- red-team-osint-tool
-- civwatch-watchtower
-- powder-ranger-stone
-- systems-architecture-portfolio
-
----
-
-## 6. Games hub — titles still to ship
-
-Hub: https://powder-ranger.github.io/games/
-
-| Title | Status | Required |
-|-------|--------|----------|
-| Flappy Bird | Live | `/games/flappy/` — restyle chrome only |
-| **Snake** | Queued | Build + list as PLAYABLE |
-| **Pong** | Queued | Build + list as PLAYABLE |
-| **Space Invaders** | Queued | Build + list as PLAYABLE |
-| **Tetris** | Queued | Build + list as PLAYABLE |
-| Breakout | Queued | After the four above |
-
-Ship bar (already on the hub): instant play, touch + keyboard, short round / fast restart. Kaboom.js + GitHub Pages.
-
----
-
-## 7. Suggested sequence
-
-1. Keep `index.html`, `pages.html`, and `repos.html` synchronized with the current CIVWATCH spine
-2. Profile `README.md` + banner SVG final pass
-3. `games/flappy/` chrome
-4. **Snake → Pong → Space Invaders → Tetris** on the games hub
-5. Flagship project Pages: CIVINTELLIGENCE first; keep CIVWATCH explicitly labeled as legacy
-6. Remaining live project Pages
-7. `deviant.html` / `hf-bot.html` or retire them
+The major visual alignment pass is complete. Remaining work is primarily content-level refinement, accessibility QA, and publication verification for any repository whose GitHub Pages source/build configuration is external to the edited HTML entry point.
