@@ -42,28 +42,26 @@ These live in `POWDER-RANGER/powder-ranger.github.io`.
 
 ## 4. Project GitHub Pages — live / current architecture
 
-Each is its **own repo**. Restyle the Pages site there.
+These are public project-page surfaces. CIVINTELLIGENCE is the current civic system of record; CIVWATCH remains a legacy/source page.
 
-| Live URL | Repo |
-|----------|------|
+| Live URL | Repo | Status |
+|----------|------|--------|
 | https://powder-ranger.github.io/CivilianIntelligence/ | CivilianIntelligence | **Current civic system of record; baseline-aligned** |
 | https://powder-ranger.github.io/nso-kryptonite-platform/ | nso-kryptonite-platform | Product surface; preserve its original UX. |
 | https://powder-ranger.github.io/CIVWATCH/ | CIVWATCH | **Legacy/source page; runtime ownership moved to CivilianIntelligence + specialized rails** |
-| https://powder-ranger.github.io/OBLISK/ | OBLISK |
-| https://powder-ranger.github.io/RED-AGENT-GOV/ | RED-AGENT-GOV |
-| https://powder-ranger.github.io/ai-nexus/ | ai-nexus |
-| https://powder-ranger.github.io/dollar-gravity-framework/ | dollar-gravity-framework |
-| https://powder-ranger.github.io/nine-realities-netcode/ | nine-realities-netcode |
-| https://powder-ranger.github.io/OBELISK-Desktop-AI/ | OBELISK-Desktop-AI |
-| https://powder-ranger.github.io/RainGod-Comfy-Studio/ | RainGod-Comfy-Studio |
-| https://powder-ranger.github.io/Artifact-Catalog/ | Artifact-Catalog |
-| https://powder-ranger.github.io/powder-ranger-bot/ | powder-ranger-bot |
-| https://powder-ranger.github.io/dojin-d/ | dojin-d |
-| https://powder-ranger.github.io/contextual-memory-ui/ | contextual-memory-ui |
+| https://powder-ranger.github.io/OBLISK/ | OBLISK | Needs baseline pass |
+| https://powder-ranger.github.io/RED-AGENT-GOV/ | RED-AGENT-GOV | Needs baseline pass |
+| https://powder-ranger.github.io/ai-nexus/ | ai-nexus | Needs baseline pass |
+| https://powder-ranger.github.io/dollar-gravity-framework/ | dollar-gravity-framework | Needs baseline pass |
+| https://powder-ranger.github.io/nine-realities-netcode/ | nine-realities-netcode | Needs baseline pass |
+| https://powder-ranger.github.io/OBELISK-Desktop-AI/ | OBELISK-Desktop-AI | Needs baseline pass |
+| https://powder-ranger.github.io/RainGod-Comfy-Studio/ | RainGod-Comfy-Studio | Needs baseline pass |
+| https://powder-ranger.github.io/Artifact-Catalog/ | Artifact-Catalog | Needs baseline pass |
+| https://powder-ranger.github.io/powder-ranger-bot/ | powder-ranger-bot | Needs baseline pass |
+| https://powder-ranger.github.io/dojin-d/ | dojin-d | Needs baseline pass |
+| https://powder-ranger.github.io/contextual-memory-ui/ | contextual-memory-ui | Needs baseline pass |
 
 NSO is the original command aesthetic. Product UX can stay; **new chrome** (nav, type, corners, case) should follow BRAND.md when that repo is touched.
-
----
 
 ## 5. No Pages site (404 when probed)
 
