@@ -7,7 +7,7 @@ Directory of live hubs: [pages.html](https://powder-ranger.github.io/pages.html)
 
 ---
 
-## 1. Already on baseline
+## 1. Current baseline
 
 | Surface | Notes |
 |---------|--------|
@@ -40,14 +40,15 @@ These live in `POWDER-RANGER/powder-ranger.github.io`.
 
 ---
 
-## 4. Project GitHub Pages — live (HTTP 200) but not on baseline
+## 4. Project GitHub Pages — live / current architecture
 
 Each is its **own repo**. Restyle the Pages site there.
 
 | Live URL | Repo |
 |----------|------|
-| https://powder-ranger.github.io/nso-kryptonite-platform/ | nso-kryptonite-platform |
-| https://powder-ranger.github.io/CIVWATCH/ | CIVWATCH |
+| https://powder-ranger.github.io/CivilianIntelligence/ | CivilianIntelligence | **Current civic system of record; baseline-aligned** |
+| https://powder-ranger.github.io/nso-kryptonite-platform/ | nso-kryptonite-platform | Product surface; preserve its original UX. |
+| https://powder-ranger.github.io/CIVWATCH/ | CIVWATCH | **Legacy/source page; runtime ownership moved to CivilianIntelligence + specialized rails** |
 | https://powder-ranger.github.io/OBLISK/ | OBLISK |
 | https://powder-ranger.github.io/RED-AGENT-GOV/ | RED-AGENT-GOV |
 | https://powder-ranger.github.io/ai-nexus/ | ai-nexus |
@@ -97,10 +98,10 @@ Ship bar (already on the hub): instant play, touch + keyboard, short round / fas
 
 ## 7. Suggested sequence
 
-1. `repos.html` + `pages.html` (same repo, same chrome)
+1. Keep `index.html`, `pages.html`, and `repos.html` synchronized with the current CIVWATCH spine
 2. Profile `README.md` + banner SVG final pass
 3. `games/flappy/` chrome
 4. **Snake → Pong → Space Invaders → Tetris** on the games hub
-5. Flagship project Pages: CIVWATCH, OBLISK, RED-AGENT-GOV
+5. Flagship project Pages: CIVINTELLIGENCE first; keep CIVWATCH explicitly labeled as legacy
 6. Remaining live project Pages
 7. `deviant.html` / `hf-bot.html` or retire them
