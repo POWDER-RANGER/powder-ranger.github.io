@@ -14,7 +14,7 @@
 |---------|------|-------------|------|
 | **Main Portfolio** | [powder-ranger.github.io](https://powder-ranger.github.io) | Interactive cyber-themed portfolio with 3D animations | Three.js, GSAP |
 | **NSO Kryptonite** | [/nso-kryptonite-platform](https://powder-ranger.github.io/nso-kryptonite-platform) | Adversarial defense command center | React, TypeScript |
-| **CIVWATCH** | [/CIVWATCH](https://powder-ranger.github.io/CIVWATCH) | Civic transparency & accountability platform | TypeScript, Python |
+| **CIVWATCH** | [/CIVWATCH](https://powder-ranger.github.io/CIVWATCH) · [web app](https://civintelligence.onrender.com) | Public records and surveillance-infrastructure transparency, sourced on every record | TypeScript, Python |
 | **OBLISK** | [/OBLISK](https://powder-ranger.github.io/OBLISK) | Multi-agent AI orchestration with encrypted vaults | Python, Prolog |
 | **AI Nexus** | [/ai-nexus](https://powder-ranger.github.io/ai-nexus) | Browser-based AI platform (local inference) | WebAssembly, WebGPU |
 | **Dollar Gravity** | [/dollar-gravity-framework](https://powder-ranger.github.io/dollar-gravity-framework) | 3D USD gravity visualization | Three.js, D3 |
@@ -44,10 +44,10 @@
 │  ├── CharlesAI         │  └── OBELISK-Enterprise           │
 │  └── OBELISK-Desktop   │                                   │
 ├─────────────────────────────────────────────────────────────┤
-│  🏛️ Civic Intelligence  │  🎮 Game & Research               │
-│  ├── CIVWATCH          │  ├── Nine Realities Netcode       │
-│  ├── CIVWATCH v3       │  ├── Dojin D                      │
-│  └── Cell Titan        │  └── POWDER-RANGER Bot            │
+│  🏛️ Civic Transparency  │  🎮 Game & Research               │
+│  ├── CIVWATCH web app  │  ├── Nine Realities Netcode       │
+│  ├── CIVWATCH Platform │  ├── Dojin D                      │
+│  └── Cell Monitor      │  └── POWDER-RANGER Bot            │
 ├─────────────────────────────────────────────────────────────┤
 │  💰 Finance            │  🎵 Creative                      │
 │  └── Dollar Gravity    │  └── RainGod Comfy Studio         │
