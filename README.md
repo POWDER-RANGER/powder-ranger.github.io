@@ -18,7 +18,7 @@ The [Pages directory](https://powder-ranger.github.io/pages.html) is the canonic
 | **NSO Kryptonite** | [/nso-kryptonite-platform](https://powder-ranger.github.io/nso-kryptonite-platform) | Adversarial defense command center | React, TypeScript |
 | **CIVWATCH** | [/CIVWATCH](https://powder-ranger.github.io/CIVWATCH) · [web app](https://civintelligence.onrender.com) | Public records and surveillance-infrastructure transparency, sourced on every record | TypeScript, Python |
 | **OBLISK** | [/OBLISK](https://powder-ranger.github.io/OBLISK) | Multi-agent AI orchestration with encrypted vaults | Python, Prolog |
-| **AI Nexus** | [/ai-nexus](https://powder-ranger.github.io/ai-nexus) | Browser-based AI platform (local inference) | WebAssembly, WebGPU |
+| **AI Nexus** | [/ai-nexus](https://powder-ranger.github.io/ai-nexus) | Browser AI prototype; local LLM inference remains planned | WebAssembly, WebGPU |
 | **Dollar Gravity** | [/dollar-gravity-framework](https://powder-ranger.github.io/dollar-gravity-framework) | 3D USD gravity visualization | Three.js, D3 |
 
 ---
