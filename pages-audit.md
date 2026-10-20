@@ -76,10 +76,12 @@ This pass verified repository source, not the published browser experience. Do n
 ### Confirmed source fixes
 
 - Replaced literal escaped newline sequences around shared stylesheet/script tags in the portfolio home, Pages directory, repository browser, Games hub, Deviant page, HF Bot page, and Flappy page.
-- Restored mobile navigation on the portfolio home, Pages directory, repository browser, and Games hub with a visible toggle, `aria-expanded`, and `aria-controls`.
+- Restored mobile navigation on the portfolio home, Pages directory, repository browser, Games hub, and all five playable game pages with visible toggles, `aria-expanded`, and `aria-controls`.
+- Restored mobile navigation on the NSO Kryptonite, OBLISK, and AI Nexus pages without replacing their product-specific visual systems.
 - Added a responsive, keyboard-operable menu to the shared brand ribbon used on project surfaces that do not provide their own navigation.
 - Corrected the same escaped-newline markup defect in the NSO Kryptonite entry page while preserving its product-specific Orbitron/Rajdhani design.
 - Replaced the Contextual Memory UI's placeholder entry document with a responsive project overview. The page explicitly states that its previous entry file contained placeholder application code and does not claim that imports, search, analytics, or a live knowledge graph are operational.
+- Expanded the Pages directory with the CIVWATCH status and standards pages and a separate section for publication candidates whose GitHub Pages availability is not confirmed (POWDER-RANGER STONE, Joker Eye Tracker, and the profile companion page).
 
 ### Validation boundary
 
