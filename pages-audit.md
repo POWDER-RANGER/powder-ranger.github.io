@@ -85,6 +85,8 @@ This pass verified repository source, not the published browser experience. Do n
 - Expanded the Pages directory with the CIVWATCH status and standards pages and a separate section for publication candidates whose GitHub Pages availability is not confirmed (POWDER-RANGER STONE, Joker Eye Tracker, and the profile companion page).
 - Added a dedicated POWDER-RANGER STONE root landing page and fixed the translator's teaching-prompt path. The Pages setting itself remains unverified.
 - Corrected Joker Eye Tracker's missing-artwork disclosure: the tracked `joker-original.jpg` is text placeholder content, not an image. Added accessible zoom behavior and metadata without inventing or substituting artwork.
+- Aligned the portfolio repository README with `BRAND.md`: crimson shields, no third-party Vercel statistics widgets, and no stale repository count. Corrected AI Nexus directory/README copy to state that local LLM inference remains planned rather than live.
+- Reconciled Joker Eye Tracker's setup documentation with its actual single-image runtime, and linked STONE documentation to rendered GitHub source pages because `.nojekyll` disables Markdown processing on the static site.
 
 ### Validation boundary
 
