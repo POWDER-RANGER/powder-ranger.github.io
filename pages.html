@@ -28,7 +28,15 @@ h1 span{color:var(--red)}
 h2{font-weight:700;font-size:1.3rem;letter-spacing:.06em;margin:28px 0 14px}
 footer{border-top:8px solid var(--red);padding:32px 20px;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute)}
 footer a{color:var(--red)}
-@media(max-width:640px){.nav-links{display:none}}
+
+.nav-toggle{display:none;background:var(--panel);color:var(--ink);border:2px solid var(--red);padding:8px 10px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;cursor:pointer}
+.nav-toggle:focus-visible,.nav-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:640px){
+  nav .inner{height:56px}
+  .nav-toggle{display:inline-block}
+  .nav-links{display:none;position:absolute;top:56px;left:0;right:0;padding:12px 20px 18px;background:var(--bg);border-bottom:3px solid var(--red);flex-direction:column;gap:14px;font-size:.78rem}
+  .nav-links.is-open{display:flex}
+}
 .wrap{max-width:1100px;margin:0 auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:0;border-top:3px solid var(--red);border-left:3px solid var(--red)}
 .card{background:var(--panel);border-right:3px solid var(--red);border-bottom:3px solid var(--red);padding:20px;display:flex;flex-direction:column;gap:8px;min-height:140px;position:relative}
@@ -39,12 +47,15 @@ footer a{color:var(--red)}
 .meta{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;color:var(--red)}
 .card.aligned{background:var(--panel-2)}
 </style>
-\n<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">\n</head>
+
+<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">
+</head>
 <body>
 <nav>
   <div class="inner">
     <a class="brand" href="/">POWDER-RANGER</a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <div class="nav-links" id="primary-navigation">
       <a href="/">Home</a>
       <a href="repos.html">Repos</a>
       <a class="active" href="pages.html">Pages</a>
@@ -87,4 +98,33 @@ footer a{color:var(--red)}
   </div>
 </main>
 <footer><a href="/">Home</a> · <a href="https://github.com/POWDER-RANGER">GitHub</a></footer>
-\n<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>\n</body>\n</html>
+
+<script>
+(() => {
+  const toggle = document.querySelector(".nav-toggle");
+  const menu = document.querySelector("#primary-navigation");
+  if (!toggle || !menu) return;
+  toggle.addEventListener("click", () => {
+    const expanded = toggle.getAttribute("aria-expanded") === "true";
+    toggle.setAttribute("aria-expanded", String(!expanded));
+    toggle.textContent = expanded ? "Menu" : "Close";
+    menu.classList.toggle("is-open", !expanded);
+  });
+  menu.addEventListener("click", event => {
+    if (!event.target.closest("a") || window.matchMedia("(min-width: 641px)").matches) return;
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Menu";
+    menu.classList.remove("is-open");
+  });
+  window.addEventListener("resize", () => {
+    if (window.matchMedia("(min-width: 641px)").matches) {
+      toggle.setAttribute("aria-expanded", "false");
+      toggle.textContent = "Menu";
+      menu.classList.remove("is-open");
+    }
+  });
+})();
+</script>
+<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>
+</body>
+</html>
