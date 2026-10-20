@@ -68,3 +68,26 @@ The previous backlog entry claiming those four games were still queued was stale
 ## 6. Remaining housekeeping
 
 The major visual alignment pass is complete. Remaining work is primarily content-level refinement, accessibility QA, and publication verification for any repository whose GitHub Pages source/build configuration is external to the edited HTML entry point.
+
+## 7. 2026-10-20 source-level audit update
+
+This pass verified repository source, not the published browser experience. Do not treat a merged commit or a successful source check as proof that GitHub Pages has rebuilt or that every destination is reachable.
+
+### Confirmed source fixes
+
+- Replaced literal escaped newline sequences around shared stylesheet/script tags in the portfolio home, Pages directory, repository browser, Games hub, Deviant page, HF Bot page, and Flappy page.
+- Restored mobile navigation on the portfolio home, Pages directory, repository browser, and Games hub with a visible toggle, `aria-expanded`, and `aria-controls`.
+- Added a responsive, keyboard-operable menu to the shared brand ribbon used on project surfaces that do not provide their own navigation.
+- Corrected the same escaped-newline markup defect in the NSO Kryptonite entry page while preserving its product-specific Orbitron/Rajdhani design.
+- Replaced the Contextual Memory UI's placeholder entry document with a responsive project overview. The page explicitly states that its previous entry file contained placeholder application code and does not claim that imports, search, analytics, or a live knowledge graph are operational.
+
+### Validation boundary
+
+Source-level checks confirmed that the listed files no longer contain the identified literal escaped-newline sequences and that the expected mobile menu controls exist. No live deployment, browser rendering, touch interaction, game-play regression, link crawl, or cross-device accessibility test is claimed by this pass. The portfolio repository currently has no `.github/workflows` directory on its default branch, so this audit did not identify an Actions-based Pages build to verify.
+
+### Remaining work
+
+1. Confirm publication state and canonical URLs for each listed Pages destination.
+2. Test mobile navigation, keyboard focus, contrast, and reduced-motion behavior in an actual browser.
+3. Validate that project links and external destinations resolve, and label unavailable or archived surfaces accurately.
+4. Continue page-by-page content review without replacing functioning project UIs with static mockups or overriding product-specific identity.
