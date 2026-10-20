@@ -269,7 +269,9 @@
             .input-group { flex-direction: column; }
         }
     </style>
-\n<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">\n</head>
+
+<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">
+</head>
 <body>
     <div class="bg-particles" id="particles"></div>
 
@@ -443,7 +445,11 @@
         });
 
         // Initial welcome message
-        addMessage('🚀 Welcome to HF Bot! Configure your Hugging Face token in the browser console:\n\nsetHFToken("your-hf-token")\n\nThen start chatting!', false);
+        addMessage('🚀 Welcome to HF Bot! Configure your Hugging Face token in the browser console:
+
+setHFToken("your-hf-token")
+
+Then start chatting!', false);
         
         if (HF_TOKEN) {
             modelInfo.textContent = '✓ Token found in storage. Ready to chat!';
@@ -453,4 +459,7 @@
             modelInfo.textContent = '⚠ Token not configured. Use console to set token.';
         }
     </script>
-\n<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>\n</body>\n</html>
+
+<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>
+</body>
+</html>
