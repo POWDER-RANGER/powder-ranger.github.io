@@ -1,14 +1,16 @@
 # POWDER-RANGER Portfolio
 
-> **Master portfolio showcasing production-grade open-source systems: AI automation, adversarial security, civic intelligence, multi-agent orchestration, and game networking research.**
+> **Portfolio and project index for independent systems architecture across civic intelligence, AI governance, security tooling, and game networking research.**
 
-[![Portfolio](https://img.shields.io/badge/Portfolio-Live-00FF88?style=for-the-badge&labelColor=0D1117)](https://powder-ranger.github.io)
-[![Repos](https://img.shields.io/badge/Repos-46+-00EEFF?style=for-the-badge&labelColor=0D1117)](https://github.com/POWDER-RANGER?tab=repositories)
-[![GitHub](https://img.shields.io/badge/GitHub-POWDER--RANGER-181717?style=for-the-badge&logo=github)](https://github.com/POWDER-RANGER)
+[![PORTFOLIO](https://img.shields.io/badge/PORTFOLIO-OPEN-E31C23?style=for-the-badge&labelColor=0A0000)](https://powder-ranger.github.io)
+[![PROJECT INDEX](https://img.shields.io/badge/PROJECT%20INDEX-BROWSE-E31C23?style=for-the-badge&labelColor=0A0000)](https://powder-ranger.github.io/pages.html)
+[![GITHUB](https://img.shields.io/badge/GITHUB-POWDER--RANGER-E31C23?style=for-the-badge&logo=github&logoColor=F2E8E8&labelColor=0A0000)](https://github.com/POWDER-RANGER)
 
 ---
 
-## 🌐 Live Project Hubs
+## Project sites and hubs
+
+The [Pages directory](https://powder-ranger.github.io/pages.html) is the canonical index for project destinations and publication checks. Links below are selected entry points; source links and repository status remain the authority for implementation details.
 
 | Project | Link | Description | Tech |
 |---------|------|-------------|------|
@@ -67,18 +69,6 @@
 
 ---
 
-## 📊 GitHub Stats
-
-<div align="center">
-
-![POWDER-RANGER's GitHub Stats](https://github-readme-stats.vercel.app/api?username=POWDER-RANGER&show_icons=true&theme=github_dark&hide_border=true&count_private=true)
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=POWDER-RANGER&layout=compact&theme=github_dark&hide_border=true)
-
-</div>
-
----
-
 ## 🔗 Connect
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Curtis_Farrar-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/curtis-farrar-20aa3525b)
@@ -87,4 +77,4 @@
 
 ---
 
-*POWDER-RANGER © 2026 // MYTHOTECHNICS ACTIVE // 46 REPOSITORIES // ZERO TRUST BY DESIGN*
+*POWDER-RANGER © 2026 // SOURCE FIRST // PROJECT INDEX // ZERO TRUST BY DESIGN*
