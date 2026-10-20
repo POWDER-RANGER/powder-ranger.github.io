@@ -3,7 +3,7 @@
 **Baseline:** [BRAND.md](./BRAND.md)
 **Reference implementations:** [home](https://powder-ranger.github.io/) · [games](https://powder-ranger.github.io/games/)
 
-This audit was refreshed 2026-10-04 after the Pages branding pass.
+This audit was refreshed 2026-10-20 after the source-level navigation, metadata, and publication-readiness passes.
 
 ## 1. Portfolio core
 
@@ -83,6 +83,8 @@ This pass verified repository source, not the published browser experience. Do n
 - Added page descriptions, Open Graph metadata, and canonical URLs to the portfolio, repository browser, Games hub, legacy surfaces, five game entry pages, and audited project landing pages where those tags were missing.
 - Replaced the Contextual Memory UI's placeholder entry document with a responsive project overview. The page explicitly states that its previous entry file contained placeholder application code and does not claim that imports, search, analytics, or a live knowledge graph are operational.
 - Expanded the Pages directory with the CIVWATCH status and standards pages and a separate section for publication candidates whose GitHub Pages availability is not confirmed (POWDER-RANGER STONE, Joker Eye Tracker, and the profile companion page).
+- Added a dedicated POWDER-RANGER STONE root landing page and fixed the translator's teaching-prompt path. The Pages setting itself remains unverified.
+- Corrected Joker Eye Tracker's missing-artwork disclosure: the tracked `joker-original.jpg` is text placeholder content, not an image. Added accessible zoom behavior and metadata without inventing or substituting artwork.
 
 ### Validation boundary
 
