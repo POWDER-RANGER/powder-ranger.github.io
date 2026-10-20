@@ -81,6 +81,7 @@ This pass verified repository source, not the published browser experience. Do n
 - Added a responsive, keyboard-operable menu to the shared brand ribbon used on project surfaces that do not provide their own navigation.
 - Corrected the same escaped-newline markup defect in the NSO Kryptonite entry page while preserving its product-specific Orbitron/Rajdhani design.
 - Added page descriptions, Open Graph metadata, and canonical URLs to the portfolio, repository browser, Games hub, legacy surfaces, five game entry pages, and audited project landing pages where those tags were missing.
+- Added the CIVWATCH architectural blueprint to the Pages directory and added description/Open Graph metadata to its source page; status and standards pages remain separately listed.
 - Replaced the Contextual Memory UI's placeholder entry document with a responsive project overview. The page explicitly states that its previous entry file contained placeholder application code and does not claim that imports, search, analytics, or a live knowledge graph are operational.
 - Expanded the Pages directory with the CIVWATCH status and standards pages and a separate section for publication candidates whose GitHub Pages availability is not confirmed (POWDER-RANGER STONE, Joker Eye Tracker, and the profile companion page).
 - Added a dedicated POWDER-RANGER STONE root landing page and fixed the translator's teaching-prompt path. The Pages setting itself remains unverified.
