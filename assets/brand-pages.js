@@ -17,7 +17,8 @@
     ribbon.innerHTML = `
       <div class="pr-brand-ribbon-inner">
         <a class="pr-brand-ribbon-brand" href="https://powder-ranger.github.io/">POWDER-RANGER</a>
-        <div class="pr-brand-ribbon-links">
+        <button class="pr-brand-ribbon-toggle" type="button" aria-expanded="false" aria-controls="pr-brand-ribbon-navigation">MENU</button>
+        <div class="pr-brand-ribbon-links" id="pr-brand-ribbon-navigation">
           <a href="https://powder-ranger.github.io/">HOME</a>
           <a href="https://powder-ranger.github.io/pages.html">PAGES</a>
           <a href="https://powder-ranger.github.io/games/">GAMES</a>
@@ -28,6 +29,27 @@
       </div>`;
     document.body.prepend(ribbon);
     document.body.style.paddingTop = "54px";
+    const toggle = ribbon.querySelector(".pr-brand-ribbon-toggle");
+    const links = ribbon.querySelector(".pr-brand-ribbon-links");
+    toggle?.addEventListener("click", () => {
+      const expanded = toggle.getAttribute("aria-expanded") === "true";
+      toggle.setAttribute("aria-expanded", String(!expanded));
+      toggle.textContent = expanded ? "MENU" : "CLOSE";
+      links?.classList.toggle("is-open", !expanded);
+    });
+    links?.addEventListener("click", event => {
+      if (!event.target.closest("a") || window.matchMedia("(min-width: 761px)").matches) return;
+      toggle?.setAttribute("aria-expanded", "false");
+      if (toggle) toggle.textContent = "MENU";
+      links.classList.remove("is-open");
+    });
+    window.addEventListener("resize", () => {
+      if (window.matchMedia("(min-width: 761px)").matches) {
+        toggle?.setAttribute("aria-expanded", "false");
+        if (toggle) toggle.textContent = "MENU";
+        links?.classList.remove("is-open");
+      }
+    });
   }
 
   if (!document.querySelector('meta[name="theme-color"]')) {
