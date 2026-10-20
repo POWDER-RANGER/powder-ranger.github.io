@@ -60,20 +60,20 @@ The [Pages directory](https://powder-ranger.github.io/pages.html) is the canonic
 
 ## 🛠️ Tech Stack
 
-![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?style=flat&logo=three.js)
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat&logo=typescript)
-![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat&logo=python)
-![PowerShell](https://img.shields.io/badge/PowerShell-7-5391FE?style=flat&logo=powershell)
-![Rust](https://img.shields.io/badge/Rust-1.0-000000?style=flat&logo=rust)
+![Three.js](https://img.shields.io/badge/Three.js-WebGL-E31C23?style=flat&logo=three.js&logoColor=F2E8E8&labelColor=0A0000)
+![React](https://img.shields.io/badge/React-19-E31C23?style=flat&logo=react&logoColor=F2E8E8&labelColor=0A0000)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-E31C23?style=flat&logo=typescript&logoColor=F2E8E8&labelColor=0A0000)
+![Python](https://img.shields.io/badge/Python-3.12-E31C23?style=flat&logo=python&logoColor=F2E8E8&labelColor=0A0000)
+![PowerShell](https://img.shields.io/badge/PowerShell-7-E31C23?style=flat&logo=powershell&logoColor=F2E8E8&labelColor=0A0000)
+![Rust](https://img.shields.io/badge/Rust-1.0-E31C23?style=flat&logo=rust&logoColor=F2E8E8&labelColor=0A0000)
 
 ---
 
 ## 🔗 Connect
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Curtis_Farrar-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/curtis-farrar-20aa3525b)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--9273--2458-A6CE39?style=flat&logo=orcid)](https://orcid.org/0009-0008-9273-2458)
-[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-FF69B4?style=flat&logo=github-sponsors)](https://github.com/sponsors/powder-ranger)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Curtis_Farrar-E31C23?style=flat&logo=linkedin&logoColor=F2E8E8&labelColor=0A0000)](https://www.linkedin.com/in/curtis-farrar-20aa3525b)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0008--9273--2458-E31C23?style=flat&logo=orcid&logoColor=F2E8E8&labelColor=0A0000)](https://orcid.org/0009-0008-9273-2458)
+[![GitHub Sponsors](https://img.shields.io/badge/Sponsor-E31C23?style=flat&logo=github-sponsors&logoColor=F2E8E8&labelColor=0A0000)](https://github.com/sponsors/powder-ranger)
 
 ---
 
