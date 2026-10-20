@@ -90,18 +90,26 @@
       text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute);
     }
     footer a{color:var(--red)}
+    .nav-toggle{display:none;background:var(--panel);color:var(--ink);border:2px solid var(--red);padding:8px 10px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;cursor:pointer}
+    .nav-toggle:focus-visible,.nav-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
     @media(max-width:640px){
-      .nav-links{display:none}
+      nav .inner{height:56px}
+      .nav-toggle{display:inline-block}
+      .nav-links{display:none;position:absolute;top:56px;left:0;right:0;padding:12px 20px 18px;background:var(--bg);border-bottom:3px solid var(--red);flex-direction:column;gap:14px;font-size:.78rem}
+      .nav-links.is-open{display:flex}
       .btn-ghost{margin-left:0;margin-top:-3px}
     }
     @media(prefers-reduced-motion:reduce){.dot{animation:none}}
   </style>
-\n<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">\n</head>
+
+<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">
+</head>
 <body>
   <nav>
     <div class="inner">
       <a class="brand" href="/">POWDER-RANGER</a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+      <div class="nav-links" id="primary-navigation">
         <a class="active" href="/">Home</a>
         <a href="#projects">Projects</a>
         <a href="#civwatch">CIVWATCH</a>
@@ -245,4 +253,7 @@
       setInterval(glitch,12000);
     })();
   </script>
-\n<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>\n</body>\n</html>
+
+<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>
+</body>
+</html>
