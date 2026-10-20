@@ -86,13 +86,25 @@ h2{font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.06em;margi
   .btn.ghost{margin-left:0;margin-top:-3px}
 }
 @media (prefers-reduced-motion:reduce){.badge i,h1.glitch{animation:none}}
+
+.nav-toggle{display:none;background:var(--panel,#120000);color:var(--ink,#F2E8E8);border:2px solid var(--red,#E31C23);padding:8px 10px;font-family:var(--mono,'Share Tech Mono',monospace);font-size:.7rem;letter-spacing:.12em;cursor:pointer}
+.nav-toggle:focus-visible,.nav-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:640px){
+  nav .inner{height:auto;min-height:56px;position:relative;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+  .nav-toggle{display:inline-block;margin-left:auto}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;padding:12px 20px 18px;background:var(--bg,#0a0000);border-bottom:3px solid var(--red,#E31C23);flex-direction:column;gap:14px;font-size:.78rem;z-index:60}
+  .nav-links.is-open{display:flex}
+}
 </style>
-\n<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">\n</head>
+
+<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">
+</head>
 <body>
 <nav>
   <div class="inner">
     <a class="brand" href="#top">GAMES DIVISION</a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <div class="nav-links" id="primary-navigation">
       <a href="#roster">Roster</a>
       <a href="#standards">Standards</a>
       <a href="#engine">Engine</a>
@@ -231,4 +243,33 @@ h2{font-weight:700;font-size:clamp(1.6rem,4vw,2.4rem);letter-spacing:.06em;margi
   setInterval(run, 7000);
 })();
 </script>
-\n<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>\n</body>\n</html>
+
+<script>
+(function(){
+  var toggle=document.querySelector(".nav-toggle");
+  var menu=document.querySelector("#primary-navigation");
+  if(!toggle||!menu)return;
+  toggle.addEventListener("click",function(){
+    var expanded=toggle.getAttribute("aria-expanded")==="true";
+    toggle.setAttribute("aria-expanded",String(!expanded));
+    toggle.textContent=expanded?"Menu":"Close";
+    menu.classList.toggle("is-open",!expanded);
+  });
+  menu.addEventListener("click",function(event){
+    if(!event.target.closest("a")||window.matchMedia("(min-width:641px)").matches)return;
+    toggle.setAttribute("aria-expanded","false");
+    toggle.textContent="Menu";
+    menu.classList.remove("is-open");
+  });
+  window.addEventListener("resize",function(){
+    if(window.matchMedia("(min-width:641px)").matches){
+      toggle.setAttribute("aria-expanded","false");
+      toggle.textContent="Menu";
+      menu.classList.remove("is-open");
+    }
+  });
+})();
+</script>
+<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>
+</body>
+</html>
