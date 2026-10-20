@@ -64,13 +64,25 @@ textarea,input[type=text]{width:100%;background:var(--bg);border:3px solid var(-
 .out{margin-top:10px;padding:10px;background:var(--bg);border:2px solid var(--line);color:var(--mute);font-size:.78rem;word-break:break-all;font-family:var(--mono)}
 .preview{max-width:100%;margin-top:10px;display:none;border:3px solid var(--red)}
 .preview.show{display:block}
+
+.nav-toggle{display:none;background:var(--panel,#120000);color:var(--ink,#F2E8E8);border:2px solid var(--red,#E31C23);padding:8px 10px;font-family:var(--mono,'Share Tech Mono',monospace);font-size:.7rem;letter-spacing:.12em;cursor:pointer}
+.nav-toggle:focus-visible,.nav-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(max-width:640px){
+  nav .inner{height:auto;min-height:56px;position:relative;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+  .nav-toggle{display:inline-block;margin-left:auto}
+  .nav-links{display:none;position:absolute;top:100%;left:0;right:0;padding:12px 20px 18px;background:var(--bg,#0a0000);border-bottom:3px solid var(--red,#E31C23);flex-direction:column;gap:14px;font-size:.78rem;z-index:60}
+  .nav-links.is-open{display:flex}
+}
 </style>
-\n<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">\n</head>
+
+<link rel="stylesheet" href="https://powder-ranger.github.io/assets/brand-pages.css">
+</head>
 <body>
 <nav>
   <div class="inner">
     <a class="brand" href="/">POWDER-RANGER</a>
-    <div class="nav-links">
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">Menu</button>
+    <div class="nav-links" id="primary-navigation">
       <a href="/">Home</a>
       <a class="active" href="repos.html">Repos</a>
       <a href="pages.html">Pages</a>
@@ -207,4 +219,33 @@ textarea,input[type=text]{width:100%;background:var(--bg);border:3px solid var(-
   function searchCIA(){var q=document.getElementById('ciaSearchQuery').value.trim();if(!q){document.getElementById('ciaStatus').textContent='Enter a term';return;}window.open('https://www.cia.gov/readingroom/search/site/'+encodeURIComponent(q),'_blank','noopener');document.getElementById('ciaStatus').textContent='Opened official search';}
   function openTool(url){window.open(url,'_blank','noopener');}
 </script>
-\n<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>\n</body>\n</html>
+
+<script>
+(function(){
+  var toggle=document.querySelector(".nav-toggle");
+  var menu=document.querySelector("#primary-navigation");
+  if(!toggle||!menu)return;
+  toggle.addEventListener("click",function(){
+    var expanded=toggle.getAttribute("aria-expanded")==="true";
+    toggle.setAttribute("aria-expanded",String(!expanded));
+    toggle.textContent=expanded?"Menu":"Close";
+    menu.classList.toggle("is-open",!expanded);
+  });
+  menu.addEventListener("click",function(event){
+    if(!event.target.closest("a")||window.matchMedia("(min-width:641px)").matches)return;
+    toggle.setAttribute("aria-expanded","false");
+    toggle.textContent="Menu";
+    menu.classList.remove("is-open");
+  });
+  window.addEventListener("resize",function(){
+    if(window.matchMedia("(min-width:641px)").matches){
+      toggle.setAttribute("aria-expanded","false");
+      toggle.textContent="Menu";
+      menu.classList.remove("is-open");
+    }
+  });
+})();
+</script>
+<script defer src="https://powder-ranger.github.io/assets/brand-pages.js"></script>
+</body>
+</html>
