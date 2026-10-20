@@ -95,10 +95,26 @@ body.pr-brand-surface a{
   animation:pr-pulse 1.6s ease-in-out infinite;
 }
 @keyframes pr-pulse{0%,100%{opacity:1}50%{opacity:.35}}
+ .pr-brand-ribbon-toggle{
+  display:none;background:var(--pr-bg);color:var(--pr-ink);
+  border:2px solid var(--pr-red);padding:7px 9px;
+  font:inherit;font-size:.62rem;letter-spacing:.1em;cursor:pointer;
+}
+.pr-brand-ribbon-toggle:focus-visible,
+.pr-brand-ribbon-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(max-width:760px){
-  .pr-brand-ribbon-links{display:none}
+  .pr-brand-ribbon-inner{position:relative}
   .pr-brand-ribbon-brand{font-size:.78rem}
   .pr-brand-ribbon-status{font-size:.55rem}
+  .pr-brand-ribbon-toggle{display:inline-block;margin-left:auto;white-space:nowrap}
+  .pr-brand-ribbon-links{
+    display:none;position:absolute;top:49px;left:0;right:0;
+    padding:14px 18px 18px;background:var(--pr-bg);
+    border-bottom:3px solid var(--pr-red);flex-direction:column;
+    align-items:stretch;gap:14px;font-size:.72rem;
+  }
+  .pr-brand-ribbon-links.is-open{display:flex}
+  .pr-brand-ribbon-source{border-left:0;border-top:2px solid var(--pr-red);padding:10px 0 0}
 }
 @media(prefers-reduced-motion:reduce){
   .pr-brand-ribbon-status::before{animation:none}
