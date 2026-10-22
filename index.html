@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Curtis Charles Farrar — systems architect. Civic intelligence, multi-agent AI, zero-trust design.">
+  <meta name="description" content="Curtis Charles Farrar — systems architect. 38 open-source projects across AI governance, civic intelligence, security, automation, game netcode, creative tooling and data visualization.">
   <meta name="theme-color" content="#0a0000">
   <title>POWDER-RANGER | Portfolio</title>
 <link rel="canonical" href="https://powder-ranger.github.io/">
@@ -97,6 +97,19 @@
     footer a{color:var(--red)}
     .nav-toggle{display:none;background:var(--panel);color:var(--ink);border:2px solid var(--red);padding:8px 10px;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;cursor:pointer}
     .nav-toggle:focus-visible,.nav-links a:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    .links{display:flex;flex-wrap:wrap;gap:16px;margin-top:8px}
+    .links .more{margin-top:0}
+    .jump{display:flex;flex-wrap:wrap;border:3px solid var(--red);margin:8px 0 40px}
+    .jump .chip{border-right:3px solid var(--red);border-bottom:0}
+    .jump .chip:hover{background:var(--red);color:#fff}
+    .jump .chip:hover strong{color:#fff}
+    .domain{margin-bottom:48px;scroll-margin-top:72px}
+    .domain-head{display:flex;align-items:baseline;justify-content:space-between;border-bottom:3px solid var(--red);padding-bottom:8px;margin-bottom:8px}
+    .dh{font-weight:700;font-size:clamp(1.1rem,3vw,1.5rem);letter-spacing:.06em}
+    .count{font-family:var(--mono);font-size:1.4rem;color:var(--red)}
+    .sub{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;color:var(--mute);margin-bottom:16px}
+    .about a{color:var(--red)}
+    section[id]{scroll-margin-top:52px}
     @media(max-width:640px){
       nav .inner{height:56px}
       .nav-toggle{display:inline-block}
@@ -117,7 +130,10 @@
       <div class="nav-links" id="primary-navigation">
         <a class="active" href="/">Home</a>
         <a href="#projects">Projects</a>
+        <a href="#artifacts">Artifacts</a>
+        <a href="#catalog">Catalog</a>
         <a href="#civwatch">CIVWATCH</a>
+        <a href="#credentials">Credentials</a>
         <a href="repos.html">Repos</a>
         <a href="pages.html">Pages</a>
         <a href="games/">Games</a>
@@ -134,14 +150,17 @@
       <h1 id="hero-title">POWDER<br><span>RANGER</span></h1>
       <p class="lead">Systems that think, defend, and serve the public good. Multi-agent governance. Civic intelligence. Zero-trust design.</p>
       <div class="cta">
-        <a class="btn btn-primary" href="#projects">View projects</a>
+        <a class="btn btn-primary" href="#catalog">Full catalog</a>
+        <a class="btn btn-ghost" href="#projects">Featured</a>
         <a class="btn btn-ghost" href="https://github.com/POWDER-RANGER">GitHub</a>
       </div>
       <div class="chips">
         <span class="chip" id="repo-count">Repos…</span>
-        <span class="chip">Governance</span>
-        <span class="chip">Civic</span>
-        <span class="chip">Security</span>
+        <span class="chip"><strong>38</strong> projects</span>
+        <span class="chip"><strong>15</strong> live surfaces</span>
+        <span class="chip"><strong>10</strong> Claude artifacts</span>
+        <span class="chip"><strong>9</strong> domains</span>
+        <span class="chip">Since <strong>2024</strong></span>
       </div>
     </div>
   </header>
@@ -205,6 +224,428 @@
           <p>Desktop AI orchestration. Browser automation.</p>
           <a class="more" href="https://github.com/POWDER-RANGER/CharlesAI">Open repo →</a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="artifacts">
+    <div class="wrap">
+      <p class="kicker">Built with Claude // published from my Anthropic account</p>
+      <h2>Claude artifacts</h2>
+      <p class="about">Design docs, briefings and plans published as artifacts on claude.ai. The <a href="https://powder-ranger.github.io/Artifact-Catalog/">Artifact Catalog</a> indexes the full body of Claude artifact work since Oct 2024 across nine domains.</p>
+      <div class="grid">
+          <article class="card">
+            <span class="status">Claude artifact // Interactive briefing</span>
+            <h3><a href="https://claude.ai/artifact/X9ubbsYEh5aKcWkrePgJeE">PR-REX Briefing</a></h3>
+            <p>Powder Ranger companion: Governor packet path, Legend hand-off controls, prep/play learning model.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/X9ubbsYEh5aKcWkrePgJeE">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Doc</span>
+            <h3><a href="https://claude.ai/artifact/DGvhUvyR8kH5T6izjo8neJ">Powder Ranger: Project Map, Status and Vision</a></h3>
+            <p>Project map, current build status and long-range vision for the Powder Ranger game companion.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/DGvhUvyR8kH5T6izjo8neJ">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Doc</span>
+            <h3><a href="https://claude.ai/artifact/WfV9hEzH2PFBjLaiP33VDS">Powder Ranger: Code Review and Landscape Comparison</a></h3>
+            <p>Code review of powder-ranger-bot and comparison against existing game-agent projects.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/WfV9hEzH2PFBjLaiP33VDS">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Doc</span>
+            <h3><a href="https://claude.ai/artifact/11rdmWbCUpreJWQWDkFcoF">Powder Ranger Game Companion: Design Doc</a></h3>
+            <p>Design document for the accessibility-first game companion and its human-constraint architecture.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/11rdmWbCUpreJWQWDkFcoF">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Doc</span>
+            <h3><a href="https://claude.ai/artifact/V4Z7j2VUDSR1y1Qgkb1XPe">CIVWATCH: The Fog, Strategy and Thesis</a></h3>
+            <p>Strategy and thesis for the CIVWATCH civic transparency program.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/V4Z7j2VUDSR1y1Qgkb1XPe">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Plan</span>
+            <h3><a href="https://claude.ai/artifact/19Nt3G6SZQYtkC1QDjAyxH">CIVINT Reticulum Integration</a></h3>
+            <p>Integrating CIVINT with the Reticulum network stack for local-first, off-grid transport.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/19Nt3G6SZQYtkC1QDjAyxH">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Page</span>
+            <h3><a href="https://claude.ai/artifact/QLEqcJ7jWnF6p2ALKn71pq">CIVWATCH</a></h3>
+            <p>CIVWATCH project artifact.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/QLEqcJ7jWnF6p2ALKn71pq">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Plan</span>
+            <h3><a href="https://claude.ai/artifact/RrvtSAG1B9FqDwNbpyrNiD">CIVINT Integration Plan</a></h3>
+            <p>Data-source and API wiring plan for the CIVINT surveillance map.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/RrvtSAG1B9FqDwNbpyrNiD">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Preview</span>
+            <h3><a href="https://claude.ai/artifact/SSsnVBezSGStvBcyeLTLzH">POWDER-RANGER Workspace Preview</a></h3>
+            <p>Workspace preview for the POWDER-RANGER system.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/SSsnVBezSGStvBcyeLTLzH">Open artifact →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Claude artifact // Design system</span>
+            <h3><a href="https://claude.ai/artifact/EuXtngA7Eg8byGYUc2LHYm">Design System</a></h3>
+            <p>POWDER-RANGER design system: colors, type, spacing and components.</p>
+            <div class="links"><a class="more" href="https://claude.ai/artifact/EuXtngA7Eg8byGYUc2LHYm">Open artifact →</a></div>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="catalog">
+    <div class="wrap">
+      <p class="kicker">Full inventory // 38 projects // 9 domains</p>
+      <h2>Everything, by domain</h2>
+      <p class="about">Every owned public repository, grouped by domain. Each card links to source; cards with a live surface link there first. Forks and empty placeholders are excluded. The <a href="repos.html">repository browser</a> pulls the same catalog live from GitHub.</p>
+      <div class="jump">
+        <a class="chip" href="#d-ai">AI agents &amp; governance <strong>7</strong></a>
+        <a class="chip" href="#d-civic">Civic intelligence <strong>8</strong></a>
+        <a class="chip" href="#d-security">Security &amp; OSINT <strong>2</strong></a>
+        <a class="chip" href="#d-automation">Desktop AI &amp; automation <strong>4</strong></a>
+        <a class="chip" href="#d-games">Games, netcode &amp; game agents <strong>5</strong></a>
+        <a class="chip" href="#d-creative">Creative &amp; music systems <strong>4</strong></a>
+        <a class="chip" href="#d-language">Language &amp; writing <strong>1</strong></a>
+        <a class="chip" href="#d-data">Finance, data &amp; visualization <strong>3</strong></a>
+        <a class="chip" href="#d-archive">Portfolio &amp; archive <strong>4</strong></a>
+      </div>
+      <div class="domain" id="d-ai">
+        <div class="domain-head"><h3 class="dh">AI agents &amp; governance</h3><span class="count">07</span></div>
+        <p class="sub">Governance enforced in the architecture, not bolted on.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Released // Python</span>
+            <h3><a href="https://powder-ranger.github.io/RED-AGENT-GOV/">RED-AGENT-GOV</a></h3>
+            <p>Governance-enforced agent engine for adversarial environments. Six-directive output gate, deterministic FSM, hash-chained audit, cryptographic teardown.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/RED-AGENT-GOV/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/RED-AGENT-GOV">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Beta // Python</span>
+            <h3><a href="https://powder-ranger.github.io/OBLISK/">OBLISK</a></h3>
+            <p>Multi-agent AI system with encrypted vaults, governance and symbolic planning.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/OBLISK/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/OBLISK">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Spec // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/OBELISK-Enterprise">OBELISK-Enterprise</a></h3>
+            <p>OBELISK v2.5 governance platform plan. 33 deliverables across infrastructure, vertical domains, commercial, red team and ecosystem phases.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/OBELISK-Enterprise">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Tool // Rust</span>
+            <h3><a href="https://github.com/POWDER-RANGER/guiding-light-ai">guiding-light-ai</a></h3>
+            <p>Rust CLI that turns stated values into enforceable policy: Git hooks, decision journal, optional local LLM reflection via Ollama.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/guiding-light-ai">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Research // Architecture</span>
+            <h3><a href="https://github.com/POWDER-RANGER/flea-flicker-llms">flea-flicker-llms</a></h3>
+            <p>Transient-residency inference as deliberate architecture.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/flea-flicker-llms">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Prototype // JavaScript</span>
+            <h3><a href="https://powder-ranger.github.io/contextual-memory-ui/">contextual-memory-ui</a></h3>
+            <p>Memory-layer UI for searching and analyzing conversations across ChatGPT, Claude, Perplexity and Gemini.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/contextual-memory-ui/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/contextual-memory-ui">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Prototype // HTML</span>
+            <h3><a href="https://powder-ranger.github.io/ai-nexus/">ai-nexus</a></h3>
+            <p>Browser-based AI workbench: image, music, voice and multi-modal tools. Local model inference planned.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/ai-nexus/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/ai-nexus">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-civic">
+        <div class="domain-head"><h3 class="dh">Civic intelligence // CIVWATCH</h3><span class="count">08</span></div>
+        <p class="sub">Public records, surveillance infrastructure and RF observation. Every record sourced.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Live // JavaScript</span>
+            <h3><a href="https://civintelligence.onrender.com">CivilianIntelligence</a></h3>
+            <p>CIVWATCH web app and system of record. Public records, ALPR map and contracts, each with source and verification status.</p>
+            <div class="links"><a class="more" href="https://civintelligence.onrender.com">Open app →</a><a class="more" href="https://github.com/POWDER-RANGER/CivilianIntelligence">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Project site // TypeScript</span>
+            <h3><a href="https://powder-ranger.github.io/CIVWATCH/">CIVWATCH</a></h3>
+            <p>Project overview, Design Standard v2, status, standards and architectural blueprint.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/CIVWATCH/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/CIVWATCH">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // TypeScript</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-watchtower">civwatch-watchtower</a></h3>
+            <p>Map and report services behind the web app. Design Standard v2 tokens and camera view cones.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-watchtower">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-cell-titan">civwatch-cell-titan</a></h3>
+            <p>Live unified RF observability. Local cell-network observation with a signed, hash-chained evidence log.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-cell-titan">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-v3">civwatch-v3</a></h3>
+            <p>Multi-domain RF observability: cellular, Wi-Fi, D2D and transport defensive monitoring with evidence chain.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-v3">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Dart</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-app">civwatch-app</a></h3>
+            <p>Multi-platform client (Android, iOS, Windows, Linux) for CIVINTELLIGENCE and Cell Titan.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-app">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Source // Platform</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-powder-ranger">civwatch-powder-ranger</a></h3>
+            <p>Open-source civic intelligence platform distribution.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-powder-ranger">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Library // Ruby</span>
+            <h3><a href="https://github.com/POWDER-RANGER/civwatch-ruby-gem">civwatch-ruby-gem</a></h3>
+            <p>Ruby / Rails integration wrapper for the CIVWATCH platform.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/civwatch-ruby-gem">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-security">
+        <div class="domain-head"><h3 class="dh">Security &amp; OSINT</h3><span class="count">02</span></div>
+        <p class="sub">Defensive research, purple-team ranges and open-source intelligence tooling.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Stable // TypeScript</span>
+            <h3><a href="https://powder-ranger.github.io/nso-kryptonite-platform/">nso-kryptonite-platform</a></h3>
+            <p>Adversarial defense command center. Hardened cyber range for authorized purple-team exercises and adversary simulation with detection twinning.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/nso-kryptonite-platform/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/nso-kryptonite-platform">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Tool // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/red-team-osint-tool">red-team-osint-tool</a></h3>
+            <p>Red-team OSINT automation with dark-web monitoring.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/red-team-osint-tool">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-automation">
+        <div class="domain-head"><h3 class="dh">Desktop AI &amp; automation</h3><span class="count">04</span></div>
+        <p class="sub">Natural language to real application control on Windows.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Active // PowerShell</span>
+            <h3><a href="https://powder-ranger.github.io/OBELISK-Desktop-AI/">OBELISK-Desktop-AI</a></h3>
+            <p>General-purpose desktop orchestrator. Natural language to automation across any Windows app via Ollama, PowerShell and UIAutomation.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/OBELISK-Desktop-AI/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/OBELISK-Desktop-AI">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Stable // PowerShell</span>
+            <h3><a href="https://github.com/POWDER-RANGER/CharlesAI">CharlesAI</a></h3>
+            <p>COMET agent v3.0. Memory, AI orchestration, browser automation and OBELISK encryption vault.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/CharlesAI">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Build // PowerShell</span>
+            <h3><a href="https://github.com/POWDER-RANGER/charles-ai-ultra-exe">charles-ai-ultra-exe</a></h3>
+            <p>CHARLES.AI Ultra v3.0 packaged .EXE build.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/charles-ai-ultra-exe">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Stable // PowerShell</span>
+            <h3><a href="https://github.com/POWDER-RANGER/CONductOR">CONductOR</a></h3>
+            <p>Windows-native AI orchestration assistant. Multi-service chat, browser automation, PowerShell control.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/CONductOR">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-games">
+        <div class="domain-head"><h3 class="dh">Games, netcode &amp; game agents</h3><span class="count">05</span></div>
+        <p class="sub">Multiplayer state reconciliation, deterministic simulation, vision-driven agents.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Research // C++</span>
+            <h3><a href="https://powder-ranger.github.io/nine-realities-netcode/">nine-realities-netcode</a></h3>
+            <p>Multi-client state reconciliation. The N+1 concurrent simulation model and nine-realities framework.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/nine-realities-netcode/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/nine-realities-netcode">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // TypeScript</span>
+            <h3><a href="https://powder-ranger.github.io/dojin-d/">dojin-d</a></h3>
+            <p>ECS deterministic combat simulation with rollback netcode, dojo rule engine and spectator pipeline.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/dojin-d/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/dojin-d">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://powder-ranger.github.io/powder-ranger-bot/">powder-ranger-bot</a></h3>
+            <p>Single-player game agent. YOLOv8 vision, Behavior Tree / GOAP planners, local Ollama brain, DirectInput. CPU-only.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/powder-ranger-bot/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/powder-ranger-bot">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Prototype // Kotlin</span>
+            <h3><a href="https://github.com/POWDER-RANGER/PSPhone">PSPhone</a></h3>
+            <p>Mirror PlayStation gameplay to Android / iOS with secure transport and adaptive controls.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/PSPhone">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Guide // Docs</span>
+            <h3><a href="https://github.com/POWDER-RANGER/PSPhone-Passthrough">PSPhone-Passthrough</a></h3>
+            <p>View an Android screen on PS4 / PS5 over USB or Wi-Fi. Setup guides, streaming scripts, compatibility list.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/PSPhone-Passthrough">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-creative">
+        <div class="domain-head"><h3 class="dh">Creative &amp; music systems</h3><span class="count">04</span></div>
+        <p class="sub">Node-based AI music and visual pipelines.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://powder-ranger.github.io/RainGod-Comfy-Studio/">RainGod-Comfy-Studio</a></h3>
+            <p>Node-based AI music workflow studio. Draggable nodes, SVG pipelines, real-time Web Worker audio synthesis.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/RainGod-Comfy-Studio/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/RainGod-Comfy-Studio">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/raingod-studio-v4">raingod-studio-v4</a></h3>
+            <p>Creative pipeline: five local Ollama models plus seven cloud APIs with cross-modal node workflows.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/raingod-studio-v4">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Active // Python</span>
+            <h3><a href="https://github.com/POWDER-RANGER/RAINGOD-ComfyUI-Integration">RAINGOD-ComfyUI-Integration</a></h3>
+            <p>AI music kit connecting music production to ComfyUI diffusion workflows via API.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/RAINGOD-ComfyUI-Integration">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Experiment // HTML</span>
+            <h3><a href="https://github.com/POWDER-RANGER/joker-eye-tracker">joker-eye-tracker</a></h3>
+            <p>Interactive portrait whose eyes track device motion and mouse.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/joker-eye-tracker">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-language">
+        <div class="domain-head"><h3 class="dh">Language &amp; writing</h3><span class="count">01</span></div>
+        <p class="sub">Constructed language and long-form writing.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Released // JavaScript</span>
+            <h3><a href="https://github.com/POWDER-RANGER/powder-ranger-stone">powder-ranger-stone</a></h3>
+            <p>Reversible procedural conlang with runic orthography. Deterministic JavaScript ESM translator and specification.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/powder-ranger-stone">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-data">
+        <div class="domain-head"><h3 class="dh">Finance, data &amp; visualization</h3><span class="count">03</span></div>
+        <p class="sub">Systems models and catalogs you can explore.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Live // JavaScript</span>
+            <h3><a href="https://powder-ranger.github.io/dollar-gravity-framework/">dollar-gravity-framework</a></h3>
+            <p>Interactive React + D3 model of the USD-centric finance-security system. Narrative. Reality. Projection.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/dollar-gravity-framework/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/dollar-gravity-framework">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Live // HTML</span>
+            <h3><a href="https://powder-ranger.github.io/Artifact-Catalog/">Artifact-Catalog</a></h3>
+            <p>Catalog of Claude artifacts from my Anthropic account. 157 entries across nine domains, Oct 2024 to Mar 2026.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/Artifact-Catalog/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/Artifact-Catalog">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Reference // Java</span>
+            <h3><a href="https://github.com/POWDER-RANGER/enterprise-retail-api">enterprise-retail-api</a></h3>
+            <p>Spring Boot REST API. PostgreSQL, JWT auth, monitoring, deployed to GCP Cloud Run.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/enterprise-retail-api">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+      <div class="domain" id="d-archive">
+        <div class="domain-head"><h3 class="dh">Portfolio &amp; archive</h3><span class="count">04</span></div>
+        <p class="sub">Earlier indexes and the first repository.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="status">Index // Docs</span>
+            <h3><a href="https://github.com/POWDER-RANGER/systems-architecture-portfolio">systems-architecture-portfolio</a></h3>
+            <p>Master systems architecture portfolio across AI orchestration, security, networking and civic intelligence.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/systems-architecture-portfolio">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Index // PowerShell</span>
+            <h3><a href="https://github.com/POWDER-RANGER/curtis-farrar-portfolio">curtis-farrar-portfolio</a></h3>
+            <p>Professional technical portfolio: systems engineering, AI/ML, cybersecurity, mobile, OSINT.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/curtis-farrar-portfolio">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Profile // HTML</span>
+            <h3><a href="https://powder-ranger.github.io/POWDER-RANGER/">POWDER-RANGER</a></h3>
+            <p>GitHub profile repository and companion page.</p>
+            <div class="links"><a class="more" href="https://powder-ranger.github.io/POWDER-RANGER/">Open live →</a><a class="more" href="https://github.com/POWDER-RANGER/POWDER-RANGER">Repo →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Origin // Jan 2024</span>
+            <h3><a href="https://github.com/POWDER-RANGER/Hello-G-World">Hello-G-World</a></h3>
+            <p>First repository. Where it started.</p>
+            <div class="links"><a class="more" href="https://github.com/POWDER-RANGER/Hello-G-World">Repo →</a></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-alt" id="upstream">
+    <div class="wrap">
+      <p class="kicker">Upstream // outside contributions</p>
+      <h2>Contributions</h2>
+      <div class="grid">
+          <article class="card">
+            <span class="status">Open PR // Epic Games</span>
+            <h3><a href="https://github.com/EpicGames/MetaHuman-DNA-Calibration/pull/83">MetaHuman DNA Calibration #83</a></h3>
+            <p>Pull request to Epic Games' MetaHuman-DNA-Calibration repository. Filed Oct 2025.</p>
+            <div class="links"><a class="more" href="https://github.com/EpicGames/MetaHuman-DNA-Calibration/pull/83">View PR →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Open PR // Epic Games</span>
+            <h3><a href="https://github.com/EpicGames/MetaHuman-DNA-Calibration/pull/84">MetaHuman DNA Calibration #84</a></h3>
+            <p>Second pull request to the same repository. Filed Oct 2025.</p>
+            <div class="links"><a class="more" href="https://github.com/EpicGames/MetaHuman-DNA-Calibration/pull/84">View PR →</a></div>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="credentials">
+    <div class="wrap">
+      <p class="kicker">Verification // identity</p>
+      <h2>Credentials</h2>
+      <div class="grid">
+          <article class="card">
+            <span class="status">Certification // ZSecurity</span>
+            <h3>C|OSINT|P</h3>
+            <p>Certified OSINT Professional. July 2025.</p>
+          </article>
+          <article class="card">
+            <span class="status">Course // ZSecurity</span>
+            <h3>Network Hacking From Scratch</h3>
+            <p>Completed. Network security fundamentals and attack surface.</p>
+          </article>
+          <article class="card">
+            <span class="status">Researcher ID</span>
+            <h3><a href="https://orcid.org/0009-0008-9273-2458">ORCID</a></h3>
+            <p>0009-0008-9273-2458</p>
+            <div class="links"><a class="more" href="https://orcid.org/0009-0008-9273-2458">Open record →</a></div>
+          </article>
+          <article class="card">
+            <span class="status">Field background</span>
+            <h3>Trades</h3>
+            <p>Traveling welder and road crew lead. Journeyman HVAC. Master carpenter. Machine mechanic. The trade work funds the research.</p>
+          </article>
       </div>
     </div>
   </section>
